@@ -3,7 +3,7 @@ package world;
 import detail.PathObject;
 import detail.TileObject;
 import guests.Guest;
-import handler.ImageHandler;
+import handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Polygon;
@@ -14,46 +14,46 @@ public class Tile
 
     private static final Image[] pavementTiles = new Image[]
     {
-        ImageHandler.getPavementTile(0, 0, 64, 32),
-        ImageHandler.getPavementTile(1, 0, 64, 32),
-        ImageHandler.getPavementTile(2, 0, 64, 32),
-        ImageHandler.getPavementTile(3, 0, 64, 32),
-        ImageHandler.getPavementTile(0, 1, 64, 32),
-        ImageHandler.getPavementTile(1, 1, 64, 32),
-        ImageHandler.getPavementTile(2, 1, 63, 32),
-        ImageHandler.getPavementTile(3, 1, 64, 32),
-        ImageHandler.getPavementTile(0, 2, 63, 32),
-        ImageHandler.getPavementTile(1, 2, 64, 32),
-        ImageHandler.getPavementTile(2, 2, 64, 32),
-        ImageHandler.getPavementTile(3, 2, 64, 32),
-        ImageHandler.getPavementTile(0, 3, 64, 32),
-        ImageHandler.getPavementTile(1, 3, 64, 32),
-        ImageHandler.getPavementTile(2, 3, 64, 32),
-        ImageHandler.getPavementTile(3, 3, 64, 32),
-        ImageHandler.getPavementTile(0, 4, 64, 49),
-        ImageHandler.getPavementTile(1, 4, 64, 49),
-        ImageHandler.getPavementTile(2, 4, 63, 16),
-        ImageHandler.getPavementTile(3, 4, 63, 16)
+        GameImageHandler.getPavementTile(0, 0, 64, 32),
+        GameImageHandler.getPavementTile(1, 0, 64, 32),
+        GameImageHandler.getPavementTile(2, 0, 64, 32),
+        GameImageHandler.getPavementTile(3, 0, 64, 32),
+        GameImageHandler.getPavementTile(0, 1, 64, 32),
+        GameImageHandler.getPavementTile(1, 1, 64, 32),
+        GameImageHandler.getPavementTile(2, 1, 63, 32),
+        GameImageHandler.getPavementTile(3, 1, 64, 32),
+        GameImageHandler.getPavementTile(0, 2, 63, 32),
+        GameImageHandler.getPavementTile(1, 2, 64, 32),
+        GameImageHandler.getPavementTile(2, 2, 64, 32),
+        GameImageHandler.getPavementTile(3, 2, 64, 32),
+        GameImageHandler.getPavementTile(0, 3, 64, 32),
+        GameImageHandler.getPavementTile(1, 3, 64, 32),
+        GameImageHandler.getPavementTile(2, 3, 64, 32),
+        GameImageHandler.getPavementTile(3, 3, 64, 32),
+        GameImageHandler.getPavementTile(0, 4, 64, 49),
+        GameImageHandler.getPavementTile(1, 4, 64, 49),
+        GameImageHandler.getPavementTile(2, 4, 63, 16),
+        GameImageHandler.getPavementTile(3, 4, 63, 16)
     };
     private static final Image[] tiles = new Image[]
     {
-        ImageHandler.getTile(0, 0, 64, 32),
-        ImageHandler.getTile(1, 0, 64, 49),
-        ImageHandler.getTile(2, 0, 64, 49),
-        ImageHandler.getTile(3, 0, 63, 16),
-        ImageHandler.getTile(0, 1, 63, 16),
-        ImageHandler.getTile(1, 1, 63, 32),
-        ImageHandler.getTile(2, 1, 63, 32),
-        ImageHandler.getTile(3, 1, 64, 64),
-        ImageHandler.getTile(0, 2, 63, 32),
-        ImageHandler.getTile(1, 2, 64, 32),
-        ImageHandler.getTile(2, 2, 64, 47),
-        ImageHandler.getTile(3, 2, 62, 31),
-        ImageHandler.getTile(0, 3, 64, 32),
-        ImageHandler.getTile(1, 3, 64, 32),
-        ImageHandler.getTile(2, 3, 64, 32),
-        ImageHandler.getTile(3, 3, 64, 16),
-        ImageHandler.getTile(0, 4, 64, 48)
+        GameImageHandler.getTile(0, 0, 64, 32),
+        GameImageHandler.getTile(1, 0, 64, 49),
+        GameImageHandler.getTile(2, 0, 64, 49),
+        GameImageHandler.getTile(3, 0, 63, 16),
+        GameImageHandler.getTile(0, 1, 63, 16),
+        GameImageHandler.getTile(1, 1, 63, 32),
+        GameImageHandler.getTile(2, 1, 63, 32),
+        GameImageHandler.getTile(3, 1, 64, 64),
+        GameImageHandler.getTile(0, 2, 63, 32),
+        GameImageHandler.getTile(1, 2, 64, 32),
+        GameImageHandler.getTile(2, 2, 64, 47),
+        GameImageHandler.getTile(3, 2, 62, 31),
+        GameImageHandler.getTile(0, 3, 64, 32),
+        GameImageHandler.getTile(1, 3, 64, 32),
+        GameImageHandler.getTile(2, 3, 64, 32),
+        GameImageHandler.getTile(3, 3, 64, 16),
+        GameImageHandler.getTile(0, 4, 64, 48)
     };
     private LinkedList<Guest> guestsOnTile;
     private Tile[] neighbors;

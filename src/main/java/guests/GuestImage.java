@@ -4,7 +4,7 @@
  */
 package guests;
 
-import handler.ImageHandler;
+import handler.GameImageHandler;
 import java.awt.image.BufferedImage;
 
 public class GuestImage
@@ -13,153 +13,153 @@ public class GuestImage
     // <editor-fold defaultstate="collapsed" desc="Norths">
     private static final BufferedImage[] NORTHIMG1 =
     {
-        ImageHandler.getGuestImg(1, 0, 0),
-        ImageHandler.getGuestImg(1, 0, 1),
-        ImageHandler.getGuestImg(1, 0, 2),
-        ImageHandler.getGuestImg(1, 0, 3),
-        ImageHandler.getGuestImg(1, 0, 4),
-        ImageHandler.getGuestImg(1, 0, 5),
+        GameImageHandler.getGuestImg(1, 0, 0),
+        GameImageHandler.getGuestImg(1, 0, 1),
+        GameImageHandler.getGuestImg(1, 0, 2),
+        GameImageHandler.getGuestImg(1, 0, 3),
+        GameImageHandler.getGuestImg(1, 0, 4),
+        GameImageHandler.getGuestImg(1, 0, 5),
     };
     private static final BufferedImage[] NORTHIMG2 =
     {
-        ImageHandler.getGuestImg(2, 0, 0),
-        ImageHandler.getGuestImg(2, 0, 1),
-        ImageHandler.getGuestImg(2, 0, 2),
-        ImageHandler.getGuestImg(2, 0, 3),
-        ImageHandler.getGuestImg(2, 0, 4),
-        ImageHandler.getGuestImg(2, 0, 5),
+        GameImageHandler.getGuestImg(2, 0, 0),
+        GameImageHandler.getGuestImg(2, 0, 1),
+        GameImageHandler.getGuestImg(2, 0, 2),
+        GameImageHandler.getGuestImg(2, 0, 3),
+        GameImageHandler.getGuestImg(2, 0, 4),
+        GameImageHandler.getGuestImg(2, 0, 5),
     };
     private static final BufferedImage[] NORTHIMG3 =
     {
-        ImageHandler.getGuestImg(3, 0, 0),
-        ImageHandler.getGuestImg(3, 0, 1),
-        ImageHandler.getGuestImg(3, 0, 2),
-        ImageHandler.getGuestImg(3, 0, 3),
-        ImageHandler.getGuestImg(3, 0, 4),
-        ImageHandler.getGuestImg(3, 0, 5),
+        GameImageHandler.getGuestImg(3, 0, 0),
+        GameImageHandler.getGuestImg(3, 0, 1),
+        GameImageHandler.getGuestImg(3, 0, 2),
+        GameImageHandler.getGuestImg(3, 0, 3),
+        GameImageHandler.getGuestImg(3, 0, 4),
+        GameImageHandler.getGuestImg(3, 0, 5),
     };
     private static final BufferedImage[] NORTHIMG4 =
     {
-        ImageHandler.getGuestImg(4, 0, 0),
-        ImageHandler.getGuestImg(4, 0, 1),
-        ImageHandler.getGuestImg(4, 0, 2),
-        ImageHandler.getGuestImg(4, 0, 3),
-        ImageHandler.getGuestImg(4, 0, 4),
-        ImageHandler.getGuestImg(4, 0, 5),
+        GameImageHandler.getGuestImg(4, 0, 0),
+        GameImageHandler.getGuestImg(4, 0, 1),
+        GameImageHandler.getGuestImg(4, 0, 2),
+        GameImageHandler.getGuestImg(4, 0, 3),
+        GameImageHandler.getGuestImg(4, 0, 4),
+        GameImageHandler.getGuestImg(4, 0, 5),
     };// </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="South">
     private static final BufferedImage[] SOUTHIMG1 =
     {
-        ImageHandler.getGuestImg(1, 1, 0),
-        ImageHandler.getGuestImg(1, 1, 1),
-        ImageHandler.getGuestImg(1, 1, 2),
-        ImageHandler.getGuestImg(1, 1, 3),
-        ImageHandler.getGuestImg(1, 1, 4),
-        ImageHandler.getGuestImg(1, 1, 5),
+        GameImageHandler.getGuestImg(1, 1, 0),
+        GameImageHandler.getGuestImg(1, 1, 1),
+        GameImageHandler.getGuestImg(1, 1, 2),
+        GameImageHandler.getGuestImg(1, 1, 3),
+        GameImageHandler.getGuestImg(1, 1, 4),
+        GameImageHandler.getGuestImg(1, 1, 5),
     };
     private static final BufferedImage[] SOUTHIMG2 =
     {
-        ImageHandler.getGuestImg(2, 1, 0),
-        ImageHandler.getGuestImg(2, 1, 1),
-        ImageHandler.getGuestImg(2, 1, 2),
-        ImageHandler.getGuestImg(2, 1, 3),
-        ImageHandler.getGuestImg(2, 1, 4),
-        ImageHandler.getGuestImg(2, 1, 5),
+        GameImageHandler.getGuestImg(2, 1, 0),
+        GameImageHandler.getGuestImg(2, 1, 1),
+        GameImageHandler.getGuestImg(2, 1, 2),
+        GameImageHandler.getGuestImg(2, 1, 3),
+        GameImageHandler.getGuestImg(2, 1, 4),
+        GameImageHandler.getGuestImg(2, 1, 5),
     };
     private static final BufferedImage[] SOUTHIMG3 =
     {
-        ImageHandler.getGuestImg(3, 1, 0),
-        ImageHandler.getGuestImg(3, 1, 1),
-        ImageHandler.getGuestImg(3, 1, 2),
-        ImageHandler.getGuestImg(3, 1, 3),
-        ImageHandler.getGuestImg(3, 1, 4),
-        ImageHandler.getGuestImg(3, 1, 5),
+        GameImageHandler.getGuestImg(3, 1, 0),
+        GameImageHandler.getGuestImg(3, 1, 1),
+        GameImageHandler.getGuestImg(3, 1, 2),
+        GameImageHandler.getGuestImg(3, 1, 3),
+        GameImageHandler.getGuestImg(3, 1, 4),
+        GameImageHandler.getGuestImg(3, 1, 5),
     };
     private static final BufferedImage[] SOUTHIMG4 =
     {
-        ImageHandler.getGuestImg(4, 1, 0),
-        ImageHandler.getGuestImg(4, 1, 1),
-        ImageHandler.getGuestImg(4, 1, 2),
-        ImageHandler.getGuestImg(4, 1, 3),
-        ImageHandler.getGuestImg(4, 1, 4),
-        ImageHandler.getGuestImg(4, 1, 5),
+        GameImageHandler.getGuestImg(4, 1, 0),
+        GameImageHandler.getGuestImg(4, 1, 1),
+        GameImageHandler.getGuestImg(4, 1, 2),
+        GameImageHandler.getGuestImg(4, 1, 3),
+        GameImageHandler.getGuestImg(4, 1, 4),
+        GameImageHandler.getGuestImg(4, 1, 5),
     };// </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="East">
     private static final BufferedImage[] EASTIMG1 =
     {
-        ImageHandler.getGuestImg(1, 2, 0),
-        ImageHandler.getGuestImg(1, 2, 1),
-        ImageHandler.getGuestImg(1, 2, 2),
-        ImageHandler.getGuestImg(1, 2, 3),
-        ImageHandler.getGuestImg(1, 2, 4),
-        ImageHandler.getGuestImg(1, 2, 5),
+        GameImageHandler.getGuestImg(1, 2, 0),
+        GameImageHandler.getGuestImg(1, 2, 1),
+        GameImageHandler.getGuestImg(1, 2, 2),
+        GameImageHandler.getGuestImg(1, 2, 3),
+        GameImageHandler.getGuestImg(1, 2, 4),
+        GameImageHandler.getGuestImg(1, 2, 5),
     };
     private static final BufferedImage[] EASTIMG2 =
     {
-        ImageHandler.getGuestImg(2, 2, 0),
-        ImageHandler.getGuestImg(2, 2, 1),
-        ImageHandler.getGuestImg(2, 2, 2),
-        ImageHandler.getGuestImg(2, 2, 3),
-        ImageHandler.getGuestImg(2, 2, 4),
-        ImageHandler.getGuestImg(2, 2, 5),
+        GameImageHandler.getGuestImg(2, 2, 0),
+        GameImageHandler.getGuestImg(2, 2, 1),
+        GameImageHandler.getGuestImg(2, 2, 2),
+        GameImageHandler.getGuestImg(2, 2, 3),
+        GameImageHandler.getGuestImg(2, 2, 4),
+        GameImageHandler.getGuestImg(2, 2, 5),
     };
     private static final BufferedImage[] EASTIMG3 =
     {
-        ImageHandler.getGuestImg(3, 2, 0),
-        ImageHandler.getGuestImg(3, 2, 1),
-        ImageHandler.getGuestImg(3, 2, 2),
-        ImageHandler.getGuestImg(3, 2, 3),
-        ImageHandler.getGuestImg(3, 2, 4),
-        ImageHandler.getGuestImg(3, 2, 5),
+        GameImageHandler.getGuestImg(3, 2, 0),
+        GameImageHandler.getGuestImg(3, 2, 1),
+        GameImageHandler.getGuestImg(3, 2, 2),
+        GameImageHandler.getGuestImg(3, 2, 3),
+        GameImageHandler.getGuestImg(3, 2, 4),
+        GameImageHandler.getGuestImg(3, 2, 5),
     };
     private static final BufferedImage[] EASTIMG4 =
     {
-        ImageHandler.getGuestImg(4, 2, 0),
-        ImageHandler.getGuestImg(4, 2, 1),
-        ImageHandler.getGuestImg(4, 2, 2),
-        ImageHandler.getGuestImg(4, 2, 3),
-        ImageHandler.getGuestImg(4, 2, 4),
-        ImageHandler.getGuestImg(4, 2, 5),
+        GameImageHandler.getGuestImg(4, 2, 0),
+        GameImageHandler.getGuestImg(4, 2, 1),
+        GameImageHandler.getGuestImg(4, 2, 2),
+        GameImageHandler.getGuestImg(4, 2, 3),
+        GameImageHandler.getGuestImg(4, 2, 4),
+        GameImageHandler.getGuestImg(4, 2, 5),
     };// </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="West">
     private static final BufferedImage[] WESTIMG1 =
     {
-        ImageHandler.getGuestImg(1, 3, 0),
-        ImageHandler.getGuestImg(1, 3, 1),
-        ImageHandler.getGuestImg(1, 3, 2),
-        ImageHandler.getGuestImg(1, 3, 3),
-        ImageHandler.getGuestImg(1, 3, 4),
-        ImageHandler.getGuestImg(1, 3, 5),
+        GameImageHandler.getGuestImg(1, 3, 0),
+        GameImageHandler.getGuestImg(1, 3, 1),
+        GameImageHandler.getGuestImg(1, 3, 2),
+        GameImageHandler.getGuestImg(1, 3, 3),
+        GameImageHandler.getGuestImg(1, 3, 4),
+        GameImageHandler.getGuestImg(1, 3, 5),
     };
     private static final BufferedImage[] WESTIMG2 =
     {
-        ImageHandler.getGuestImg(2, 3, 0),
-        ImageHandler.getGuestImg(2, 3, 1),
-        ImageHandler.getGuestImg(2, 3, 2),
-        ImageHandler.getGuestImg(2, 3, 3),
-        ImageHandler.getGuestImg(2, 3, 4),
-        ImageHandler.getGuestImg(2, 3, 5),
+        GameImageHandler.getGuestImg(2, 3, 0),
+        GameImageHandler.getGuestImg(2, 3, 1),
+        GameImageHandler.getGuestImg(2, 3, 2),
+        GameImageHandler.getGuestImg(2, 3, 3),
+        GameImageHandler.getGuestImg(2, 3, 4),
+        GameImageHandler.getGuestImg(2, 3, 5),
     };
     private static final BufferedImage[] WESTIMG3 =
     {
-        ImageHandler.getGuestImg(3, 3, 0),
-        ImageHandler.getGuestImg(3, 3, 1),
-        ImageHandler.getGuestImg(3, 3, 2),
-        ImageHandler.getGuestImg(3, 3, 3),
-        ImageHandler.getGuestImg(3, 3, 4),
-        ImageHandler.getGuestImg(3, 3, 5),
+        GameImageHandler.getGuestImg(3, 3, 0),
+        GameImageHandler.getGuestImg(3, 3, 1),
+        GameImageHandler.getGuestImg(3, 3, 2),
+        GameImageHandler.getGuestImg(3, 3, 3),
+        GameImageHandler.getGuestImg(3, 3, 4),
+        GameImageHandler.getGuestImg(3, 3, 5),
     };
     private static final BufferedImage[] WESTIMG4 =
     {
-        ImageHandler.getGuestImg(4, 3, 0),
-        ImageHandler.getGuestImg(4, 3, 1),
-        ImageHandler.getGuestImg(4, 3, 2),
-        ImageHandler.getGuestImg(4, 3, 3),
-        ImageHandler.getGuestImg(4, 3, 4),
-        ImageHandler.getGuestImg(4, 3, 5),
+        GameImageHandler.getGuestImg(4, 3, 0),
+        GameImageHandler.getGuestImg(4, 3, 1),
+        GameImageHandler.getGuestImg(4, 3, 2),
+        GameImageHandler.getGuestImg(4, 3, 3),
+        GameImageHandler.getGuestImg(4, 3, 4),
+        GameImageHandler.getGuestImg(4, 3, 5),
     };// </editor-fold>
 
     public static BufferedImage[] getNorthImage(int variation)

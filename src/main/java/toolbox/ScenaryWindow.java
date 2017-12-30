@@ -1,7 +1,7 @@
 package toolbox;
 
 import detail.TileObjectImages;
-import handler.ImageHandler;
+import handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -32,14 +32,14 @@ public class ScenaryWindow
         indexes = new Polygon[4];
         buttons = new Polygon[ICONS];
         createPolygon();
-        selectButtonUp = ImageHandler.getButtonImg(4, 0);
-        selectButtonDown = ImageHandler.getButtonImg(3, 0);
-        indexButtonDown = ImageHandler.getScenaryWindow(false);
+        selectButtonUp = GameImageHandler.getButtonImg(4, 0);
+        selectButtonDown = GameImageHandler.getButtonImg(3, 0);
+        indexButtonDown = GameImageHandler.getScenaryWindow(false);
 
         selectedButton = 0;
         selectedIndex = 0;
         visible = false;
-        window = ImageHandler.getScenaryWindow(true);
+        window = GameImageHandler.getScenaryWindow(true);
         icons = new BufferedImage[ICONS];
 
         loadImages();
@@ -284,8 +284,8 @@ public class ScenaryWindow
 
     private void loadImages()
     {
-        icons[0] = ImageHandler.getButtonImg(0, 2);
-        icons[1] = ImageHandler.getButtonImg(1, 2);
-        icons[2] = ImageHandler.getButtonImg(2, 2);
+        icons[0] = GameImageHandler.getButtonImg(0, 2);
+        icons[1] = GameImageHandler.getButtonImg(1, 2);
+        icons[2] = GameImageHandler.getButtonImg(2, 2);
     }
 }

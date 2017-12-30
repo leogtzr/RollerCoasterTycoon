@@ -1,7 +1,7 @@
 package world;
 
 import guests.Guest;
-import handler.ImageHandler;
+import handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
@@ -22,9 +22,9 @@ public class World
 
     public World() throws IOException
     {
-        ImageHandler imageHandler = new ImageHandler();
+        GameImageHandler imageHandler = new GameImageHandler();
 
-        imageHandler.loadImage();
+        imageHandler.loadImages();
 
         tiles = new Tile[SIZE][SIZE];
 

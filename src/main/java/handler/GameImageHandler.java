@@ -4,8 +4,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class ImageHandler
+public class GameImageHandler
 {
+
+    private static final String IMAGES_PATH = "/images/";
 
     private static BufferedImage buttonImg, treeImg, ornamentImg, loadWindow, scenaryWindow, tiles;
     private static BufferedImage pavement, pavementStuff;
@@ -82,19 +84,23 @@ public class ImageHandler
 
     }
 
-    public void loadImage() throws IOException
+    public void loadImages() throws IOException
     {
-        tiles = ImageIO.read(this.getClass().getResourceAsStream("tiles.png"));
-        treeImg = ImageIO.read(this.getClass().getResourceAsStream("treeset.png"));
-        pavement = ImageIO.read(this.getClass().getResourceAsStream("pavement.png"));
-        buttonImg = ImageIO.read(this.getClass().getResourceAsStream("tileset.png"));
-        loadWindow = ImageIO.read(this.getClass().getResourceAsStream("SaveBox.png"));
-        guestImg1 = ImageIO.read(this.getClass().getResourceAsStream("GuestSet1.png"));
-        guestImg2 = ImageIO.read(this.getClass().getResourceAsStream("GuestSet2.png"));
-        guestImg3 = ImageIO.read(this.getClass().getResourceAsStream("GuestSet3.png"));
-        guestImg4 = ImageIO.read(this.getClass().getResourceAsStream("GuestSet4.png"));
-        ornamentImg = ImageIO.read(this.getClass().getResourceAsStream("OrnamentSet.png"));
-        pavementStuff = ImageIO.read(this.getClass().getResourceAsStream("PavementStuff.png"));
-        scenaryWindow = ImageIO.read(this.getClass().getResourceAsStream("ScenaryWindow.png"));
+        tiles = loadImages("grassTiles.png");
+        treeImg = loadImages("treeset.png");
+        pavement = loadImages("pavement.png");
+        buttonImg = loadImages("tileset.png");
+        loadWindow = loadImages("saveBox.png");
+        guestImg1 = loadImages("guestSet1.png");
+        guestImg2 = loadImages("guestSet2.png");
+        guestImg3 = loadImages("guestSet3.png");
+        guestImg4 = loadImages("guestSet4.png");
+        ornamentImg = loadImages("ornamentSet.png");
+        pavementStuff = loadImages("pavementStuff.png");
+        scenaryWindow = loadImages("scenaryWindow.png");
+    }
+
+    private BufferedImage loadImages(String imageName) throws IOException {
+        return ImageIO.read(this.getClass().getResourceAsStream(IMAGES_PATH + imageName));
     }
 }

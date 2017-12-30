@@ -1,6 +1,6 @@
 package toolbox;
 
-import handler.ImageHandler;
+import handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -20,7 +20,7 @@ public class LoadSaveWindow
     {
         enabled = false;
         polygons = new Polygon[3];
-        img = ImageHandler.getLoadImg();
+        img = GameImageHandler.getLoadImg();
         x = 100;
         y = 100;
         createPolygons();

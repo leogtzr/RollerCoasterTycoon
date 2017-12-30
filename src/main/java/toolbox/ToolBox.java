@@ -1,6 +1,6 @@
 package toolbox;
 
-import handler.ImageHandler;
+import handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -19,8 +19,8 @@ public class ToolBox
     {
         primarySelected = -1;
         scenaryWindow = new ScenaryWindow();
-        buttonUp = ImageHandler.getButtonImg(1, 0);
-        buttonDown = ImageHandler.getButtonImg(0, 0);
+        buttonUp = GameImageHandler.getButtonImg(1, 0);
+        buttonDown = GameImageHandler.getButtonImg(0, 0);
         icons = new BufferedImage[SLOTS];
 
         polygons = new Polygon[SLOTS];
@@ -84,12 +84,12 @@ public class ToolBox
 
     private void loadIcons()
     {
-        icons[0] = ImageHandler.getButtonImg(0, 1);
-        icons[1] = ImageHandler.getButtonImg(1, 1);
-        icons[2] = ImageHandler.getButtonImg(2, 1);
-        icons[3] = ImageHandler.getButtonImg(3, 1);
-        icons[4] = ImageHandler.getButtonImg(4, 1);
-        icons[5] = ImageHandler.getButtonImg(2, 0);
+        icons[0] = GameImageHandler.getButtonImg(0, 1);
+        icons[1] = GameImageHandler.getButtonImg(1, 1);
+        icons[2] = GameImageHandler.getButtonImg(2, 1);
+        icons[3] = GameImageHandler.getButtonImg(3, 1);
+        icons[4] = GameImageHandler.getButtonImg(4, 1);
+        icons[5] = GameImageHandler.getButtonImg(2, 0);
     }
 
     public int getSlots()
