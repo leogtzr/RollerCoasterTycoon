@@ -1,12 +1,12 @@
-package isometric;
+package roller.coaster.tycoon.isometric;
 
-import guests.GuestMover;
+import roller.coaster.tycoon.guests.GuestMover;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import toolbox.LoadSaveWindow;
-import world.World;
+import roller.coaster.tycoon.toolbox.LoadSaveWindow;
+import roller.coaster.tycoon.world.World;
 
 public class Gui extends javax.swing.JFrame implements Runnable
 {

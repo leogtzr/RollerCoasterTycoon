@@ -1,4 +1,4 @@
-package handler;
+package roller.coaster.tycoon.handler;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

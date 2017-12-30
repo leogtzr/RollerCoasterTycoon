@@ -1,70 +1,75 @@
-package world;
+package roller.coaster.tycoon.world;
 
-import guests.Guest;
-import handler.GameImageHandler;
+import roller.coaster.tycoon.guests.Guest;
+import roller.coaster.tycoon.handler.GameImageHandler;
+
 import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
-import toolbox.LoadSaveWindow;
-import toolbox.ToolBox;
-import worldGen.WorldGen;
+import java.util.ArrayList;
+import java.util.List;
 
-public class World
-{
+import roller.coaster.tycoon.toolbox.LoadSaveWindow;
+import roller.coaster.tycoon.toolbox.ToolBox;
+import roller.coaster.tycoon.worldGen.WorldGen;
+
+public class World {
 
     private Point movePoint;
     private ToolBox toolbox;
     private Tile[][] tiles;
+    private List<Tile> tilesList;
     private Highlight highlight;
     private final int SIZE = 30;
     private int x0, y0;
     private LoadSaveWindow loadSaveWindow;
 
-    public World() throws IOException
-    {
+    public World() throws IOException {
         GameImageHandler imageHandler = new GameImageHandler();
 
         imageHandler.loadImages();
 
-        tiles = new Tile[SIZE][SIZE];
 
         x0 = -550;
         y0 = 300;
 
-        double helperX = 0.0d;
-        double helperY = 0.0d;
-
-        for (int i = 1; i < tiles.length + 1; i++)
-        {
-            for (int j = 1; j < tiles[i - 1].length + 1; j++)
-            {
-                tiles[i - 1][j - 1] = new Tile(helperX, helperY);
-                helperX = helperX + 0.5d;
-                helperY = helperY + 0.5d;
-            }
-            helperX = i / 2d;
-            helperY = -i / 2d;
-        }
+        initializeTiles();
 
         toolbox = new ToolBox();
         movePoint = new Point(0, 0);
         loadSaveWindow = new LoadSaveWindow();
     }
 
-    public void draw(Graphics g)
-    {
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = tiles[i].length - 1; j >= 0; j--)
-            {
-                if (tiles[j][i] != null)
-                {
+    private void initializeTiles() {
+        tiles = new Tile[SIZE][SIZE];
+        tilesList = new ArrayList<Tile>(SIZE * SIZE);
+
+        double helperX = 0.0d;
+        double helperY = 0.0d;
+
+        for (int i = 1; i < tiles.length + 1; i++) {
+            for (int j = 1; j < tiles[i - 1].length + 1; j++) {
+                Tile createdTile = new Tile(helperX, helperY);
+                tiles[i - 1][j - 1] = createdTile;
+                tilesList.add(createdTile);
+
+                helperX = helperX + 0.5d;
+                helperY = helperY + 0.5d;
+            }
+            helperX = i / 2d;
+            helperY = -i / 2d;
+        }
+    }
+
+    public void draw(Graphics g) {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = tiles[i].length - 1; j >= 0; j--) {
+                if (tiles[j][i] != null) {
                     tiles[j][i].draw(g, x0, y0);
                 }
             }
         }
-        if (highlight != null)
-        {
+        if (highlight != null) {
             highlight.draw(g);
         }
 
@@ -72,38 +77,29 @@ public class World
         loadSaveWindow.draw(g);
     }
 
-    public void makePavement(int x, int y, int mouse)
-    {
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
-                if (tiles[i][j].getPolygon().contains(x, y))
-                {
+    public void makePavement(int x, int y, int mouse) {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (tiles[i][j].getPolygon().contains(x, y)) {
                     tiles[i][j].makePavement(mouse);
 
 
-                    if (mouse == 16)
-                    {
-                        if (j + 1 < 30)
-                        {
+                    if (mouse == 16) {
+                        if (j + 1 < 30) {
                             tiles[i][j + 1].addAsNeighbor(tiles[i][j], 'N');
                             tiles[i][j].addAsNeighbor(tiles[i][j + 1], 'S');
                         }
 
-                        if (j - 1 >= 0)
-                        {
+                        if (j - 1 >= 0) {
                             tiles[i][j - 1].addAsNeighbor(tiles[i][j], 'S');
                             tiles[i][j].addAsNeighbor(tiles[i][j - 1], 'N');
                         }
 
-                        if (i + 1 < 30)
-                        {
+                        if (i + 1 < 30) {
                             tiles[i + 1][j].addAsNeighbor(tiles[i][j], 'W');
                             tiles[i][j].addAsNeighbor(tiles[i + 1][j], 'E');
                         }
-                        if (i - 1 >= 0)
-                        {
+                        if (i - 1 >= 0) {
                             tiles[i - 1][j].addAsNeighbor(tiles[i][j], 'E');
                             tiles[i][j].addAsNeighbor(tiles[i - 1][j], 'W');
                         }
@@ -114,61 +110,46 @@ public class World
         }
     }
 
-    public void raise(int x, int y, int mouse)
-    {
+    public void raise(int x, int y, int mouse) {
         int ammount = 0;
-        if (mouse == 16)
-        {
+        if (mouse == 16) {
             ammount = -16;
-        }
-        else
-        {
+        } else {
             ammount = 16;
         }
 
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
-                if (tiles[i][j].getPolygon().contains(x, y))
-                {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (tiles[i][j].getPolygon().contains(x, y)) {
                     tiles[i][j].click(ammount, ammount, ammount, ammount);
 
 
-                    if (i + 1 < 30 && j + 1 < 30)
-                    {
+                    if (i + 1 < 30 && j + 1 < 30) {
                         tiles[i + 1][j + 1].click(0, 0, 0, ammount);
                     }
 
-                    if (i - 1 >= 0 && j + 1 < 30)
-                    {
+                    if (i - 1 >= 0 && j + 1 < 30) {
                         tiles[i - 1][j + 1].click(ammount, 0, 0, 0);
                     }
 
-                    if (j + 1 < 30)
-                    {
+                    if (j + 1 < 30) {
                         tiles[i][j + 1].click(ammount, 0, 0, ammount);
                     }
 
-                    if (i + 1 < 30 && j - 1 >= 0)
-                    {
+                    if (i + 1 < 30 && j - 1 >= 0) {
                         tiles[i + 1][j - 1].click(0, ammount, 0, 0);
                     }
 
-                    if (j - 1 >= 0)
-                    {
+                    if (j - 1 >= 0) {
                         tiles[i][j - 1].click(0, ammount, ammount, 0);
                     }
-                    if (i - 1 >= 0 && j - 1 >= 0)
-                    {
+                    if (i - 1 >= 0 && j - 1 >= 0) {
                         tiles[i - 1][j - 1].click(0, 0, ammount, 0);
                     }
-                    if (i + 1 < 30)
-                    {
+                    if (i + 1 < 30) {
                         tiles[i + 1][j].click(0, ammount, 0, ammount);
                     }
-                    if (i - 1 >= 0)
-                    {
+                    if (i - 1 >= 0) {
                         tiles[i - 1][j].click(ammount, 0, ammount, 0);
                     }
                     return;
@@ -177,20 +158,16 @@ public class World
         }
     }
 
-    public Tile[][] getTiles()
-    {
+    public Tile[][] getTiles() {
         return tiles;
     }
 
-    public void reset()
-    {
+    public void reset() {
         double helperX = 0.0d;
         double helperY = 0.0d;
 
-        for (int i = 1; i < tiles.length + 1; i++)
-        {
-            for (int j = 1; j < tiles[i - 1].length + 1; j++)
-            {
+        for (int i = 1; i < tiles.length + 1; i++) {
+            for (int j = 1; j < tiles[i - 1].length + 1; j++) {
                 tiles[i - 1][j - 1] = new Tile(helperX, helperY);
                 helperX = helperX + 0.5d;
                 helperY = helperY + 0.5d;
@@ -200,37 +177,29 @@ public class World
         }
     }
 
-    public void moveWorld(int x0, int y0)
-    {
+    public void moveWorld(int x0, int y0) {
         this.x0 = this.x0 + x0;
         this.y0 = this.y0 + y0;
     }
 
-    public void clickToolBox(int x, int y)
-    {
+    public void clickToolBox(int x, int y) {
         toolbox.diableAllwindows();
 
         toolbox.click(x, y);
 
-        if (toolbox.getPrimarySelected() == 3)
-        {
+        if (toolbox.getPrimarySelected() == 3) {
             toolbox.getScenaryWindow().setVisible(true);
         }
     }
 
-    public ToolBox getToolbox()
-    {
+    public ToolBox getToolbox() {
         return toolbox;
     }
 
-    public void placeObjectAt(int x, int y, int mouse, int type, int index)
-    {
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
-                if (tiles[i][j].getPolygon().contains(x, y))
-                {
+    public void placeObjectAt(int x, int y, int mouse, int type, int index) {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (tiles[i][j].getPolygon().contains(x, y)) {
                     tiles[i][j].placeObject(mouse, type, index);
                     return;
                 }
@@ -238,23 +207,18 @@ public class World
         }
     }
 
-    public void loadWorld(String worldName) throws IOException
-    {
+    public void loadWorld(String worldName) throws IOException {
         WorldGen worldGen = new WorldGen();
         worldGen.loadImage(worldName);
 
         worldGen.loadWorld(tiles);
     }
 
-    public void setHighlightedTile(int x, int y)
-    {
+    public void setHighlightedTile(int x, int y) {
         highlight = null;
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
-                if (tiles[i][j].getPolygon().contains(x, y))
-                {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (tiles[i][j].getPolygon().contains(x, y)) {
                     highlight = new Highlight(tiles[i][j].getPolygon());
                     return;
                 }
@@ -262,16 +226,11 @@ public class World
         }
     }
 
-    public void addGuestAt(int x, int y)
-    {
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
-                if (tiles[i][j].getPolygon().contains(x, y))
-                {
-                    if (tiles[i][j].doesHaveNeighbors() && tiles[i][j].isPavement())
-                    {
+    public void addGuestAt(int x, int y) {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (tiles[i][j].getPolygon().contains(x, y)) {
+                    if (tiles[i][j].doesHaveNeighbors() && tiles[i][j].isPavement()) {
                         Guest guest = new Guest(tiles[i][j]);
                         tiles[i][j].addNewGuestToList(guest);
                     }
@@ -280,42 +239,35 @@ public class World
         }
     }
 
-    public void saveWorld(String string)
-    {
-        if (string.isEmpty())
-        {
+    public void saveWorld(String string) {
+        if (string.isEmpty()) {
             string = "map";
         }
         WorldGen worldGen = new WorldGen(tiles);
         worldGen.saveWorldNew(string);
     }
 
-    public void dragAt(int x, int y, int modifier)
-    {
-        if (!toolbox.dragAnyWindows(x, y))
-        {
+    public void dragAt(int x, int y, int modifier) {
+        if (!toolbox.dragAnyWindows(x, y)) {
             // <editor-fold defaultstate="collapsed" desc="Object placement - 3">
-            if (toolbox.getPrimarySelected() == 3)
-            {
+            if (toolbox.getPrimarySelected() == 3) {
                 placeObjectAt(x, y, modifier, toolbox.getScenaryWindow().getSelectedButton(), toolbox.getScenaryWindow().
                         getSelectedIndex());
             }// </editor-fold>
 
             // <editor-fold defaultstate="collapsed" desc="Movement - 2">
-            if (toolbox.getPrimarySelected() == 2)
-            {
+            if (toolbox.getPrimarySelected() == 2) {
                 moveWorld((int) (x - movePoint.getX()), (int) (y - movePoint.getY()));
                 movePoint.setLocation(x, y);
             }// </editor-fold>
 
             // <editor-fold defaultstate="collapsed" desc="Pavement - 1">
-            if (toolbox.getPrimarySelected() == 1)
-            {
+            if (toolbox.getPrimarySelected() == 1) {
                 makePavement(x, y, modifier);
             }// </editor-fold>
 //
 //            // <editor-fold defaultstate="collapsed" desc="Raising/Lowing - 0">
-//            if (toolbox.getPrimarySelected() == 0)
+//            if (roller.coaster.tycoon.toolbox.getPrimarySelected() == 0)
 //            {
 //                raise(x, y, modifier);
 //            }// </editor-fold>
@@ -325,148 +277,110 @@ public class World
 
     }
 
-    public void pressAt(int x, int y, int modifier)
-    {
-        if (!toolbox.dragAnyWindows(x, y))
-        {
+    public void pressAt(int x, int y, int modifier) {
+        if (!toolbox.dragAnyWindows(x, y)) {
             // <editor-fold defaultstate="collapsed" desc="Guests - 4">
-            if (toolbox.getPrimarySelected() == 4)
-            {
+            if (toolbox.getPrimarySelected() == 4) {
                 addGuestAt(x, y);
             }// </editor-fold>
 
             //<editor-fold defaultstate="collapsed" desc="Movement - 2">
-            if (toolbox.getPrimarySelected() == 2)
-            {
+            if (toolbox.getPrimarySelected() == 2) {
                 movePoint.setLocation(x, y);
             }// </editor-fold>
 
             // <editor-fold defaultstate="collapsed" desc="Pavement - 1">
-            if (toolbox.getPrimarySelected() == 1)
-            {
+            if (toolbox.getPrimarySelected() == 1) {
                 makePavement(x, y, modifier);
             }// </editor-fold>
         }
     }
 
-    public void pressAndClickAt(int x, int y, int modifier) throws Exception
-    {
+    public void pressAndClickAt(int x, int y, int modifier) throws Exception {
         boolean hitWindow = false;
 
-        if (x <= toolbox.getSlots() * 30 && y <= 30)
-        {
+        if (x <= toolbox.getSlots() * 30 && y <= 30) {
             toolbox.diableAllwindows();
-            if (x >= (toolbox.getSlots() - 1) * 30)
-            {
+            if (x >= (toolbox.getSlots() - 1) * 30) {
                 loadSaveWindow.setEnabled(true);
-            }
-            else
-            {
+            } else {
                 loadSaveWindow.setEnabled(false);
             }
 
             clickToolBox(x, y);
 
-            if (toolbox.getPrimarySelected() == 3)
-            {
+            if (toolbox.getPrimarySelected() == 3) {
                 toolbox.getScenaryWindow().setVisible(true);
             }
 
-        }
-        else
-        {
-            if (toolbox.getPrimarySelected() == 5)
-            {
-                switch (loadSaveWindow.clickAt(x, y))
-                {
-                    case (0):
-                    {
+        } else {
+            if (toolbox.getPrimarySelected() == 5) {
+                switch (loadSaveWindow.clickAt(x, y)) {
+                    case (0): {
                         loadSaveWindow.setEnabled(false);
                         saveWorld(LoadSaveWindow.getWRITER().getString());
                         toolbox.unSelectAll();
                         break;
                     }
-                    case (1):
-                    {
-                        try
-                        {
+                    case (1): {
+                        try {
                             reset();
                             loadWorld(LoadSaveWindow.getWRITER().getString());
-                        }
-                        catch (Exception ex)
-                        {
+                        } catch (Exception ex) {
                             throw new Exception("World not found.");
                         }
                         toolbox.unSelectAll();
                         loadSaveWindow.setEnabled(false);
                         break;
                     }
-                    case (2):
-                    {
+                    case (2): {
                         toolbox.unSelectAll();
                         loadSaveWindow.setEnabled(false);
                         break;
                     }
                 }
             }
-            if (toolbox.getPrimarySelected() == 4)
-            {
+            if (toolbox.getPrimarySelected() == 4) {
                 //check if hit guest windiw
             }
-            if (toolbox.getPrimarySelected() == 3)
-            {
+            if (toolbox.getPrimarySelected() == 3) {
                 hitWindow = toolbox.getScenaryWindow().clickAt(x, y);
             }
-            if (toolbox.getPrimarySelected() == 2)
-            {
+            if (toolbox.getPrimarySelected() == 2) {
                 //Check if hit movement window
             }
-            if (toolbox.getPrimarySelected() == 1)
-            {
+            if (toolbox.getPrimarySelected() == 1) {
                 //Check if hit pavement window
             }
-            if (toolbox.getPrimarySelected() == 0)
-            {
+            if (toolbox.getPrimarySelected() == 0) {
                 //Check if hit landscape window
             }
 
-            if (!hitWindow)
-            {
+            if (!hitWindow) {
                 // <editor-fold defaultstate="collapsed" desc="Object placement - 3">
-                if (toolbox.getPrimarySelected() == 3)
-                {
+                if (toolbox.getPrimarySelected() == 3) {
                     placeObjectAt(x, y, modifier, toolbox.getScenaryWindow().getSelectedButton(), toolbox.getScenaryWindow().
                             getSelectedIndex());
                 }// </editor-fold>
 
                 // <editor-fold defaultstate="collapsed" desc="Pavement - 1">
-                if (toolbox.getPrimarySelected() == 1)
-                {
+                if (toolbox.getPrimarySelected() == 1) {
                     makePavement(x, y, modifier);
                 }// </editor-fold>
 
                 // <editor-fold defaultstate="collapsed" desc="Raising/Lowing - 0">
-                if (toolbox.getPrimarySelected() == 0)
-                {
+                if (toolbox.getPrimarySelected() == 0) {
                     raise(x, y, modifier);
                 }// </editor-fold>
             }
         }
     }
 
-    public LoadSaveWindow getLoadSaveWindow()
-    {
+    public LoadSaveWindow getLoadSaveWindow() {
         return loadSaveWindow;
     }
 
-    public void movePeople()
-    {
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
-                tiles[i][j].movePeople();
-            }
-        }
+    public void movePeople() {
+        tilesList.forEach(Tile::movePeople);
     }
 }

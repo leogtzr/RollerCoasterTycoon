@@ -1,4 +1,4 @@
-package world;
+package roller.coaster.tycoon.world;
 
 import java.awt.Color;
 import java.awt.Graphics;

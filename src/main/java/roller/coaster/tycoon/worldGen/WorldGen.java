@@ -1,11 +1,11 @@
-package worldGen;
+package roller.coaster.tycoon.worldGen;
 
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import world.Tile;
+import roller.coaster.tycoon.world.Tile;
 
 /**
  * The class used to save and load worlds.
@@ -46,7 +46,7 @@ public class WorldGen
      * Called when loading a map. The parameter imgName is the name of the map
      * to load. It should not have a file extension such as .png as it by default
      * loads .png files.
-     * <p>Must be called before the loadWorld(Tile[][] world) method.
+     * <p>Must be called before the loadWorld(Tile[][] roller.coaster.tycoon.world) method.
      * 
      * @param imgName the name of the image to load
      * @throws IOException If loading the image fails.
@@ -204,7 +204,7 @@ public class WorldGen
      * The image is loaded and every pixel has it's red color loaded.
      * All the tiles are then edited to corrospond to the color value.
      * <p>Pure white being the lowest and pure black the highest.
-     * @param world The tiles the world should be loaded into.
+     * @param world The tiles the roller.coaster.tycoon.world should be loaded into.
      */
     public void loadWorld(Tile[][] world)
     {

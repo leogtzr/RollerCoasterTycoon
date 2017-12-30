@@ -1,9 +1,9 @@
-package world;
+package roller.coaster.tycoon.world;
 
-import detail.PathObject;
-import detail.TileObject;
-import guests.Guest;
-import handler.GameImageHandler;
+import roller.coaster.tycoon.detail.PathObject;
+import roller.coaster.tycoon.detail.TileObject;
+import roller.coaster.tycoon.guests.Guest;
+import roller.coaster.tycoon.handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Polygon;

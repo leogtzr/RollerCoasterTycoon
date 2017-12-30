@@ -1,4 +1,4 @@
-package detail;
+package roller.coaster.tycoon.detail;
 
 import java.awt.Graphics;
 

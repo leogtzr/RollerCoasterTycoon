@@ -1,9 +1,9 @@
-package guests;
+package roller.coaster.tycoon.guests;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-import world.Tile;
+import roller.coaster.tycoon.world.Tile;
 
 public class Guest
 {

@@ -1,4 +1,4 @@
-package text;
+package roller.coaster.tycoon.text;
 
 import java.awt.Color;
 import java.awt.Font;

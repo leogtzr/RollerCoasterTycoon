@@ -1,10 +1,10 @@
-package toolbox;
+package roller.coaster.tycoon.toolbox;
 
-import handler.GameImageHandler;
+import roller.coaster.tycoon.handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
-import text.Writer;
+import roller.coaster.tycoon.text.Writer;
 
 public class LoadSaveWindow
 {

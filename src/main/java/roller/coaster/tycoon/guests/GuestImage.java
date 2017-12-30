@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package guests;
+package roller.coaster.tycoon.guests;
 
-import handler.GameImageHandler;
+import roller.coaster.tycoon.handler.GameImageHandler;
 import java.awt.image.BufferedImage;
 
 public class GuestImage

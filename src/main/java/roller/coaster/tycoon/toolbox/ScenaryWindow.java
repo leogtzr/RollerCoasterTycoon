@@ -1,7 +1,7 @@
-package toolbox;
+package roller.coaster.tycoon.toolbox;
 
-import detail.TileObjectImages;
-import handler.GameImageHandler;
+import roller.coaster.tycoon.detail.TileObjectImages;
+import roller.coaster.tycoon.handler.GameImageHandler;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;

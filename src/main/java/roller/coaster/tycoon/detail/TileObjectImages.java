@@ -1,6 +1,6 @@
-package detail;
+package roller.coaster.tycoon.detail;
 
-import handler.GameImageHandler;
+import roller.coaster.tycoon.handler.GameImageHandler;
 import java.awt.image.BufferedImage;
 
 public class TileObjectImages

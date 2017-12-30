@@ -1,4 +1,4 @@
-package isometric;
+package roller.coaster.tycoon.isometric;
 
 public class Main
 {
