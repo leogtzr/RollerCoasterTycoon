@@ -5,38 +5,29 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class Writer
-{
+public class Writer {
 
     private static final Font FONT = new Font("Swis721 BlkEx BT", Font.PLAIN, 12);
     private String string;
     private int x, y;
 
-    public Writer(String string, int x, int y)
-    {
+    public Writer(String string, int x, int y) {
         this.string = string;
         this.x = x;
         this.y = y;
     }
 
-    public void setString(String string)
-    {
+    public void setString(String string) {
         this.string = string;
     }
 
-    public void addToString(char toAdd)
-    {
-        if (toAdd == '')
-        {
-            if (string.length() >= 1)
-            {
+    public void addToString(char toAdd) {
+        if (toAdd == '') {
+            if (string.length() >= 1) {
                 string = string.substring(0, string.length() - 1);
             }
-        }
-        else
-        {
-            if (string.length() < 10)
-            {
+        } else {
+            if (string.length() < 10) {
                 string = string + toAdd;
             }
 
@@ -44,13 +35,11 @@ public class Writer
 
     }
 
-    public String getString()
-    {
+    public String getString() {
         return string;
     }
 
-    public void draw(Graphics g)
-    {
+    public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setFont(FONT);

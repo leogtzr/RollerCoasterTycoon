@@ -3,13 +3,13 @@ package roller.coaster.tycoon.guests;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+
 import roller.coaster.tycoon.world.Tile;
 
-public class Guest
-{
+public class Guest {
 
     private static int totalGuests;
-    private int guestID;
+    private final int guestID;
     private static final Random RAN = new Random();
     private static final double F = 0.0909d;
     private Tile currentTile;
@@ -21,8 +21,7 @@ public class Guest
     private BufferedImage[] eastImg = GuestImage.getEastImage(RAN.nextInt(4) + 1);
     private BufferedImage[] westImg = GuestImage.getWestImage(RAN.nextInt(4) + 1);
 
-    public Guest(Tile startTile)
-    {
+    public Guest(Tile startTile) {
         totalGuests++;
         guestID = totalGuests;
         currentTile = startTile;
@@ -38,8 +37,7 @@ public class Guest
         westImg = GuestImage.getWestImage(variation);
     }
 
-    public synchronized void draw(Graphics g)
-    {
+    public synchronized void draw(Graphics g) {
         int tempX0 = currentTile.getXOnMap();
         int tempY0 = currentTile.getYOnMap();
 
@@ -50,65 +48,50 @@ public class Guest
         double drawY = tempY0 * (1 - (F * progress)) + tempY1 * (F * progress);
 
 
-
-        switch (direction)
-        {
-            case ('N'):
-            {
+        switch (direction) {
+            case ('N'): {
                 g.drawImage(northImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
-            case ('S'):
-            {
+            case ('S'): {
                 g.drawImage(southImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
-            case ('E'):
-            {
+            case ('E'): {
                 g.drawImage(eastImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
-            case ('W'):
-            {
+            case ('W'): {
                 g.drawImage(westImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
         }
     }
 
-    private int progressToIndex()
-    {
-        if (progress <= 5)
-        {
+    private int progressToIndex() {
+        if (progress <= 5) {
             return progress;
-        }
-        else
-        {
+        } else {
             return progress - 6;
         }
 
     }
 
-    public synchronized void setNewDestination(Tile to)
-    {
+    public synchronized void setNewDestination(Tile to) {
 
         destinationTile = to;
 
-        if (direction == 'W' || direction == 'S')
-        {
+        if (direction == 'W' || direction == 'S') {
             destinationTile.addToList(this);
         }
     }
 
-    public void move()
-    {
+    public void move() {
         progress++;
 
-        if (progress >= 12)
-        {
+        if (progress >= 12) {
             progress = 0;
-            if (direction == 'E' || direction == 'N')
-            {
+            if (direction == 'E' || direction == 'N') {
                 destinationTile.addToList(this);
             }
             currentTile = destinationTile;
@@ -116,81 +99,61 @@ public class Guest
         }
     }
 
-    private void getDestination()
-    {
+    private void getDestination() {
         String choises = "";
 
-        if (currentTile.getNeighbor(0) != null)
-        {
+        if (currentTile.getNeighbor(0) != null) {
             choises = choises + "N";
         }
-        if (currentTile.getNeighbor(1) != null)
-        {
+        if (currentTile.getNeighbor(1) != null) {
             choises = choises + "S";
         }
-        if (currentTile.getNeighbor(2) != null)
-        {
+        if (currentTile.getNeighbor(2) != null) {
             choises = choises + "E";
         }
-        if (currentTile.getNeighbor(3) != null)
-        {
+        if (currentTile.getNeighbor(3) != null) {
             choises = choises + "W";
         }
 
 
-
-        if (direction == ' ')
-        {
+        if (direction == ' ') {
             direction = choises.charAt(RAN.nextInt(choises.length()));
             setNewDestination(currentTile.getNeighbor(direction));
-        }
-        else
-        {
-            switch (direction)
-            {
-                case ('N'):
-                {
+        } else {
+            switch (direction) {
+                case ('N'): {
                     choises = choises.replace("S", "");
                     break;
                 }
-                case ('S'):
-                {
+                case ('S'): {
                     choises = choises.replace("N", "");
                     break;
                 }
-                case ('E'):
-                {
+                case ('E'): {
                     choises = choises.replace("W", "");
                     break;
                 }
-                case ('W'):
-                {
+                case ('W'): {
                     choises = choises.replace("E", "");
                     break;
                 }
             }
-            if (choises.length() == 0)
-            {
+            if (choises.length() == 0) {
                 //System.out.println("Hit a dead end. Trying again");
-                if (currentTile.getNeighbor(0) != null)
-                {
+                if (currentTile.getNeighbor(0) != null) {
                     choises = choises + "N";
                 }
-                if (currentTile.getNeighbor(1) != null)
-                {
+                if (currentTile.getNeighbor(1) != null) {
                     choises = choises + "S";
                 }
-                if (currentTile.getNeighbor(2) != null)
-                {
+                if (currentTile.getNeighbor(2) != null) {
                     choises = choises + "E";
                 }
-                if (currentTile.getNeighbor(3) != null)
-                {
+                if (currentTile.getNeighbor(3) != null) {
                     choises = choises + "W";
                 }
             }
-            if (choises.length() != 0)
-            {
+            if (choises.length() != 0) {
                 //System.out.println("Going " + direction + ". Can go " + choises);
                 direction = choises.charAt(RAN.nextInt(choises.length()));
                 setNewDestination(currentTile.getNeighbor(direction));
@@ -198,13 +161,11 @@ public class Guest
         }
     }
 
-    public int getGuestID()
-    {
+    public int getGuestID() {
         return guestID;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return "Guest " + guestID;
     }
 }

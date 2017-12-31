@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import roller.coaster.tycoon.toolbox.LoadSaveWindow;
 import roller.coaster.tycoon.toolbox.ToolBox;
@@ -26,9 +27,7 @@ public class World {
 
     public World() throws IOException {
         GameImageHandler imageHandler = new GameImageHandler();
-
         imageHandler.loadImages();
-
 
         x0 = -550;
         y0 = 300;
@@ -197,13 +196,11 @@ public class World {
     }
 
     public void placeObjectAt(int x, int y, int mouse, int type, int index) {
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                if (tiles[i][j].getPolygon().contains(x, y)) {
-                    tiles[i][j].placeObject(mouse, type, index);
-                    return;
-                }
-            }
+        Optional<Tile> tileForObjectPlacement = tilesList.stream()
+                .filter(t -> t.contains(x, y))
+                .findFirst();
+        if (tileForObjectPlacement.isPresent()) {
+            tileForObjectPlacement.get().placeObject(mouse, type, index);
         }
     }
 
