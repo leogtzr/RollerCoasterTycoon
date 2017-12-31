@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.world;
+package roller.coaster.tycoon.tile;
 
 import roller.coaster.tycoon.detail.PathObject;
 import roller.coaster.tycoon.detail.TileObject;
@@ -12,53 +12,11 @@ import java.util.LinkedList;
 
 public class Tile {
 
-    private static final Image[] pavementTiles = new Image[]
-            {
-                    GameImageHandler.getPavementTile(0, 0, 64, 32),
-                    GameImageHandler.getPavementTile(1, 0, 64, 32),
-                    GameImageHandler.getPavementTile(2, 0, 64, 32),
-                    GameImageHandler.getPavementTile(3, 0, 64, 32),
-                    GameImageHandler.getPavementTile(0, 1, 64, 32),
-                    GameImageHandler.getPavementTile(1, 1, 64, 32),
-                    GameImageHandler.getPavementTile(2, 1, 63, 32),
-                    GameImageHandler.getPavementTile(3, 1, 64, 32),
-                    GameImageHandler.getPavementTile(0, 2, 63, 32),
-                    GameImageHandler.getPavementTile(1, 2, 64, 32),
-                    GameImageHandler.getPavementTile(2, 2, 64, 32),
-                    GameImageHandler.getPavementTile(3, 2, 64, 32),
-                    GameImageHandler.getPavementTile(0, 3, 64, 32),
-                    GameImageHandler.getPavementTile(1, 3, 64, 32),
-                    GameImageHandler.getPavementTile(2, 3, 64, 32),
-                    GameImageHandler.getPavementTile(3, 3, 64, 32),
-                    GameImageHandler.getPavementTile(0, 4, 64, 49),
-                    GameImageHandler.getPavementTile(1, 4, 64, 49),
-                    GameImageHandler.getPavementTile(2, 4, 63, 16),
-                    GameImageHandler.getPavementTile(3, 4, 63, 16)
-            };
-    private static final Image[] tiles = new Image[]
-            {
-                    GameImageHandler.getTile(0, 0, 64, 32),
-                    GameImageHandler.getTile(1, 0, 64, 49),
-                    GameImageHandler.getTile(2, 0, 64, 49),
-                    GameImageHandler.getTile(3, 0, 63, 16),
-                    GameImageHandler.getTile(0, 1, 63, 16),
-                    GameImageHandler.getTile(1, 1, 63, 32),
-                    GameImageHandler.getTile(2, 1, 63, 32),
-                    GameImageHandler.getTile(3, 1, 64, 64),
-                    GameImageHandler.getTile(0, 2, 63, 32),
-                    GameImageHandler.getTile(1, 2, 64, 32),
-                    GameImageHandler.getTile(2, 2, 64, 47),
-                    GameImageHandler.getTile(3, 2, 62, 31),
-                    GameImageHandler.getTile(0, 3, 64, 32),
-                    GameImageHandler.getTile(1, 3, 64, 32),
-                    GameImageHandler.getTile(2, 3, 64, 32),
-                    GameImageHandler.getTile(3, 3, 64, 16),
-                    GameImageHandler.getTile(0, 4, 64, 48)
-            };
     private LinkedList<Guest> guestsOnTile;
     private Tile[] neighbors;
     private int x, y;
-    private int x0, y0;
+    private int x0;
+    private int y0;
     private Polygon tileShape;
     private int northHeight, southHeight, eastHeight, westHeight;
     private boolean pavement;
@@ -414,79 +372,79 @@ public class Tile {
 
     private void drawTile(Graphics g) {
         if (isFlat()) {
-            g.drawImage(tiles[0], getXOnMap() - 32, getYOnMap() - 16, null);
+            g.drawImage(TileImages.tiles[0], getXOnMap() - 32, getYOnMap() - 16, null);
             return;
         }
         if ((northHeight == westHeight) && (southHeight == eastHeight) && (northHeight < southHeight)) {
-            g.drawImage(tiles[1], getXOnMap() - 32, getYOnMap() - 24, null);
+            g.drawImage(TileImages.tiles[1], getXOnMap() - 32, getYOnMap() - 24, null);
             return;
         }
         if ((northHeight == eastHeight) && (southHeight == westHeight) && (northHeight < southHeight)) {
-            g.drawImage(tiles[2], getXOnMap() - 32, getYOnMap() - 24, null);
+            g.drawImage(TileImages.tiles[2], getXOnMap() - 32, getYOnMap() - 24, null);
             return;
         }
         if ((northHeight == westHeight) && (southHeight == eastHeight) && (westHeight > southHeight)) {
-            g.drawImage(tiles[3], getXOnMap() - 32, getYOnMap() - 8, null);
+            g.drawImage(TileImages.tiles[3], getXOnMap() - 32, getYOnMap() - 8, null);
             return;
         }
         if ((northHeight == eastHeight) && (southHeight == westHeight) && (northHeight > southHeight)) {
-            g.drawImage(tiles[4], getXOnMap() - 32, getYOnMap() - 8, null);
+            g.drawImage(TileImages.tiles[4], getXOnMap() - 32, getYOnMap() - 8, null);
             return;
         }
         if ((northHeight == southHeight) && (eastHeight > westHeight) && (northHeight != westHeight) && (northHeight
                 != eastHeight)) {
-            g.drawImage(tiles[5], getXOnMap() - 32, getYOnMap() - 16, null);
+            g.drawImage(TileImages.tiles[5], getXOnMap() - 32, getYOnMap() - 16, null);
             return;
         }
         if ((northHeight == southHeight) && (eastHeight < westHeight) && (northHeight != westHeight) && (northHeight
                 != eastHeight)) {
-            g.drawImage(tiles[6], getXOnMap() - 32, getYOnMap() - 16, null);
+            g.drawImage(TileImages.tiles[6], getXOnMap() - 32, getYOnMap() - 16, null);
             return;
         }
         if ((eastHeight == westHeight) && (northHeight < southHeight) && (northHeight != eastHeight) && (southHeight
                 != westHeight)) {
-            g.drawImage(tiles[7], getXOnMap() - 32, getYOnMap() - 32, null);
+            g.drawImage(TileImages.tiles[7], getXOnMap() - 32, getYOnMap() - 32, null);
             return;
         }
         if ((northHeight == southHeight) && (eastHeight < westHeight) && (northHeight != eastHeight)) {
-            g.drawImage(tiles[8], getXOnMap() - 32, getYOnMap() - 12, null);
+            g.drawImage(TileImages.tiles[8], getXOnMap() - 32, getYOnMap() - 12, null);
             return;
         }
         if ((northHeight == southHeight) && (eastHeight > westHeight) && (northHeight != westHeight)) {
-            g.drawImage(tiles[9], getXOnMap() - 32, getYOnMap() - 12, null);
+            g.drawImage(TileImages.tiles[9], getXOnMap() - 32, getYOnMap() - 12, null);
             return;
         }
         if ((eastHeight == westHeight) && (northHeight < southHeight) && (eastHeight != northHeight)) {
-            g.drawImage(tiles[10], getXOnMap() - 32, getYOnMap() - 27, null);
+            g.drawImage(TileImages.tiles[10], getXOnMap() - 32, getYOnMap() - 27, null);
             return;
         }
         if ((northHeight == southHeight) && (eastHeight == westHeight) && (northHeight > eastHeight)) {
-            g.drawImage(tiles[11], getXOnMap() - 32, getYOnMap() - 8, null);
+            g.drawImage(TileImages.tiles[11], getXOnMap() - 32, getYOnMap() - 8, null);
             return;
         }
 
         if ((northHeight == southHeight) && (eastHeight == westHeight) && (northHeight < eastHeight)) {
-            g.drawImage(tiles[12], getXOnMap() - 32, getYOnMap() - 24, null);
+            g.drawImage(TileImages.tiles[12], getXOnMap() - 32, getYOnMap() - 24, null);
             return;
         }
         if ((eastHeight == westHeight) && (northHeight == westHeight) && (southHeight < eastHeight)) {
-            g.drawImage(tiles[0], getXOnMap() - 32, getYOnMap() - 12, null);
+            g.drawImage(TileImages.tiles[0], getXOnMap() - 32, getYOnMap() - 12, null);
             return;
         }
         if ((northHeight == southHeight) && (westHeight > eastHeight) && (northHeight == eastHeight)) {
-            g.drawImage(tiles[13], getXOnMap() - 32, getYOnMap() - 20, null);
+            g.drawImage(TileImages.tiles[13], getXOnMap() - 32, getYOnMap() - 20, null);
             return;
         }
         if ((northHeight == southHeight) && (westHeight < eastHeight) && (northHeight == westHeight)) {
-            g.drawImage(tiles[14], getXOnMap() - 32, getYOnMap() - 20, null);
+            g.drawImage(TileImages.tiles[14], getXOnMap() - 32, getYOnMap() - 20, null);
             return;
         }
         if ((eastHeight == westHeight) && (northHeight > southHeight) && (southHeight == westHeight)) {
-            g.drawImage(tiles[15], getXOnMap() - 32, getYOnMap() - 5, null);
+            g.drawImage(TileImages.tiles[15], getXOnMap() - 32, getYOnMap() - 5, null);
             return;
         }
         if ((eastHeight == westHeight) && (northHeight < southHeight) && (northHeight == westHeight)) {
-            g.drawImage(tiles[16], getXOnMap() - 32, getYOnMap() - 20, null);
+            g.drawImage(TileImages.tiles[16], getXOnMap() - 32, getYOnMap() - 20, null);
             return;
         }
 
@@ -497,19 +455,19 @@ public class Tile {
         switch (value) {
             case (0): {
                 if (isFlat()) {
-                    g.drawImage(pavementTiles[2], getXOnMap() - 32, getYOnMap() - 16, null);
+                    g.drawImage(TileImages.pavementTiles[2], getXOnMap() - 32, getYOnMap() - 16, null);
                 } else {
                     if (northHeight < southHeight && northHeight == westHeight) {
-                        g.drawImage(pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
+                        g.drawImage(TileImages.pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
                     } else {
                         if (southHeight == eastHeight) {
-                            g.drawImage(pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
+                            g.drawImage(TileImages.pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
                             break;
                         }
                         if (northHeight == eastHeight && northHeight < southHeight) {
-                            g.drawImage(pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
+                            g.drawImage(TileImages.pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
                         } else {
-                            g.drawImage(pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
+                            g.drawImage(TileImages.pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
                         }
 
                     }
@@ -519,12 +477,12 @@ public class Tile {
             }
             case (1): {
                 if (isFlat()) {
-                    g.drawImage(pavementTiles[7], getXOnMap() - 32, getYOnMap() - 16, null);
+                    g.drawImage(TileImages.pavementTiles[7], getXOnMap() - 32, getYOnMap() - 16, null);
                 } else {
                     if (northHeight < southHeight) {
-                        g.drawImage(pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
+                        g.drawImage(TileImages.pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
                     } else {
-                        g.drawImage(pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
+                        g.drawImage(TileImages.pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
                     }
                 }
 
@@ -532,12 +490,12 @@ public class Tile {
             }
             case (2): {
                 if (isFlat()) {
-                    g.drawImage(pavementTiles[5], getXOnMap() - 32, getYOnMap() - 16, null);
+                    g.drawImage(TileImages.pavementTiles[5], getXOnMap() - 32, getYOnMap() - 16, null);
                 } else {
                     if (northHeight < southHeight) {
-                        g.drawImage(pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
+                        g.drawImage(TileImages.pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
                     } else {
-                        g.drawImage(pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
+                        g.drawImage(TileImages.pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
                     }
                 }
 
@@ -545,89 +503,89 @@ public class Tile {
             }
             case (3): {
                 if (isFlat()) {
-                    g.drawImage(pavementTiles[0], getXOnMap() - 32, getYOnMap() - 16, null);
+                    g.drawImage(TileImages.pavementTiles[0], getXOnMap() - 32, getYOnMap() - 16, null);
                 } else {
                     if (northHeight < southHeight) {
-                        g.drawImage(pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
+                        g.drawImage(TileImages.pavementTiles[17], getXOnMap() - 32, getYOnMap() - 24, null);
                     } else {
-                        g.drawImage(pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
+                        g.drawImage(TileImages.pavementTiles[18], getXOnMap() - 32, getYOnMap() - 8, null);
                     }
                 }
                 break;
             }
             case (4): {
                 if (isFlat()) {
-                    g.drawImage(pavementTiles[4], getXOnMap() - 32, getYOnMap() - 16, null);
+                    g.drawImage(TileImages.pavementTiles[4], getXOnMap() - 32, getYOnMap() - 16, null);
                 } else {
                     if (northHeight < southHeight) {
-                        g.drawImage(pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
+                        g.drawImage(TileImages.pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
                     } else {
-                        g.drawImage(pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
+                        g.drawImage(TileImages.pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
                     }
                 }
 
                 break;
             }
             case (5): {
-                g.drawImage(pavementTiles[9], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[9], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (6): {
-                g.drawImage(pavementTiles[10], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[10], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (7): {
-                g.drawImage(pavementTiles[14], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[14], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (8): {
                 if (isFlat()) {
-                    g.drawImage(pavementTiles[6], getXOnMap() - 32, getYOnMap() - 16, null);
+                    g.drawImage(TileImages.pavementTiles[6], getXOnMap() - 32, getYOnMap() - 16, null);
                 } else {
                     if (northHeight < southHeight) {
-                        g.drawImage(pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
+                        g.drawImage(TileImages.pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
                     } else {
-                        g.drawImage(pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
+                        g.drawImage(TileImages.pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
                     }
                 }
 
                 break;
             }
             case (9): {
-                g.drawImage(pavementTiles[8], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[8], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (10): {
-                g.drawImage(pavementTiles[11], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[11], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (11): {
-                g.drawImage(pavementTiles[12], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[12], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (12): {
                 if (isFlat()) {
-                    g.drawImage(pavementTiles[1], getXOnMap() - 32, getYOnMap() - 16, null);
+                    g.drawImage(TileImages.pavementTiles[1], getXOnMap() - 32, getYOnMap() - 16, null);
                 } else {
                     if (northHeight < southHeight) {
-                        g.drawImage(pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
+                        g.drawImage(TileImages.pavementTiles[16], getXOnMap() - 32, getYOnMap() - 24, null);
                     } else {
-                        g.drawImage(pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
+                        g.drawImage(TileImages.pavementTiles[19], getXOnMap() - 32, getYOnMap() - 8, null);
                     }
                 }
 
                 break;
             }
             case (13): {
-                g.drawImage(pavementTiles[13], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[13], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (14): {
-                g.drawImage(pavementTiles[15], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[15], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
             case (15): {
-                g.drawImage(pavementTiles[3], getXOnMap() - 32, getYOnMap() - 16, null);
+                g.drawImage(TileImages.pavementTiles[3], getXOnMap() - 32, getYOnMap() - 16, null);
                 break;
             }
         }

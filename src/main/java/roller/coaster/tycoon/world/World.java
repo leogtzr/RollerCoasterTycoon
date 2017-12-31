@@ -1,6 +1,8 @@
 package roller.coaster.tycoon.world;
 
 import roller.coaster.tycoon.guests.Guest;
+import roller.coaster.tycoon.guests.GuestFactory;
+import roller.coaster.tycoon.guests.GuestImageProvider;
 import roller.coaster.tycoon.handler.GameImageHandler;
 
 import java.awt.Graphics;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import roller.coaster.tycoon.tile.Tile;
 import roller.coaster.tycoon.toolbox.LoadSaveWindow;
 import roller.coaster.tycoon.toolbox.ToolBox;
 import roller.coaster.tycoon.worldGen.WorldGen;
@@ -24,6 +27,7 @@ public class World {
     private final int SIZE = 30;
     private int x0, y0;
     private LoadSaveWindow loadSaveWindow;
+    private GuestFactory guestFactory;
 
     public World() throws IOException {
         GameImageHandler imageHandler = new GameImageHandler();
@@ -37,6 +41,7 @@ public class World {
         toolbox = new ToolBox();
         movePoint = new Point(0, 0);
         loadSaveWindow = new LoadSaveWindow();
+        guestFactory = new GuestFactory(new GuestImageProvider());
     }
 
     private void initializeTiles() {
@@ -207,7 +212,6 @@ public class World {
     public void loadWorld(String worldName) throws IOException {
         WorldGen worldGen = new WorldGen();
         worldGen.loadImage(worldName);
-
         worldGen.loadWorld(tiles);
     }
 
@@ -227,7 +231,7 @@ public class World {
         tilesList.stream()
                 .filter(t -> t.canGuestBePlaced(x, y))
                 .forEach(t -> {
-                    Guest guest = new Guest(t);
+                    Guest guest = guestFactory.create(t);
                     t.addNewGuestToList(guest);
                 });
     }

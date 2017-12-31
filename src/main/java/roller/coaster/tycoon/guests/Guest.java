@@ -1,41 +1,25 @@
 package roller.coaster.tycoon.guests;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import roller.coaster.tycoon.world.Tile;
+import lombok.Builder;
+import roller.coaster.tycoon.tile.Tile;
 
+@Builder
 public class Guest {
 
-    private static int totalGuests;
-    private final int guestID;
+    private final static AtomicInteger GUEST_ID_GENERATOR = new AtomicInteger(0);
     private static final Random RAN = new Random();
     private static final double F = 0.0909d;
+
+    private final int guestId;
+    private final GuestGraphics graphics;
     private Tile currentTile;
     private Tile destinationTile;
     private int progress;
     private char direction;
-    private BufferedImage[] northImg = GuestImage.getNorthImage(RAN.nextInt(4) + 1);
-    private BufferedImage[] southImg = GuestImage.getSouthImage(RAN.nextInt(4) + 1);
-    private BufferedImage[] eastImg = GuestImage.getEastImage(RAN.nextInt(4) + 1);
-    private BufferedImage[] westImg = GuestImage.getWestImage(RAN.nextInt(4) + 1);
-
-    public Guest(Tile startTile) {
-        totalGuests++;
-        guestID = totalGuests;
-        currentTile = startTile;
-        destinationTile = null;
-        progress = 0;
-        direction = ' ';
-        getDestination();
-
-        int variation = RAN.nextInt(4) + 1;
-        northImg = GuestImage.getNorthImage(variation);
-        southImg = GuestImage.getSouthImage(variation);
-        eastImg = GuestImage.getEastImage(variation);
-        westImg = GuestImage.getWestImage(variation);
-    }
 
     public synchronized void draw(Graphics g) {
         int tempX0 = currentTile.getXOnMap();
@@ -50,19 +34,19 @@ public class Guest {
 
         switch (direction) {
             case ('N'): {
-                g.drawImage(northImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
+                g.drawImage(graphics.getNorthImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
             case ('S'): {
-                g.drawImage(southImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
+                g.drawImage(graphics.getSouthImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
             case ('E'): {
-                g.drawImage(eastImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
+                g.drawImage(graphics.getEastImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
             case ('W'): {
-                g.drawImage(westImg[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
+                g.drawImage(graphics.getWestImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
         }
@@ -95,11 +79,11 @@ public class Guest {
                 destinationTile.addToList(this);
             }
             currentTile = destinationTile;
-            getDestination();
+            setUpDestination();
         }
     }
 
-    private void getDestination() {
+    void setUpDestination() {
         String choises = "";
 
         if (currentTile.getNeighbor(0) != null) {
@@ -114,7 +98,6 @@ public class Guest {
         if (currentTile.getNeighbor(3) != null) {
             choises = choises + "W";
         }
-
 
         if (direction == ' ') {
             direction = choises.charAt(RAN.nextInt(choises.length()));
@@ -161,11 +144,11 @@ public class Guest {
         }
     }
 
-    public int getGuestID() {
-        return guestID;
+    public int getGuestId() {
+        return guestId;
     }
 
     public String getName() {
-        return "Guest " + guestID;
+        return "Guest " + guestId;
     }
 }

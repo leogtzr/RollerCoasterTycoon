@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import roller.coaster.tycoon.world.Tile;
+import roller.coaster.tycoon.tile.Tile;
 
 /**
  * The class used to save and load worlds.
@@ -188,7 +188,6 @@ public class WorldGen
         byte[] r = new byte[16];
         byte[] g = new byte[16];
         byte[] b = new byte[16];
-
 
         for (int i = 0; i < b.length; i++)
         {
