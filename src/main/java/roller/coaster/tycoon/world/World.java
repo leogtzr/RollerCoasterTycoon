@@ -18,7 +18,7 @@ public class World {
     private Point movePoint;
     private ToolBox toolbox;
     private Tile[][] tiles;
-    private List<Tile> tilesList;
+    List<Tile> tilesList;
     private Highlight highlight;
     private final int SIZE = 30;
     private int x0, y0;
@@ -227,17 +227,14 @@ public class World {
     }
 
     public void addGuestAt(int x, int y) {
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                if (tiles[i][j].getPolygon().contains(x, y)) {
-                    if (tiles[i][j].doesHaveNeighbors() && tiles[i][j].isPavement()) {
-                        Guest guest = new Guest(tiles[i][j]);
-                        tiles[i][j].addNewGuestToList(guest);
-                    }
-                }
-            }
-        }
+        tilesList.stream()
+                .filter(t -> t.canGuestBePlaced(x, y))
+                .forEach(t -> {
+                    Guest guest = new Guest(t);
+                    t.addNewGuestToList(guest);
+                });
     }
+
 
     public void saveWorld(String string) {
         if (string.isEmpty()) {

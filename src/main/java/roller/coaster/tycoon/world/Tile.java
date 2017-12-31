@@ -317,6 +317,10 @@ public class Tile
 
     }
 
+    public boolean canGuestBePlaced(int x, int y) {
+        return getPolygon().contains(x, y) && doesHaveNeighbors() && isPavement();
+    }
+
     public void changeSouth(int i)
     {
         southHeight = southHeight + i;
@@ -387,9 +391,7 @@ public class Tile
 
     public void addNewGuestToList(Guest guest)
     {
-
         guestsOnTile.add(guest);
-
     }
 
     public void addToList(Guest aThis)
