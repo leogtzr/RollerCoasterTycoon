@@ -65,7 +65,7 @@ public class Guest {
 
     }
 
-    public synchronized void setNewDestination(Tile destinationTile) {
+    public synchronized void setNewDestinationTile(Tile destinationTile) {
         this.destinationTile = destinationTile;
 
         MoveDirection direction = moveDirectionLogic.getDirection();
@@ -90,7 +90,8 @@ public class Guest {
 
     void setUpDestination() {
         moveDirectionLogic.updateDirection(currentTile);
-        destinationTile = moveDirectionLogic.getDestinationTileBasedOnDirectionFrom(currentTile);
+        Tile destinationTile = moveDirectionLogic.getDestinationTileBasedOnDirectionFrom(currentTile);
+        setNewDestinationTile(destinationTile);
     }
 
     public int getGuestId() {
