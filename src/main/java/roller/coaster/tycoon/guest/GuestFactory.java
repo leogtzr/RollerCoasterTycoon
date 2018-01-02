@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.guests;
+package roller.coaster.tycoon.guest;
 
 import com.google.common.base.Preconditions;
 import lombok.RequiredArgsConstructor;

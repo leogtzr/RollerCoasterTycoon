@@ -1,12 +1,11 @@
 package roller.coaster.tycoon.tile
 
-import org.assertj.core.api.Assertions
-import roller.coaster.tycoon.guests.MoveDirection
+import roller.coaster.tycoon.guest.MoveDirection
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.*
-import static roller.coaster.tycoon.guests.MoveDirection.*
+import static roller.coaster.tycoon.guest.MoveDirection.*
 
 class TileSpec extends Specification {
 

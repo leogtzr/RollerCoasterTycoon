@@ -1,11 +1,11 @@
-package roller.coaster.tycoon.guests
+package roller.coaster.tycoon.guest
 
 import roller.coaster.tycoon.tile.Tile
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
-import static roller.coaster.tycoon.guests.MoveDirection.*
+import static roller.coaster.tycoon.guest.MoveDirection.*
 
 class GuestMoveDirectionLogicSpec extends Specification {
 

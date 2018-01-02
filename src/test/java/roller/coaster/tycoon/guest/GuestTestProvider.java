@@ -1,6 +1,5 @@
-package roller.coaster.tycoon.guests;
+package roller.coaster.tycoon.guest;
 
-import org.mockito.Mockito;
 import roller.coaster.tycoon.tile.Tile;
 
 import java.awt.image.BufferedImage;

@@ -1,10 +1,9 @@
-package roller.coaster.tycoon.guests
+package roller.coaster.tycoon.guest
 
-import org.assertj.core.api.Assertions
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
-import static roller.coaster.tycoon.guests.MoveDirection.*
+import static roller.coaster.tycoon.guest.MoveDirection.*
 
 class MoveDirectionSpec extends Specification {
     def "should convert valid char to move direction"() {

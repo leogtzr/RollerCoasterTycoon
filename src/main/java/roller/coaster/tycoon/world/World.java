@@ -1,8 +1,8 @@
 package roller.coaster.tycoon.world;
 
-import roller.coaster.tycoon.guests.Guest;
-import roller.coaster.tycoon.guests.GuestFactory;
-import roller.coaster.tycoon.guests.GuestImageProvider;
+import roller.coaster.tycoon.guest.Guest;
+import roller.coaster.tycoon.guest.GuestFactory;
+import roller.coaster.tycoon.guest.GuestImageProvider;
 import roller.coaster.tycoon.handler.GameImageHandler;
 
 import java.awt.Graphics;

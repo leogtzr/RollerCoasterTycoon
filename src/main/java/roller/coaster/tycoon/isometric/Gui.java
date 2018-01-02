@@ -1,6 +1,6 @@
 package roller.coaster.tycoon.isometric;
 
-import roller.coaster.tycoon.guests.GuestMover;
+import roller.coaster.tycoon.guest.GuestMover;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;

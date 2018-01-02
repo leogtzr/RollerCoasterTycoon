@@ -1,13 +1,13 @@
-package roller.coaster.tycoon.guests;
-
-import java.awt.Graphics;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
+package roller.coaster.tycoon.guest;
 
 import lombok.Builder;
 import roller.coaster.tycoon.tile.Tile;
 
-import static roller.coaster.tycoon.guests.MoveDirection.*;
+import java.awt.*;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static roller.coaster.tycoon.guest.MoveDirection.*;
 
 @Builder
 public class Guest {

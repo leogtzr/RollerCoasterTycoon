@@ -2,16 +2,12 @@ package roller.coaster.tycoon.tile;
 
 import roller.coaster.tycoon.detail.PathObject;
 import roller.coaster.tycoon.detail.TileObject;
-import roller.coaster.tycoon.guests.Guest;
-import roller.coaster.tycoon.guests.MoveDirection;
-import roller.coaster.tycoon.handler.GameImageHandler;
+import roller.coaster.tycoon.guest.Guest;
+import roller.coaster.tycoon.guest.MoveDirection;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Polygon;
 import java.util.*;
-
-import static roller.coaster.tycoon.guests.MoveDirection.*;
 
 public class Tile {
 

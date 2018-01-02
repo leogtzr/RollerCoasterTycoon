@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.guests;
+package roller.coaster.tycoon.guest;
 
 import lombok.Getter;
 import roller.coaster.tycoon.tile.Tile;
@@ -6,7 +6,7 @@ import roller.coaster.tycoon.tile.Tile;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static roller.coaster.tycoon.guests.MoveDirection.*;
+import static roller.coaster.tycoon.guest.MoveDirection.*;
 
 @Getter
 class GuestMoveDirectionLogic {

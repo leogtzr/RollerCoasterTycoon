@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.guests
+package roller.coaster.tycoon.guest
 
 import roller.coaster.tycoon.tile.Tile
 import roller.coaster.tycoon.world.TileTestProvider

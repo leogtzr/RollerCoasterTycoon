@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.guests;
+package roller.coaster.tycoon.guest;
 
 /**
  * Interface that provides functionality of generating GuestGrahics object for new Guest
