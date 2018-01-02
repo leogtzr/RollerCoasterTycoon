@@ -31,7 +31,6 @@ public class Guest {
         double drawX = tempX0 * (1 - (F * progress)) + tempX1 * (F * progress);
         double drawY = tempY0 * (1 - (F * progress)) + tempY1 * (F * progress);
 
-
         switch (direction) {
             case ('N'): {
                 g.drawImage(graphics.getNorthImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
@@ -61,12 +60,11 @@ public class Guest {
 
     }
 
-    public synchronized void setNewDestination(Tile to) {
-
-        destinationTile = to;
+    public synchronized void setNewDestination(Tile destinationTile) {
+        this.destinationTile = destinationTile;
 
         if (direction == 'W' || direction == 'S') {
-            destinationTile.addToList(this);
+            this.destinationTile.addToList(this);
         }
     }
 
@@ -99,48 +97,54 @@ public class Guest {
             choises = choises + "W";
         }
 
-        if (direction == ' ') {
-            direction = choises.charAt(RAN.nextInt(choises.length()));
-            setNewDestination(currentTile.getNeighbor(direction));
-        } else {
-            switch (direction) {
-                case ('N'): {
-                    choises = choises.replace("S", "");
-                    break;
-                }
-                case ('S'): {
-                    choises = choises.replace("N", "");
-                    break;
-                }
-                case ('E'): {
-                    choises = choises.replace("W", "");
-                    break;
-                }
-                case ('W'): {
-                    choises = choises.replace("E", "");
-                    break;
-                }
-            }
-            if (choises.length() == 0) {
-                //System.out.println("Hit a dead end. Trying again");
-                if (currentTile.getNeighbor(0) != null) {
-                    choises = choises + "N";
-                }
-                if (currentTile.getNeighbor(1) != null) {
-                    choises = choises + "S";
-                }
-                if (currentTile.getNeighbor(2) != null) {
-                    choises = choises + "E";
-                }
-                if (currentTile.getNeighbor(3) != null) {
-                    choises = choises + "W";
-                }
-            }
-            if (choises.length() != 0) {
-                //System.out.println("Going " + direction + ". Can go " + choises);
+        if (!choises.isEmpty()) {
+            if (direction == ' ') {
                 direction = choises.charAt(RAN.nextInt(choises.length()));
                 setNewDestination(currentTile.getNeighbor(direction));
+            } else {
+                switch (direction) {
+                    case ('N'): {
+                        choises = choises.replace("S", "");
+                        break;
+                    }
+                    case ('S'): {
+                        choises = choises.replace("N", "");
+                        break;
+                    }
+                    case ('E'): {
+                        choises = choises.replace("W", "");
+                        break;
+                    }
+                    case ('W'): {
+                        choises = choises.replace("E", "");
+                        break;
+                    }
+                }
+                if (choises.length() == 0) {
+                    //System.out.println("Hit a dead end. Trying again");
+                    if (currentTile.getNeighbor(0) != null) {
+                        choises = choises + "N";
+                    }
+                    if (currentTile.getNeighbor(1) != null) {
+                        choises = choises + "S";
+                    }
+                    if (currentTile.getNeighbor(2) != null) {
+                        choises = choises + "E";
+                    }
+                    if (currentTile.getNeighbor(3) != null) {
+                        choises = choises + "W";
+                    }
+                }
+                if (choises.length() != 0) {
+                    //System.out.println("Going " + direction + ". Can go " + choises);
+                    direction = choises.charAt(RAN.nextInt(choises.length()));
+                    setNewDestination(currentTile.getNeighbor(direction));
+                }
             }
+        }
+
+        if (direction == ' ') {
+            throw new IllegalStateException("Direction is not set! Guest can not move without direction set!");
         }
     }
 
