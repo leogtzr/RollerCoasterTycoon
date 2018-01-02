@@ -7,7 +7,7 @@ import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.*
 
-class GuestTest extends Specification {
+class GuestSpec extends Specification {
 
     def "should set direction from possible directions when no direction set"() {
         given:
@@ -32,6 +32,8 @@ class GuestTest extends Specification {
 
         when:
         guest.direction = 'N' as char
+        guest.moveDirectionLogic.direction = 'N' as char
+        guest.moveDirectionLogic.moveDirection = MoveDirection.NORTH
         guest.setUpDestination()
 
         then:
@@ -46,6 +48,8 @@ class GuestTest extends Specification {
 
         when:
         guest.direction = 'N' as char
+        guest.moveDirectionLogic.direction = 'N' as char
+        guest.moveDirectionLogic.moveDirection = MoveDirection.NORTH
         guest.setUpDestination()
 
         then:
@@ -86,6 +90,7 @@ class GuestTest extends Specification {
                 .progress(0)
                 .direction(' ' as char)
                 .graphics(GuestTestProvider.graphics())
+                .moveDirectionLogic(new GuestMoveDirectionLogic())
                 .build()
     }
 

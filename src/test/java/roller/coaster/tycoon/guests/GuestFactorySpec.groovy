@@ -7,7 +7,7 @@ import spock.lang.Specification
 import static org.assertj.core.api.Assertions.*
 import static org.mockito.Mockito.*
 
-class GuestFactoryTest extends Specification {
+class GuestFactorySpec extends Specification {
 
     def "should create valid guest with first id equals to one"() {
         given:

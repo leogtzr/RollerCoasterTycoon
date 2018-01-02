@@ -1,9 +1,11 @@
 package roller.coaster.tycoon.guests;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.EnumSet;
 
+@Getter
 @RequiredArgsConstructor
 public enum MoveDirection {
 
@@ -26,6 +28,28 @@ public enum MoveDirection {
                     .filter(dir -> dir.directionChar == directionChar)
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("Direction char is not valid. Could not cast to MoveDirection"));
+    }
+
+    public MoveDirection oppositeDirection() {
+        MoveDirection opposite = UNDEFINED;
+        switch (this) {
+            case NORTH:
+                opposite = SOUTH;
+                break;
+            case EAST:
+                opposite = WEST;
+                break;
+            case SOUTH:
+                opposite = NORTH;
+                break;
+            case WEST:
+                opposite = EAST;
+                break;
+            case UNDEFINED:
+                break;
+        }
+
+        return opposite;
     }
 
 }

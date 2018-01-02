@@ -8,7 +8,7 @@ import spock.lang.Specification
 import static org.assertj.core.api.Assertions.*
 import static roller.coaster.tycoon.guests.MoveDirection.*
 
-class TileTest extends Specification {
+class TileSpec extends Specification {
 
     def "should return empty set of possible directions when there are no possible directions from that tile"() {
         when:

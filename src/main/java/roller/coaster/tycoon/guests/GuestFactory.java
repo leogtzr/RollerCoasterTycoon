@@ -24,6 +24,7 @@ public class GuestFactory {
                 .progress(START_PROGRESS)
                 .direction(START_DIRECTION)
                 .graphics(graphicProvider.generateGraphics())
+                .moveDirectionLogic(new GuestMoveDirectionLogic())
                 .build();
 
         guest.setUpDestination();

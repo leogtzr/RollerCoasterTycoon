@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.*
 
-class WorldTest extends Specification {
+class WorldSpec extends Specification {
 
     def "should place guest at chosen pavement tile"() {
         given:

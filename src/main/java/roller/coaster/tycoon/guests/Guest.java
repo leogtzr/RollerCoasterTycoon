@@ -2,6 +2,7 @@ package roller.coaster.tycoon.guests;
 
 import java.awt.Graphics;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import lombok.Builder;
@@ -20,7 +21,8 @@ public class Guest {
     private Tile destinationTile;
     private int progress;
     private char direction; //TODO remove (safe) this variable from code
-    private MoveDirection moveDirection;
+    private MoveDirection moveDirection; //TODO move this field to moveDirLogic
+    private GuestMoveDirectionLogic moveDirectionLogic;
 
     public synchronized void draw(Graphics g) {
         int tempX0 = currentTile.getXOnMap();
@@ -83,70 +85,9 @@ public class Guest {
     }
 
     void setUpDestination() {
-        String choises = "";
-
-        if (currentTile.getNeighbor(0) != null) {
-            choises = choises + "N";
-        }
-        if (currentTile.getNeighbor(1) != null) {
-            choises = choises + "S";
-        }
-        if (currentTile.getNeighbor(2) != null) {
-            choises = choises + "E";
-        }
-        if (currentTile.getNeighbor(3) != null) {
-            choises = choises + "W";
-        }
-
-        if (!choises.isEmpty()) {
-            if (direction == ' ') {
-                direction = choises.charAt(RAN.nextInt(choises.length()));
-                setNewDestination(currentTile.getNeighbor(direction));
-            } else {
-                switch (direction) {
-                    case ('N'): {
-                        choises = choises.replace("S", "");
-                        break;
-                    }
-                    case ('S'): {
-                        choises = choises.replace("N", "");
-                        break;
-                    }
-                    case ('E'): {
-                        choises = choises.replace("W", "");
-                        break;
-                    }
-                    case ('W'): {
-                        choises = choises.replace("E", "");
-                        break;
-                    }
-                }
-                if (choises.length() == 0) {
-                    //System.out.println("Hit a dead end. Trying again");
-                    if (currentTile.getNeighbor(0) != null) {
-                        choises = choises + "N";
-                    }
-                    if (currentTile.getNeighbor(1) != null) {
-                        choises = choises + "S";
-                    }
-                    if (currentTile.getNeighbor(2) != null) {
-                        choises = choises + "E";
-                    }
-                    if (currentTile.getNeighbor(3) != null) {
-                        choises = choises + "W";
-                    }
-                }
-                if (choises.length() != 0) {
-                    //System.out.println("Going " + direction + ". Can go " + choises);
-                    direction = choises.charAt(RAN.nextInt(choises.length()));
-                    setNewDestination(currentTile.getNeighbor(direction));
-                }
-            }
-        }
-
-        if (direction == ' ') {
-            throw new IllegalStateException("Direction is not set! Guest can not move without direction set!");
-        }
+        destinationTile = moveDirectionLogic.setUpDirectionAndGetTargetTileFrom(currentTile);
+        direction = moveDirectionLogic.getDirection();
+        moveDirection = moveDirectionLogic.getMoveDirection();
     }
 
     public int getGuestId() {
