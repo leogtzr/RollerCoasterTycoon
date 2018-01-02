@@ -19,7 +19,8 @@ public class Guest {
     private Tile currentTile;
     private Tile destinationTile;
     private int progress;
-    private char direction;
+    private char direction; //TODO remove (safe) this variable from code
+    private MoveDirection moveDirection;
 
     public synchronized void draw(Graphics g) {
         int tempX0 = currentTile.getXOnMap();

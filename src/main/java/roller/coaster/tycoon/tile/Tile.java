@@ -3,17 +3,21 @@ package roller.coaster.tycoon.tile;
 import roller.coaster.tycoon.detail.PathObject;
 import roller.coaster.tycoon.detail.TileObject;
 import roller.coaster.tycoon.guests.Guest;
+import roller.coaster.tycoon.guests.MoveDirection;
 import roller.coaster.tycoon.handler.GameImageHandler;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Polygon;
-import java.util.LinkedList;
+import java.util.*;
+
+import static roller.coaster.tycoon.guests.MoveDirection.*;
 
 public class Tile {
 
     private LinkedList<Guest> guestsOnTile;
     private Tile[] neighbors;
+    private Map<MoveDirection, Tile> neighborsMap;
     private int x, y;
     private int x0;
     private int y0;
@@ -29,6 +33,7 @@ public class Tile {
         westHeight = 0;
 
         neighbors = new Tile[4];
+        neighborsMap = new HashMap<>(4);
 
         x = (int) (xPos * 64);
         y = (int) (yPos * 32);
@@ -54,7 +59,7 @@ public class Tile {
 //            System.out.println(x + ", " + y + " is now connected to " + direction + " - " + tile.getX() + ", "
 //                    + tile.getY());
 
-
+            neighborsMap.put(MoveDirection.fromChar(direction), tile);
             switch (direction) {
                 case ('N'): {
                     neighbors[0] = tile;
@@ -72,14 +77,12 @@ public class Tile {
                     neighbors[3] = tile;
                     break;
                 }
-
             }
+
             if (tileObject != null) {
                 tileObject.setRoadNumber(getNeighborValue());
             }
         }
-
-
     }
 
     public void removeNeighbor(int NSEW) {
@@ -227,7 +230,10 @@ public class Tile {
 
     public void changeNorth(int i) {
         northHeight = northHeight + i;
+    }
 
+    public Set<MoveDirection> getPossibleDirectionsFromTile() {
+        return neighborsMap.keySet();
     }
 
     public boolean canGuestBePlaced(int x, int y) {
