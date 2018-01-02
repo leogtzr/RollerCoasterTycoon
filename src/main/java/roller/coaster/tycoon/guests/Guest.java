@@ -2,11 +2,12 @@ package roller.coaster.tycoon.guests;
 
 import java.awt.Graphics;
 import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import lombok.Builder;
 import roller.coaster.tycoon.tile.Tile;
+
+import static roller.coaster.tycoon.guests.MoveDirection.*;
 
 @Builder
 public class Guest {
@@ -20,8 +21,6 @@ public class Guest {
     private Tile currentTile;
     private Tile destinationTile;
     private int progress;
-    private char direction; //TODO remove (safe) this variable from code
-    private MoveDirection moveDirection; //TODO move this field to moveDirLogic
     private GuestMoveDirectionLogic moveDirectionLogic;
 
     public synchronized void draw(Graphics g) {
@@ -34,23 +33,26 @@ public class Guest {
         double drawX = tempX0 * (1 - (F * progress)) + tempX1 * (F * progress);
         double drawY = tempY0 * (1 - (F * progress)) + tempY1 * (F * progress);
 
+        MoveDirection direction = moveDirectionLogic.getDirection();
         switch (direction) {
-            case ('N'): {
+            case NORTH: {
                 g.drawImage(graphics.getNorthImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
-            case ('S'): {
+            case SOUTH: {
                 g.drawImage(graphics.getSouthImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
-            case ('E'): {
+            case EAST: {
                 g.drawImage(graphics.getEastImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
-            case ('W'): {
+            case WEST: {
                 g.drawImage(graphics.getWestImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
                 break;
             }
+            case UNDEFINED:
+                break;
         }
     }
 
@@ -66,7 +68,8 @@ public class Guest {
     public synchronized void setNewDestination(Tile destinationTile) {
         this.destinationTile = destinationTile;
 
-        if (direction == 'W' || direction == 'S') {
+        MoveDirection direction = moveDirectionLogic.getDirection();
+        if (direction == WEST || direction == SOUTH) {
             this.destinationTile.addToList(this);
         }
     }
@@ -76,7 +79,8 @@ public class Guest {
 
         if (progress >= 12) {
             progress = 0;
-            if (direction == 'E' || direction == 'N') {
+            MoveDirection direction = moveDirectionLogic.getDirection();
+            if (direction == EAST || direction == NORTH) {
                 destinationTile.addToList(this);
             }
             currentTile = destinationTile;
@@ -85,9 +89,8 @@ public class Guest {
     }
 
     void setUpDestination() {
-        destinationTile = moveDirectionLogic.setUpDirectionAndGetTargetTileFrom(currentTile);
-        direction = moveDirectionLogic.getDirection();
-        moveDirection = moveDirectionLogic.getMoveDirection();
+        moveDirectionLogic.updateDirection(currentTile);
+        destinationTile = moveDirectionLogic.getDestinationTileBasedOnDirectionFrom(currentTile);
     }
 
     public int getGuestId() {

@@ -11,7 +11,6 @@ public class GuestFactory {
 
     private static final AtomicInteger GUEST_ID_GENERATOR = new AtomicInteger(0);
     private static final int START_PROGRESS = 0;
-    private static final char START_DIRECTION = ' ';
 
     private final GuestGraphicProvider graphicProvider;
 
@@ -22,7 +21,6 @@ public class GuestFactory {
                 .guestId(GUEST_ID_GENERATOR.incrementAndGet())
                 .currentTile(startTile)
                 .progress(START_PROGRESS)
-                .direction(START_DIRECTION)
                 .graphics(graphicProvider.generateGraphics())
                 .moveDirectionLogic(new GuestMoveDirectionLogic())
                 .build();

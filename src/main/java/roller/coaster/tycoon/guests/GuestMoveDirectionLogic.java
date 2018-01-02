@@ -11,10 +11,9 @@ import static roller.coaster.tycoon.guests.MoveDirection.*;
 @Getter
 class GuestMoveDirectionLogic {
 
-    private char direction = ' '; //TODO remove (safe) this variable from code
-    private MoveDirection moveDirection = UNDEFINED;
+    private MoveDirection direction = UNDEFINED;
 
-    Tile setUpDirectionAndGetTargetTileFrom(Tile currentTile) {
+    void updateDirection(Tile currentTile) {
         Set<MoveDirection> allPossibleMoveDirections = currentTile.getPossibleDirectionsFromTile();
 
         if (tileHasNeighbours(allPossibleMoveDirections)) {
@@ -23,10 +22,9 @@ class GuestMoveDirectionLogic {
             setRandomDirectionFromDirectionsSet(directionsToSet);
         }
 
-        if (moveDirection == UNDEFINED || direction == ' ') {
+        if (direction == UNDEFINED) {
             throw new IllegalStateException("Direction is not set! Guest can not move without direction!");
         }
-        return currentTile.getNeighbor(direction);
     }
 
     private boolean tileHasNeighbours(Set<MoveDirection> possibleMoveDirections) {
@@ -34,7 +32,7 @@ class GuestMoveDirectionLogic {
     }
 
     private Set<MoveDirection> moveDirectionsWithoutOppositeDirectionOfTargetDirection(Set<MoveDirection> possibleMoveDirections) {
-        MoveDirection oppositeDirection = this.moveDirection.oppositeDirection();
+        MoveDirection oppositeDirection = this.direction.oppositeDirection();
         return possibleMoveDirections
                 .stream()
                 .filter(d -> d != oppositeDirection)
@@ -46,13 +44,15 @@ class GuestMoveDirectionLogic {
     }
 
     private void setRandomDirectionFromDirectionsSet(Set<MoveDirection> directions) {
-        moveDirection = directions
+        direction = directions
                 .stream()
                 .skip((int) (directions.size() * Math.random()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Directions set can not bew null in this place!"));
+    }
 
-        direction = moveDirection.getDirectionChar();
+    Tile getDestinationTileBasedOnDirectionFrom(Tile currentTile) {
+        return currentTile.getNeighbor(direction.getDirectionChar());
     }
 
 }
