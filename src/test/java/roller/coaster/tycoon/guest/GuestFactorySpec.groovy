@@ -10,7 +10,7 @@ import static org.mockito.Mockito.when
 
 class GuestFactorySpec extends Specification {
 
-    def "should create valid guest with first id equals to one"() {
+    def "should create valid guest not null id"() {
         given:
         GuestGraphicProvider graphicProvider = mock(GuestGraphicProvider.class)
         GuestFactory factory = new GuestFactory(graphicProvider)
@@ -20,7 +20,7 @@ class GuestFactorySpec extends Specification {
         Guest guest = factory.create(tile)
 
         then:
-        assertThat(guest.guestId).isEqualTo(1)
+        assertThat(guest.guestId).isNotNull()
     }
 
     def "should newly created guest progress equal to zero"() {

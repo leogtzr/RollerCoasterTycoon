@@ -55,7 +55,7 @@ class WorldSpec extends Specification {
         world.tilesList.add(0, tile)
 
         when:
-        world.placeObjectAt(810, -80, 16, 2, 1);
+        world.placeObjectAt(810, -80, 16, 2, 1)
 
         then:
         assertThat(tile.tileObject).isNotNull()

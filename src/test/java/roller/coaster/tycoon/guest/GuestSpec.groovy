@@ -17,8 +17,8 @@ class GuestSpec extends Specification {
         Tile startTile = TileTestProvider.pavementTile(12, 2)
         Tile northTile = TileTestProvider.pavementTileWithNeighbour(10, 2)
 
-        GuestMoveDirectionLogic moveDirectionLogic = mock(GuestMoveDirectionLogic.class);
-        when(moveDirectionLogic.getDestinationTileBasedOnDirectionFrom(startTile)).thenReturn(northTile);
+        GuestMoveDirectionLogic moveDirectionLogic = Stub(GuestMoveDirectionLogic.class)
+        moveDirectionLogic.getDestinationTileBasedOnDirectionFrom(startTile) >> northTile
 
         Guest guest = Guest.builder()
                 .guestId(1)
