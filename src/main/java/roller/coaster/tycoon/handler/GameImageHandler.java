@@ -63,7 +63,6 @@ public class GameImageHandler {
         } else {
             return scenaryWindow.getSubimage(275, 0, 68, 81);
         }
-
     }
 
     public void loadImages() throws IOException {

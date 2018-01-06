@@ -8,13 +8,14 @@ import java.awt.image.BufferedImage;
 
 public class ScenaryWindow {
 
+    private final int x = 50;
+    private final int y = 50;
+    private final int ICONS = 3;
     private Polygon shape;
     private Polygon[] buttons;
     private Polygon[] indexes;
     private Polygon[] leftRight;
     private int group;
-    private final int x = 50;
-    private final int y = 50;
     private BufferedImage[] icons;
     private BufferedImage window;
     private BufferedImage selectButtonUp, selectButtonDown;
@@ -22,7 +23,6 @@ public class ScenaryWindow {
     private boolean visible;
     private int selectedButton;
     private int selectedIndex;
-    private final int ICONS = 3;
 
     public ScenaryWindow() {
         leftRight = new Polygon[2];
@@ -143,12 +143,12 @@ public class ScenaryWindow {
 
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
     public boolean isVisible() {
         return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public boolean dragClickAt(int x, int y) {

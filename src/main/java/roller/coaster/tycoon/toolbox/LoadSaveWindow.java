@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 
 public class LoadSaveWindow {
 
-    private BufferedImage img;
     private static final Writer WRITER = new Writer("", 157, 133);
+    private BufferedImage img;
     private int x;
     private int y;
     private Polygon[] polygons;
@@ -35,14 +35,13 @@ public class LoadSaveWindow {
         }
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
     private void createPolygons() {
         int xPoint[] =

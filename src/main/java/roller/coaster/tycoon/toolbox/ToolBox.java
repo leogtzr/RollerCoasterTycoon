@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 
 public class ToolBox {
 
+    private final int SLOTS = 6;
     private Polygon[] polygons;
     private BufferedImage[] icons;
     private BufferedImage buttonUp, buttonDown;
-    private final int SLOTS = 6;
     private int primarySelected;
     private ScenaryWindow scenaryWindow;
 
@@ -97,17 +97,6 @@ public class ToolBox {
 
     public void diableAllwindows() {
         scenaryWindow.setVisible(false);
-    }
-
-    public boolean hitAnyWindows(int x, int y) {
-        boolean b = false;
-
-        if (scenaryWindow.isVisible()) {
-            if (scenaryWindow.clickAt(x, y)) {
-                b = true;
-            }
-        }
-        return b;
     }
 
     public boolean dragAnyWindows(int x, int y) {

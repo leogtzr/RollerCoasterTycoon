@@ -15,7 +15,7 @@ public class GuestFactory {
     private final GuestGraphicProvider graphicProvider;
 
     public Guest create(Tile startTile) {
-        Preconditions.checkNotNull(startTile, "Starting tile for Guest mus not be null!");
+        Preconditions.checkNotNull(startTile, "Starting tile for Guest must not be null!");
 
         Guest guest = Guest.builder()
                 .guestId(GUEST_ID_GENERATOR.incrementAndGet())

@@ -14,10 +14,6 @@ public class Writer {
         this.y = y;
     }
 
-    public void setString(String string) {
-        this.string = string;
-    }
-
     public void addToString(char toAdd) {
         if (toAdd == '') {
             if (string.length() >= 1) {

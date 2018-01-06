@@ -14,7 +14,9 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     private Image bufferImage;
     private Graphics bufferGraphics;
     private int bufferWidth, bufferHeight;
-
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton resetButton;
 
     public Gui() {
         initComponents();
@@ -190,10 +192,6 @@ public class Gui extends javax.swing.JFrame implements Runnable {
             }
         }
     }//GEN-LAST:event_formKeyTyped
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton resetButton;
     // End of variables declaration//GEN-END:variables
 
     public void run() {

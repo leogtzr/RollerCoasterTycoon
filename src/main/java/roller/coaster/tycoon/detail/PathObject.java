@@ -362,6 +362,5 @@ public class PathObject extends TileObject {
                 break;
             }
         }
-
     }
 }

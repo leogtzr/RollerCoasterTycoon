@@ -17,12 +17,12 @@ import java.util.Optional;
 
 public class World {
 
+    private final int SIZE = 30;
+    List<Tile> tilesList;
     private Point movePoint;
     private ToolBox toolbox;
     private Tile[][] tiles;
-    List<Tile> tilesList;
     private Highlight highlight;
-    private final int SIZE = 30;
     private int x0, y0;
     private LoadSaveWindow loadSaveWindow;
     private GuestFactory guestFactory;
@@ -160,10 +160,6 @@ public class World {
         }
     }
 
-    public Tile[][] getTiles() {
-        return tiles;
-    }
-
     public void reset() {
         double helperX = 0.0d;
         double helperY = 0.0d;
@@ -192,10 +188,6 @@ public class World {
         if (toolbox.getPrimarySelected() == 3) {
             toolbox.getScenaryWindow().setVisible(true);
         }
-    }
-
-    public ToolBox getToolbox() {
-        return toolbox;
     }
 
     public void placeObjectAt(int x, int y, int mouse, int type, int index) {
@@ -267,8 +259,6 @@ public class World {
 //            {
 //                raise(x, y, modifier);
 //            }// </editor-fold>
-//
-
         }
 
     }

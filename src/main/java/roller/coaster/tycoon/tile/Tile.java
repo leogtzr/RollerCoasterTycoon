@@ -5,11 +5,9 @@ import roller.coaster.tycoon.detail.TileObject;
 import roller.coaster.tycoon.guest.Guest;
 import roller.coaster.tycoon.guest.MoveDirection;
 
-import java.awt.*;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.awt.Graphics;
+import java.awt.Polygon;
+import java.util.*;
 
 public class Tile {
 
@@ -273,22 +271,6 @@ public class Tile {
         }
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getX0() {
-        return x0;
-    }
-
-    public int getY0() {
-        return y0;
-    }
-
     public LinkedList getGuestsOnTile() {
         return guestsOnTile;
     }
@@ -354,10 +336,6 @@ public class Tile {
         for (int i = 0; i < guestsOnTile.size(); i++) {
             guestsOnTile.get(i).move();
         }
-    }
-
-    public Tile[] getNeighbors() {
-        return neighbors;
     }
 
     public boolean doesHaveNeighbors() {

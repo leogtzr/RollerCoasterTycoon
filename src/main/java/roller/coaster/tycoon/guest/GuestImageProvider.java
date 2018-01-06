@@ -12,44 +12,6 @@ import java.util.Random;
 public class GuestImageProvider implements GuestGraphicProvider {
 
     private static final Random RAN = new Random();
-
-    private final BufferedImage[] NORTHIMG1 =
-            {
-                    GameImageHandler.getGuestImg(1, 0, 0),
-                    GameImageHandler.getGuestImg(1, 0, 1),
-                    GameImageHandler.getGuestImg(1, 0, 2),
-                    GameImageHandler.getGuestImg(1, 0, 3),
-                    GameImageHandler.getGuestImg(1, 0, 4),
-                    GameImageHandler.getGuestImg(1, 0, 5),
-            };
-    private final BufferedImage[] NORTHIMG2 =
-            {
-                    GameImageHandler.getGuestImg(2, 0, 0),
-                    GameImageHandler.getGuestImg(2, 0, 1),
-                    GameImageHandler.getGuestImg(2, 0, 2),
-                    GameImageHandler.getGuestImg(2, 0, 3),
-                    GameImageHandler.getGuestImg(2, 0, 4),
-                    GameImageHandler.getGuestImg(2, 0, 5),
-            };
-    private final BufferedImage[] NORTHIMG3 =
-            {
-                    GameImageHandler.getGuestImg(3, 0, 0),
-                    GameImageHandler.getGuestImg(3, 0, 1),
-                    GameImageHandler.getGuestImg(3, 0, 2),
-                    GameImageHandler.getGuestImg(3, 0, 3),
-                    GameImageHandler.getGuestImg(3, 0, 4),
-                    GameImageHandler.getGuestImg(3, 0, 5),
-            };
-    private final BufferedImage[] NORTHIMG4 =
-            {
-                    GameImageHandler.getGuestImg(4, 0, 0),
-                    GameImageHandler.getGuestImg(4, 0, 1),
-                    GameImageHandler.getGuestImg(4, 0, 2),
-                    GameImageHandler.getGuestImg(4, 0, 3),
-                    GameImageHandler.getGuestImg(4, 0, 4),
-                    GameImageHandler.getGuestImg(4, 0, 5),
-            };
-
     private static final BufferedImage[] SOUTHIMG1 =
             {
                     GameImageHandler.getGuestImg(1, 1, 0),
@@ -86,7 +48,42 @@ public class GuestImageProvider implements GuestGraphicProvider {
                     GameImageHandler.getGuestImg(4, 1, 4),
                     GameImageHandler.getGuestImg(4, 1, 5),
             };
-
+    private final BufferedImage[] NORTHIMG1 =
+            {
+                    GameImageHandler.getGuestImg(1, 0, 0),
+                    GameImageHandler.getGuestImg(1, 0, 1),
+                    GameImageHandler.getGuestImg(1, 0, 2),
+                    GameImageHandler.getGuestImg(1, 0, 3),
+                    GameImageHandler.getGuestImg(1, 0, 4),
+                    GameImageHandler.getGuestImg(1, 0, 5),
+            };
+    private final BufferedImage[] NORTHIMG2 =
+            {
+                    GameImageHandler.getGuestImg(2, 0, 0),
+                    GameImageHandler.getGuestImg(2, 0, 1),
+                    GameImageHandler.getGuestImg(2, 0, 2),
+                    GameImageHandler.getGuestImg(2, 0, 3),
+                    GameImageHandler.getGuestImg(2, 0, 4),
+                    GameImageHandler.getGuestImg(2, 0, 5),
+            };
+    private final BufferedImage[] NORTHIMG3 =
+            {
+                    GameImageHandler.getGuestImg(3, 0, 0),
+                    GameImageHandler.getGuestImg(3, 0, 1),
+                    GameImageHandler.getGuestImg(3, 0, 2),
+                    GameImageHandler.getGuestImg(3, 0, 3),
+                    GameImageHandler.getGuestImg(3, 0, 4),
+                    GameImageHandler.getGuestImg(3, 0, 5),
+            };
+    private final BufferedImage[] NORTHIMG4 =
+            {
+                    GameImageHandler.getGuestImg(4, 0, 0),
+                    GameImageHandler.getGuestImg(4, 0, 1),
+                    GameImageHandler.getGuestImg(4, 0, 2),
+                    GameImageHandler.getGuestImg(4, 0, 3),
+                    GameImageHandler.getGuestImg(4, 0, 4),
+                    GameImageHandler.getGuestImg(4, 0, 5),
+            };
     private final BufferedImage[] EASTIMG1 =
             {
                     GameImageHandler.getGuestImg(1, 2, 0),

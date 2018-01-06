@@ -19,10 +19,10 @@ public class Guest {
 
     private final int guestId;
     private final GuestGraphics graphics;
+    private final GuestMoveDirectionLogic moveDirectionLogic;
     private Tile currentTile;
     private Tile destinationTile;
     private int progress;
-    private GuestMoveDirectionLogic moveDirectionLogic;
 
     public synchronized void draw(Graphics g) {
         int tempX0 = currentTile.getXOnMap();
@@ -65,11 +65,4 @@ public class Guest {
         setNewDestinationTile(destinationTile);
     }
 
-    public int getGuestId() {
-        return guestId;
-    }
-
-    public String getName() {
-        return "Guest " + guestId;
-    }
 }
