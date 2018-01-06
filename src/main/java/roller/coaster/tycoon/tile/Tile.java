@@ -5,9 +5,11 @@ import roller.coaster.tycoon.detail.TileObject;
 import roller.coaster.tycoon.guest.Guest;
 import roller.coaster.tycoon.guest.MoveDirection;
 
-import java.awt.Graphics;
-import java.awt.Polygon;
-import java.util.*;
+import java.awt.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
 
 public class Tile {
 

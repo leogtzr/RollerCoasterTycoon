@@ -23,11 +23,11 @@ public enum MoveDirection {
      * should be done incrementally.
      */
     public static MoveDirection fromChar(char directionChar) {
-         return EnumSet.allOf(MoveDirection.class)
-                    .stream()
-                    .filter(dir -> dir.directionChar == directionChar)
-                    .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("Direction char is not valid. Could not cast to MoveDirection"));
+        return EnumSet.allOf(MoveDirection.class)
+                .stream()
+                .filter(dir -> dir.directionChar == directionChar)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Direction char is not valid. Could not cast to MoveDirection"));
     }
 
     public MoveDirection oppositeDirection() {

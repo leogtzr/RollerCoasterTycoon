@@ -1,7 +1,6 @@
 package roller.coaster.tycoon.detail;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 
 public class TileObject {
 

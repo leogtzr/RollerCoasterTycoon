@@ -36,5 +36,5 @@ class MoveDirectionSpec extends Specification {
         EAST      || WEST
         WEST      || EAST
         UNDEFINED || UNDEFINED
-     }
+    }
 }

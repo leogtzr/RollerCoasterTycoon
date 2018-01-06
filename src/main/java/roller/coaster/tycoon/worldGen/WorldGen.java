@@ -1,20 +1,19 @@
 package roller.coaster.tycoon.worldGen;
 
+import roller.coaster.tycoon.tile.Tile;
+
+import javax.imageio.ImageIO;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import roller.coaster.tycoon.tile.Tile;
 
 /**
  * The class used to save and load worlds.
- * 
+ *
  * @author René
- * 
  */
-public class WorldGen
-{
+public class WorldGen {
 
     /**
      * Image used when loading a map.
@@ -28,38 +27,35 @@ public class WorldGen
     /**
      * The constructor used when loading a map.
      */
-    public WorldGen()
-    {
+    public WorldGen() {
     }
 
     /**
      * The constructor used when saving a map.
+     *
      * @param tiles The tiles that must be saved.
      */
-    public WorldGen(Tile[][] tiles)
-    {
+    public WorldGen(Tile[][] tiles) {
         this.tiles = tiles;
     }
 
     /**
-     *
      * Called when loading a map. The parameter imgName is the name of the map
      * to load. It should not have a file extension such as .png as it by default
      * loads .png files.
      * <p>Must be called before the loadWorld(Tile[][] roller.coaster.tycoon.world) method.
-     * 
+     *
      * @param imgName the name of the image to load
-     * @throws IOException If loading the image fails.
+     * @throws IOException              If loading the image fails.
      * @throws IllegalArgumentException If the image is not found.
      */
-    public void loadImage(String imgName) throws IOException, IllegalArgumentException
-    {
+    public void loadImage(String imgName) throws IOException, IllegalArgumentException {
 
         img = ImageIO.read(this.getClass().getResource(imgName + ".png"));
     }
 
     /**
-     * Creates a <code>ColorModel, DataBuffer, WriteableRaster</code> and a <code>BufferedImage</code> 
+     * Creates a <code>ColorModel, DataBuffer, WriteableRaster</code> and a <code>BufferedImage</code>
      * and then saves it.
      * <p>The name parameter is the name the map will be saved to. It should not have a
      * file extension as it is saved as a .png file.
@@ -67,14 +63,13 @@ public class WorldGen
      *
      * @param name The name of the map.
      */
-    public void saveWorld(String name)
-    {
+    public void saveWorld(String name) {
         ColorModel colorModel = generateColorModel();
 
         int bitMasks[] = new int[]
-        {
-            (byte) 0xf
-        };
+                {
+                        (byte) 0xf
+                };
 
         byte[] pixels = generatePixels(31, 31);
         DataBuffer dbuf = new DataBufferByte(pixels, 31 * 31, 0);
@@ -83,36 +78,29 @@ public class WorldGen
         BufferedImage saveImg = new BufferedImage(colorModel, raster, false, null);
 
 
-        try
-        {
+        try {
             ImageIO.write(saveImg, "png", new File(name + ".png"));
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void saveWorldNew(String name)
-    {
+    public void saveWorldNew(String name) {
         DirectColorModel colorModel = new DirectColorModel(24, 0x00ff0000, 0x0000ff00, 0x000000ff);
 
         WritableRaster raster2 = WritableRaster.createPackedRaster(DataBuffer.TYPE_INT,
                 31, 31,
                 new int[]
-                {
-                    0x00ff0000, 0x0000ff00, 0x000000ff
-                }, null);
+                        {
+                                0x00ff0000, 0x0000ff00, 0x000000ff
+                        }, null);
         BufferedImage saveImg = new BufferedImage(colorModel, raster2, false, null);
 
         generatePixels2(saveImg);
 
-        try
-        {
+        try {
             ImageIO.write(saveImg, "png", new File(name + ".png"));
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -120,36 +108,31 @@ public class WorldGen
     /**
      * Runs through the tiles in the map saving the height information in a x+1,y+1 array.
      * They are then moved to an <code>ArrayList</code> and further on to an array which is returned
+     *
      * @param x Width of the map + 1
      * @param y Height of the map + 1
      * @return An array of bytes representing all conors in the map.
      */
-    private byte[] generatePixels(int x, int y)
-    {
+    private byte[] generatePixels(int x, int y) {
         byte[][] mapArray = new byte[31][31];
 
         byte n = 0;
 
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
                 n = (byte) ((tiles[i][j].getNorthHeight() + 128) / 16);
 
                 mapArray[i + 1][j] = n;
 
-                if (i == 0)
-                {
+                if (i == 0) {
                     mapArray[0][j] = n;
                 }
 
-                if (j == tiles.length - 1)
-                {
+                if (j == tiles.length - 1) {
                     mapArray[i + 1][j + 1] = n;
                 }
 
-                if (i == 0 && j == tiles.length - 1)
-                {
+                if (i == 0 && j == tiles.length - 1) {
                     mapArray[0][j + 1] = n;
                 }
             }
@@ -159,18 +142,15 @@ public class WorldGen
         ArrayList<Byte> byteList = new ArrayList<Byte>(x * y);
         byte[] temp = new byte[x * y];
 
-        for (int i = 0; i < mapArray.length; i++)
-        {
-            for (int j = 0; j < mapArray[i].length; j++)
-            {
+        for (int i = 0; i < mapArray.length; i++) {
+            for (int j = 0; j < mapArray[i].length; j++) {
                 byteList.add(mapArray[j][i]);
                 //System.out.print(mapArray[j][i] + " ");
             }
             //System.out.println();
         }
 
-        for (int i = 0; i < byteList.size(); i++)
-        {
+        for (int i = 0; i < byteList.size(); i++) {
             temp[i] = byteList.get(i);
         }
         return temp;
@@ -180,17 +160,16 @@ public class WorldGen
      * Generates a 16 slot indexed <code>ColorModel</code> filled with greyscale colors
      * from RGB 0,0,0 to RGB 255,255,255.
      * <p>Pure white being the lowest and pure black the highest.
+     *
      * @return A 16 slot indexed <code>ColorModel</code>.
      */
-    private ColorModel generateColorModel()
-    {
+    private ColorModel generateColorModel() {
         // Generate 16-color model
         byte[] r = new byte[16];
         byte[] g = new byte[16];
         byte[] b = new byte[16];
 
-        for (int i = 0; i < b.length; i++)
-        {
+        for (int i = 0; i < b.length; i++) {
             r[i] = (byte) (i * 16);
             g[i] = (byte) (i * 16);
             b[i] = (byte) (i * 16);
@@ -203,19 +182,17 @@ public class WorldGen
      * The image is loaded and every pixel has it's red color loaded.
      * All the tiles are then edited to corrospond to the color value.
      * <p>Pure white being the lowest and pure black the highest.
+     *
      * @param world The tiles the roller.coaster.tycoon.world should be loaded into.
      */
-    public void loadWorld(Tile[][] world)
-    {
+    public void loadWorld(Tile[][] world) {
         int n = 0;
         int s = 0;
         int e = 0;
         int w = 0;
 
-        for (int i = 0; i < world.length; i++)
-        {
-            for (int j = 0; j < world[i].length; j++)
-            {
+        for (int i = 0; i < world.length; i++) {
+            for (int j = 0; j < world[i].length; j++) {
                 n = ((img.getRGB(i + 1, j) >> 16) & 0x000000FF) - 127;
                 s = ((img.getRGB(i, j + 1) >> 16) & 0x000000FF) - 127;
                 e = ((img.getRGB(i + 1, j + 1) >> 16) & 0x000000FF) - 127;
@@ -226,44 +203,36 @@ public class WorldGen
         }
     }
 
-    private void generatePixels2(BufferedImage saveImg)
-    {
-        for (int i = 0; i < tiles.length; i++)
-        {
-            for (int j = 0; j < tiles[i].length; j++)
-            {
+    private void generatePixels2(BufferedImage saveImg) {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
 
                 saveImg.setRGB(i + 1, j, getRgbAtNorth(i, j));
 
 
-                if (i == 0)
-                {
+                if (i == 0) {
                     saveImg.setRGB(0, j, getRgbAtWest(i, j));
                 }
 
-                if (j == tiles.length - 1)
-                {
+                if (j == tiles.length - 1) {
                     saveImg.setRGB(i + 1, j + 1, getRgbAtNorth(i, j));
                 }
 
 
-                if (i == 0 && j == tiles.length - 1)
-                {
+                if (i == 0 && j == tiles.length - 1) {
                     saveImg.setRGB(0, j + 1, getRgbAtNorth(i, j));
                 }
             }
         }
     }
 
-    private int getRgbAtNorth(int x, int y)
-    {
+    private int getRgbAtNorth(int x, int y) {
         int color = tiles[x][y].getNorthHeight() + 127;
         int value = ((255 & 0xFF) << 24) | ((color & 0xFF) << 16) | ((color & 0xFF) << 8) | ((color & 0xFF) << 0);
         return value;
     }
 
-    private int getRgbAtWest(int x, int y)
-    {
+    private int getRgbAtWest(int x, int y) {
         int color = tiles[x][y].getWestHeight() + 127;
         int value = ((255 & 0xFF) << 24) | ((color & 0xFF) << 16) | ((color & 0xFF) << 8) | ((color & 0xFF) << 0);
         return value;

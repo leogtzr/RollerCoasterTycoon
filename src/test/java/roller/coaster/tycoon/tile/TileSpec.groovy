@@ -4,8 +4,9 @@ import roller.coaster.tycoon.guest.MoveDirection
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.*
-import static roller.coaster.tycoon.guest.MoveDirection.*
+import static org.assertj.core.api.Assertions.assertThat
+import static roller.coaster.tycoon.guest.MoveDirection.EAST
+import static roller.coaster.tycoon.guest.MoveDirection.SOUTH
 
 class TileSpec extends Specification {
 

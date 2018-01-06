@@ -27,43 +27,13 @@ public class Guest {
     public synchronized void draw(Graphics g) {
         int tempX0 = currentTile.getXOnMap();
         int tempY0 = currentTile.getYOnMap();
-
         int tempX1 = destinationTile.getXOnMap();
         int tempY1 = destinationTile.getYOnMap();
 
         double drawX = tempX0 * (1 - (F * progress)) + tempX1 * (F * progress);
         double drawY = tempY0 * (1 - (F * progress)) + tempY1 * (F * progress);
 
-        MoveDirection direction = moveDirectionLogic.getDirection();
-        switch (direction) {
-            case NORTH: {
-                g.drawImage(graphics.getNorthImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
-                break;
-            }
-            case SOUTH: {
-                g.drawImage(graphics.getSouthImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
-                break;
-            }
-            case EAST: {
-                g.drawImage(graphics.getEastImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
-                break;
-            }
-            case WEST: {
-                g.drawImage(graphics.getWestImg()[progressToIndex()], (int) drawX - 6, (int) drawY - 19, null);
-                break;
-            }
-            case UNDEFINED:
-                break;
-        }
-    }
-
-    private int progressToIndex() {
-        if (progress <= 5) {
-            return progress;
-        } else {
-            return progress - 6;
-        }
-
+        graphics.draw(g, moveDirectionLogic.getDirection(), drawX, drawY, progress);
     }
 
     public synchronized void setNewDestinationTile(Tile destinationTile) {

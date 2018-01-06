@@ -4,7 +4,8 @@ import roller.coaster.tycoon.tile.Tile;
 
 import java.awt.image.BufferedImage;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public final class GuestTestProvider {
 

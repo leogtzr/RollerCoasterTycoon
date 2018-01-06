@@ -4,18 +4,16 @@ import roller.coaster.tycoon.guest.Guest;
 import roller.coaster.tycoon.guest.GuestFactory;
 import roller.coaster.tycoon.guest.GuestImageProvider;
 import roller.coaster.tycoon.handler.GameImageHandler;
-
-import java.awt.Graphics;
-import java.awt.Point;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import roller.coaster.tycoon.tile.Tile;
 import roller.coaster.tycoon.toolbox.LoadSaveWindow;
 import roller.coaster.tycoon.toolbox.ToolBox;
 import roller.coaster.tycoon.worldGen.WorldGen;
+
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class World {
 

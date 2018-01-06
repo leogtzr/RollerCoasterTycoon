@@ -1,6 +1,6 @@
 package roller.coaster.tycoon.detail;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public class PathObject extends TileObject {
 

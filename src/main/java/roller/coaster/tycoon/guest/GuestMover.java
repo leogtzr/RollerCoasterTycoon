@@ -1,9 +1,9 @@
 package roller.coaster.tycoon.guest;
 
+import roller.coaster.tycoon.world.World;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import roller.coaster.tycoon.world.World;
 
 
 public class GuestMover implements Runnable {

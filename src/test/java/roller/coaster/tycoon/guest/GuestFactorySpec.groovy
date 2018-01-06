@@ -4,8 +4,9 @@ import roller.coaster.tycoon.tile.Tile
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.*
-import static org.mockito.Mockito.*
+import static org.assertj.core.api.Assertions.assertThat
+import static org.mockito.Mockito.mock
+import static org.mockito.Mockito.when
 
 class GuestFactorySpec extends Specification {
 

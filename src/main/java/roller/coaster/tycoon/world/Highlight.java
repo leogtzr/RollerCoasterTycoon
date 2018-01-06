@@ -1,8 +1,6 @@
 package roller.coaster.tycoon.world;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Polygon;
+import java.awt.*;
 
 public class Highlight {
 

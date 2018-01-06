@@ -2,8 +2,7 @@ package roller.coaster.tycoon.toolbox;
 
 import roller.coaster.tycoon.handler.GameImageHandler;
 
-import java.awt.Graphics;
-import java.awt.Polygon;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ToolBox {
