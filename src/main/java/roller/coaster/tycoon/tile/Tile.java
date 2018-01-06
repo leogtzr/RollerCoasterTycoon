@@ -50,11 +50,7 @@ public class Tile {
     }
 
     public void addAsNeighbor(Tile tile, char direction) {
-
         if (pavement && tile.isPavement()) {
-//            System.out.println(x + ", " + y + " is now connected to " + direction + " - " + tile.getX() + ", "
-//                    + tile.getY());
-
             neighborsMap.put(MoveDirection.fromChar(direction), tile);
             switch (direction) {
                 case ('N'): {
@@ -85,31 +81,8 @@ public class Tile {
         neighbors[NSEW] = null;
     }
 
-    public Tile getNeighbor(int NSEW) {
-        return neighbors[NSEW];
-    }
-
-    public Tile getNeighbor(char NSEW) {
-        Tile tempTile = null;
-        switch (NSEW) {
-            case ('N'): {
-                tempTile = neighbors[0];
-                break;
-            }
-            case ('S'): {
-                tempTile = neighbors[1];
-                break;
-            }
-            case ('E'): {
-                tempTile = neighbors[2];
-                break;
-            }
-            case ('W'): {
-                tempTile = neighbors[3];
-                break;
-            }
-        }
-        return tempTile;
+    public Tile getNeighbor(MoveDirection direction) {
+        return neighborsMap.get(direction);
     }
 
     public void draw(Graphics g, int x0, int y0) {

@@ -52,7 +52,7 @@ class GuestMoveDirectionLogic {
     }
 
     Tile getDestinationTileBasedOnDirectionFrom(Tile currentTile) {
-        return currentTile.getNeighbor(direction.getDirectionChar());
+        return currentTile.getNeighbor(direction);
     }
 
 }
