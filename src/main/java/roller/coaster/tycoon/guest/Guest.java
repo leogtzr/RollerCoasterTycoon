@@ -12,6 +12,7 @@ import static roller.coaster.tycoon.guest.MoveDirection.*;
 @Builder
 public class Guest {
 
+    public static final int PROGRESS_REQUIRED_FOR_MOVE_TO_DESTINATION_FILE = 12;
     private final static AtomicInteger GUEST_ID_GENERATOR = new AtomicInteger(0);
     private static final Random RAN = new Random();
     private static final double F = 0.0909d;
@@ -77,7 +78,7 @@ public class Guest {
     public void move() {
         progress++;
 
-        if (progress >= 12) {
+        if (progress >= PROGRESS_REQUIRED_FOR_MOVE_TO_DESTINATION_FILE) {
             progress = 0;
             MoveDirection direction = moveDirectionLogic.getDirection();
             if (direction == EAST || direction == NORTH) {
