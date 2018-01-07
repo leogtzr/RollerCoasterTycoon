@@ -46,10 +46,10 @@ public class Tile {
 
         tileShape = new Polygon(xPoints, yPoints, 8);
 
-        guestsOnTile = new LinkedList();
+        guestsOnTile = new LinkedList<>();
     }
 
-    public void addAsNeighbor(Tile tile, char direction) {
+    public void addPavementTileAsNeighbor(Tile tile, char direction) {
         if (pavement && tile.isPavement()) {
             neighborsMap.put(MoveDirection.fromChar(direction), tile);
             switch (direction) {
@@ -125,17 +125,23 @@ public class Tile {
             pavement = true;
         }
         if (mouse == 4 && pavement) {
-            pavement = false;
-            for (int i = 0; i < neighbors.length; i++) {
-                if (neighbors[i] != null) {
-                    neighbors[i].removeMe(this);
-                }
-                neighbors[i] = null;
-            }
-            guestsOnTile.clear();
-            tileObject = null;
+            removePavementFromTile();
         }
     }
+
+    private void removePavementFromTile() {
+        pavement = false;
+        for (int i = 0; i < neighbors.length; i++) {
+            if (neighbors[i] != null) {
+                neighbors[i].removeMe(this);
+            }
+            neighbors[i] = null;
+        }
+        neighborsMap.clear();
+        guestsOnTile.clear();
+        tileObject = null;
+    }
+
 
     public boolean isPavement() {
         return pavement;
@@ -280,6 +286,14 @@ public class Tile {
                 }
             }
         }
+
+        for (MoveDirection neighborsKey: neighborsMap.keySet()) {
+            if (tile.equals(neighborsMap.get(neighborsKey))) {
+                neighborsMap.remove(neighborsKey);
+                break;
+            }
+        }
+
         if (tileObject != null) {
             tileObject.setRoadNumber(getNeighborValue());
         }

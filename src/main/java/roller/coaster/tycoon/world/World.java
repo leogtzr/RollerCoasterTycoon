@@ -88,22 +88,22 @@ public class World {
 
                     if (mouse == 16) {
                         if (j + 1 < 30) {
-                            tiles[i][j + 1].addAsNeighbor(tiles[i][j], 'N');
-                            tiles[i][j].addAsNeighbor(tiles[i][j + 1], 'S');
+                            tiles[i][j + 1].addPavementTileAsNeighbor(tiles[i][j], 'N');
+                            tiles[i][j].addPavementTileAsNeighbor(tiles[i][j + 1], 'S');
                         }
 
                         if (j - 1 >= 0) {
-                            tiles[i][j - 1].addAsNeighbor(tiles[i][j], 'S');
-                            tiles[i][j].addAsNeighbor(tiles[i][j - 1], 'N');
+                            tiles[i][j - 1].addPavementTileAsNeighbor(tiles[i][j], 'S');
+                            tiles[i][j].addPavementTileAsNeighbor(tiles[i][j - 1], 'N');
                         }
 
                         if (i + 1 < 30) {
-                            tiles[i + 1][j].addAsNeighbor(tiles[i][j], 'W');
-                            tiles[i][j].addAsNeighbor(tiles[i + 1][j], 'E');
+                            tiles[i + 1][j].addPavementTileAsNeighbor(tiles[i][j], 'W');
+                            tiles[i][j].addPavementTileAsNeighbor(tiles[i + 1][j], 'E');
                         }
                         if (i - 1 >= 0) {
-                            tiles[i - 1][j].addAsNeighbor(tiles[i][j], 'E');
-                            tiles[i][j].addAsNeighbor(tiles[i - 1][j], 'W');
+                            tiles[i - 1][j].addPavementTileAsNeighbor(tiles[i][j], 'E');
+                            tiles[i][j].addPavementTileAsNeighbor(tiles[i - 1][j], 'W');
                         }
                         return;
                     }

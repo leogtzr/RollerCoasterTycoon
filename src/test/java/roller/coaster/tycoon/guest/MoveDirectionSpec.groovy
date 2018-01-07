@@ -27,7 +27,7 @@ class MoveDirectionSpec extends Specification {
 
     def "should return opposite move direction"(MoveDirection direction, MoveDirection oppositeMoveDirection) {
         expect:
-        direction.oppositeDirection() == oppositeMoveDirection;
+        direction.oppositeDirection() == oppositeMoveDirection
 
         where:
         direction || oppositeMoveDirection

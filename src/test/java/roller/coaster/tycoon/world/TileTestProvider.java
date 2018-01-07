@@ -6,7 +6,7 @@ public final class TileTestProvider {
 
     public static Tile pavementTileWithNeighbour(double xPos, double yPos) {
         Tile tile = pavementTile(xPos, yPos);
-        tile.addAsNeighbor(tile, 'N');
+        tile.addPavementTileAsNeighbor(tile, 'N');
         return tile;
     }
 

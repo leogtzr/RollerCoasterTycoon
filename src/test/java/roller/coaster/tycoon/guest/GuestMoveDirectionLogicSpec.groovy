@@ -12,7 +12,7 @@ class GuestMoveDirectionLogicSpec extends Specification {
     def "should set direction from possible directions when no direction is set"() {
         given:
         Tile currentTile = TileTestProvider.pavementTile(12, 2)
-        currentTile.addAsNeighbor(TileTestProvider.pavementTile(12, 0), 'N' as char)
+        currentTile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 0), 'N' as char)
         GuestMoveDirectionLogic moveDirectionLogic = new GuestMoveDirectionLogic();
 
         when:
@@ -25,8 +25,8 @@ class GuestMoveDirectionLogicSpec extends Specification {
     def "should not take opposite direction when next tile for current direction is available"() {
         given:
         Tile currentTile = TileTestProvider.pavementTile(12, 2)
-        currentTile.addAsNeighbor(TileTestProvider.pavementTile(12, 0), 'N' as char)
-        currentTile.addAsNeighbor(TileTestProvider.pavementTile(12, 4), 'S' as char)
+        currentTile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 0), 'N' as char)
+        currentTile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 4), 'S' as char)
         GuestMoveDirectionLogic moveDirectionLogic = new GuestMoveDirectionLogic()
 
         when:
@@ -40,7 +40,7 @@ class GuestMoveDirectionLogicSpec extends Specification {
     def "should take opposite direction when next tile for current direction is not available"() {
         given:
         Tile currentTile = TileTestProvider.pavementTile(12, 2)
-        currentTile.addAsNeighbor(TileTestProvider.pavementTile(12, 4), 'S' as char)
+        currentTile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 4), 'S' as char)
         GuestMoveDirectionLogic moveDirectionLogic = new GuestMoveDirectionLogic()
 
         when:
@@ -67,7 +67,7 @@ class GuestMoveDirectionLogicSpec extends Specification {
         given:
         Tile currentTile = TileTestProvider.pavementTile(12, 2)
         Tile neighborTile = TileTestProvider.pavementTile(10, 2)
-        currentTile.addAsNeighbor(neighborTile, 'W' as char)
+        currentTile.addPavementTileAsNeighbor(neighborTile, 'W' as char)
         GuestMoveDirectionLogic moveDirectionLogic = new GuestMoveDirectionLogic()
         moveDirectionLogic.direction = WEST
 
