@@ -49,8 +49,8 @@ class GuestSpec extends Specification {
         given:
         Tile startTile = TileTestProvider.pavementTile(12, 2)
         Tile destinationTile = TileTestProvider.pavementTile(10, 2)
-        startTile.addPavementTileAsNeighbor(destinationTile, 'N' as char)
-        destinationTile.addPavementTileAsNeighbor(startTile, 'S' as char)
+        startTile.addPavementTileAsNeighbor(destinationTile, NORTH)
+        destinationTile.addPavementTileAsNeighbor(startTile, SOUTH)
 
         Guest guest = guest(startTile)
         guest.destinationTile = destinationTile
@@ -67,8 +67,8 @@ class GuestSpec extends Specification {
         given:
         Tile startTile = TileTestProvider.pavementTile(12, 2)
         Tile destinationTile = TileTestProvider.pavementTile(10, 2)
-        startTile.addPavementTileAsNeighbor(destinationTile, 'N' as char)
-        destinationTile.addPavementTileAsNeighbor(startTile, 'S' as char)
+        startTile.addPavementTileAsNeighbor(destinationTile, NORTH)
+        destinationTile.addPavementTileAsNeighbor(startTile, SOUTH)
 
         Guest guest = guest(startTile)
         guest.destinationTile = destinationTile
@@ -85,8 +85,8 @@ class GuestSpec extends Specification {
         given:
         Tile startTile = TileTestProvider.pavementTile(12, 2)
         Tile destinationTile = TileTestProvider.pavementTile(10, 2)
-        startTile.addPavementTileAsNeighbor(destinationTile, 'N' as char)
-        destinationTile.addPavementTileAsNeighbor(startTile, 'S' as char)
+        startTile.addPavementTileAsNeighbor(destinationTile, NORTH)
+        destinationTile.addPavementTileAsNeighbor(startTile, SOUTH)
 
         Guest guest = guest(startTile)
         guest.moveDirectionLogic.direction = NORTH

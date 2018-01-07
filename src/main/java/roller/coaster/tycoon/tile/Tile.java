@@ -5,14 +5,17 @@ import roller.coaster.tycoon.detail.TileObject;
 import roller.coaster.tycoon.guest.Guest;
 import roller.coaster.tycoon.guest.MoveDirection;
 
-import java.awt.Graphics;
-import java.awt.Polygon;
-import java.util.*;
+import java.awt.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
+
+import static roller.coaster.tycoon.guest.MoveDirection.*;
 
 public class Tile {
 
     private LinkedList<Guest> guestsOnTile;
-    private Tile[] neighbors;
     private Map<MoveDirection, Tile> neighborsMap;
     private int x, y;
     private int x0;
@@ -28,7 +31,6 @@ public class Tile {
         eastHeight = 0;
         westHeight = 0;
 
-        neighbors = new Tile[4];
         neighborsMap = new HashMap<>(4);
 
         x = (int) (xPos * 64);
@@ -49,36 +51,14 @@ public class Tile {
         guestsOnTile = new LinkedList<>();
     }
 
-    public void addPavementTileAsNeighbor(Tile tile, char direction) {
+    public void addPavementTileAsNeighbor(Tile tile, MoveDirection direction) {
         if (pavement && tile.isPavement()) {
-            neighborsMap.put(MoveDirection.fromChar(direction), tile);
-            switch (direction) {
-                case ('N'): {
-                    neighbors[0] = tile;
-                    break;
-                }
-                case ('S'): {
-                    neighbors[1] = tile;
-                    break;
-                }
-                case ('E'): {
-                    neighbors[2] = tile;
-                    break;
-                }
-                case ('W'): {
-                    neighbors[3] = tile;
-                    break;
-                }
-            }
+            neighborsMap.put(direction, tile);
 
             if (tileObject != null) {
                 tileObject.setRoadNumber(getNeighborValue());
             }
         }
-    }
-
-    public void removeNeighbor(int NSEW) {
-        neighbors[NSEW] = null;
     }
 
     public Tile getNeighbor(MoveDirection direction) {
@@ -131,17 +111,15 @@ public class Tile {
 
     private void removePavementFromTile() {
         pavement = false;
-        for (int i = 0; i < neighbors.length; i++) {
-            if (neighbors[i] != null) {
-                neighbors[i].removeMe(this);
-            }
-            neighbors[i] = null;
-        }
-        neighborsMap.clear();
+        clearNeighbors();
         guestsOnTile.clear();
         tileObject = null;
     }
 
+    private void clearNeighbors() {
+        neighborsMap.values().forEach(neighbor -> neighbor.removeMe(this));
+        neighborsMap.clear();
+    }
 
     public boolean isPavement() {
         return pavement;
@@ -258,15 +236,10 @@ public class Tile {
         guestsOnTile.add(guest);
     }
 
-    public void addToList(Guest aThis) {
+    public void placeExistingGuestOnTile(Guest guest) {
         if (pavement) {
-            guestsOnTile.add(aThis);
-
-            for (int i = 0; i < neighbors.length; i++) {
-                if (neighbors[i] != null) {
-                    neighbors[i].removeFromList(aThis);
-                }
-            }
+            guestsOnTile.add(guest);
+            neighborsMap.values().forEach(neighbor -> neighbor.removeFromList(guest));
         }
     }
 
@@ -275,19 +248,7 @@ public class Tile {
     }
 
     private void removeMe(Tile tile) {
-        for (int i = 0; i < neighbors.length; i++) {
-            if (neighbors[i] != null) {
-                if (neighbors[i].equals(tile)) {
-//                    System.out.println(neighbors[i] + ", " + tile);
-//
-//                    System.out.println(x + ", " + y
-//                            + " is no longer connected to direction '" + i + "'");
-                    neighbors[i] = null;
-                }
-            }
-        }
-
-        for (MoveDirection neighborsKey: neighborsMap.keySet()) {
+        for (MoveDirection neighborsKey : neighborsMap.keySet()) {
             if (tile.equals(neighborsMap.get(neighborsKey))) {
                 neighborsMap.remove(neighborsKey);
                 break;
@@ -326,13 +287,7 @@ public class Tile {
     }
 
     public boolean doesHaveNeighbors() {
-        boolean b = false;
-        for (int i = 0; i < neighbors.length; i++) {
-            if (neighbors[i] != null) {
-                b = true;
-            }
-        }
-        return b;
+        return !neighborsMap.isEmpty();
     }
 
     private boolean isFlat() {
@@ -563,20 +518,18 @@ public class Tile {
     private int getNeighborValue() {
         int value = 0;
 
-
-        if (neighbors[0] != null) {
+        if (neighborsMap.containsKey(NORTH)) {
             value = value + 1;
         }
-        if (neighbors[1] != null) {
+        if (neighborsMap.containsKey(SOUTH)) {
             value = value + 2;
         }
-        if (neighbors[2] != null) {
+        if (neighborsMap.containsKey(EAST)) {
             value = value + 4;
         }
-        if (neighbors[3] != null) {
+        if (neighborsMap.containsKey(WEST)) {
             value = value + 8;
         }
-
         return value;
     }
 }

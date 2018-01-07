@@ -21,8 +21,8 @@ class TileSpec extends Specification {
     def "should return set of possible move directions based on neighbour tiles"() {
         given:
         Tile tile = TileTestProvider.pavementTile(12, 2)
-        tile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(10, 2), 'E' as char)
-        tile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 4), 'S' as char)
+        tile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(10, 2), EAST)
+        tile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 4), SOUTH)
 
         when:
         Set<MoveDirection> moveDirections = tile.getPossibleDirectionsFromTile()
@@ -35,7 +35,7 @@ class TileSpec extends Specification {
         given:
         Tile tile = TileTestProvider.pavementTile(12, 2)
         Tile neighborTile = TileTestProvider.pavementTile(12, 0)
-        tile.addPavementTileAsNeighbor(neighborTile, 'N' as char)
+        tile.addPavementTileAsNeighbor(neighborTile, NORTH)
 
         when:
         Tile returnedTile = tile.getNeighbor(NORTH)
@@ -48,7 +48,7 @@ class TileSpec extends Specification {
         given:
         Tile tile = TileTestProvider.pavementTile(12, 2)
         Tile neighborTile = TileTestProvider.pavementTile(12, 0)
-        tile.addPavementTileAsNeighbor(neighborTile, 'E' as char)
+        tile.addPavementTileAsNeighbor(neighborTile, EAST)
 
         when:
         Tile returnedTile = tile.getNeighbor(EAST)
@@ -61,7 +61,7 @@ class TileSpec extends Specification {
         given:
         Tile tile = TileTestProvider.pavementTile(12, 2)
         Tile neighborTile = TileTestProvider.pavementTile(12, 0)
-        tile.addPavementTileAsNeighbor(neighborTile, 'S' as char)
+        tile.addPavementTileAsNeighbor(neighborTile, SOUTH)
 
         when:
         Tile returnedTile = tile.getNeighbor(SOUTH)
@@ -74,7 +74,7 @@ class TileSpec extends Specification {
         given:
         Tile tile = TileTestProvider.pavementTile(12, 2)
         Tile neighborTile = TileTestProvider.pavementTile(12, 0)
-        tile.addPavementTileAsNeighbor(neighborTile, 'W' as char)
+        tile.addPavementTileAsNeighbor(neighborTile, WEST)
 
         when:
         Tile returnedTile = tile.getNeighbor(WEST)
@@ -89,7 +89,7 @@ class TileSpec extends Specification {
         Tile neighbor = new Tile(12, 0)
 
         when:
-        tile.addPavementTileAsNeighbor(neighbor, 'N' as char)
+        tile.addPavementTileAsNeighbor(neighbor, NORTH)
 
         then:
         assertThat(tile.getNeighbor(NORTH)).isNull()
@@ -101,29 +101,25 @@ class TileSpec extends Specification {
         Tile neighbor = TileTestProvider.pavementTile(12, 0)
 
         when:
-        tile.addPavementTileAsNeighbor(neighbor, 'N' as char)
+        tile.addPavementTileAsNeighbor(neighbor, NORTH)
 
         then:
         assertThat(tile.getNeighbor(NORTH)).isNull()
     }
 
-    def "should add pavement tile as neighbor with valid direction"(char directionAsChar, MoveDirection direction) {
+    def "should add pavement tile as neighbor with valid direction"(MoveDirection direction) {
         given:
         Tile tile = TileTestProvider.pavementTile(14, 0)
         Tile neighbor = TileTestProvider.pavementTile(12, 0)
 
         when:
-        tile.addPavementTileAsNeighbor(neighbor, directionAsChar)
+        tile.addPavementTileAsNeighbor(neighbor, direction)
 
         then:
         tile.getNeighbor(direction) == neighbor
 
         where:
-        directionAsChar || direction
-        'N' as char     || NORTH
-        'S' as char     || SOUTH
-        'E' as char     || EAST
-        'W' as char     || WEST
+        direction << [NORTH, SOUTH, EAST, WEST]
     }
 
     def "should set road number when tileObject is not null during adding neighbor"() {
@@ -135,7 +131,7 @@ class TileSpec extends Specification {
         tile.tileObject = tileObject
 
         when:
-        tile.addPavementTileAsNeighbor(neighbor, 'N' as char)
+        tile.addPavementTileAsNeighbor(neighbor, NORTH)
 
         then:
         1 * tileObject.setRoadNumber(1)
@@ -216,12 +212,76 @@ class TileSpec extends Specification {
     def "should remove all neighbors when right mouse clicked"() {
         given:
         Tile tile = TileTestProvider.pavementTile(12, 12)
-        tile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 12), 'N' as char)
+        tile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 12), NORTH)
 
         when:
         tile.makePavement(4)
 
         then:
         assertThat(tile.neighborsMap).isEmpty()
+    }
+
+    def "should return false if tile has not neighbors on doesHaveNeighbors method"() {
+        given:
+        Tile tile = new Tile(12, 12)
+
+        when:
+        boolean doesHaveNeighbors = tile.doesHaveNeighbors()
+
+        then:
+        assertThat(doesHaveNeighbors).isFalse()
+    }
+
+    def "should return true if tile has not neighbors on doesHaveNeighbors method"() {
+        given:
+        Tile tile = TileTestProvider.pavementTileWithNeighbour(12, 12)
+
+        when:
+        boolean doesHaveNeighbors = tile.doesHaveNeighbors()
+
+        then:
+        assertThat(doesHaveNeighbors).isTrue()
+    }
+
+    def "should not place guest on tile which is pavement tile on placeExistingGuestOnTile action"() {
+        given:
+        Tile tile = new Tile(2, 2)
+
+        when:
+        tile.placeExistingGuestOnTile(
+                Guest.builder().build()
+        )
+
+        then:
+        assertThat(tile.guestsOnTile).isEmpty()
+    }
+
+    def "should place guest on tile which is pavement tile on placeExistingGuestOnTile action"() {
+        given:
+        Tile tile = TileTestProvider.pavementTile(2, 2)
+
+        when:
+        tile.placeExistingGuestOnTile(
+                Guest.builder().build()
+        )
+
+        then:
+        assertThat(tile.guestsOnTile).isNotEmpty()
+    }
+
+    def "should remove guest from neighbors tiles during placeExistingGuestOnTile action"() {
+        given:
+        Tile tile = TileTestProvider.pavementTile(2, 2)
+        Tile neighbor = TileTestProvider.pavementTile(2, 0)
+        tile.addPavementTileAsNeighbor(neighbor, NORTH)
+
+        Guest guest = Guest.builder().build()
+        neighbor.addNewGuestToList(guest)
+
+        when:
+        tile.placeExistingGuestOnTile(guest)
+
+        then:
+        assertThat(neighbor.guestsOnTile).isEmpty()
     }
 }

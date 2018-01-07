@@ -1,9 +1,11 @@
 package roller.coaster.tycoon.world
 
+import roller.coaster.tycoon.guest.MoveDirection
 import roller.coaster.tycoon.tile.Tile
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
+import static roller.coaster.tycoon.guest.MoveDirection.*
 
 class WorldSpec extends Specification {
 
@@ -37,8 +39,7 @@ class WorldSpec extends Specification {
     def "should not place guest at tile when tile has no neighbours"() {
         given:
         World world = new World()
-        Tile tile = TileTestProvider.pavementTileWithNeighbour(12.5, -2.5)
-        tile.removeNeighbor(0)
+        Tile tile = TileTestProvider.pavementTile(12.5, -2.5)
         world.tilesList.add(0, tile)
 
         when:

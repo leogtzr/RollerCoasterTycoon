@@ -41,7 +41,7 @@ public class Guest {
 
         MoveDirection direction = moveDirectionLogic.getDirection();
         if (direction == WEST || direction == SOUTH) {
-            this.destinationTile.addToList(this);
+            this.destinationTile.placeExistingGuestOnTile(this);
         }
     }
 
@@ -52,7 +52,7 @@ public class Guest {
             progress = 0;
             MoveDirection direction = moveDirectionLogic.getDirection();
             if (direction == EAST || direction == NORTH) {
-                destinationTile.addToList(this);
+                destinationTile.placeExistingGuestOnTile(this);
             }
             currentTile = destinationTile;
             setUpDestination();
