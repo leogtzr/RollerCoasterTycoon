@@ -1,11 +1,9 @@
 package roller.coaster.tycoon.world
 
-import roller.coaster.tycoon.guest.MoveDirection
 import roller.coaster.tycoon.tile.Tile
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
-import static roller.coaster.tycoon.guest.MoveDirection.*
 
 class WorldSpec extends Specification {
 

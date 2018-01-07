@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static roller.coaster.tycoon.guest.MoveDirection.*;
+import static roller.coaster.tycoon.guest.Direction.*;
 
 public class World {
 

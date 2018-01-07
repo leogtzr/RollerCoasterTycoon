@@ -1,9 +1,8 @@
 package roller.coaster.tycoon.world;
 
-import roller.coaster.tycoon.guest.MoveDirection;
 import roller.coaster.tycoon.tile.Tile;
 
-import static roller.coaster.tycoon.guest.MoveDirection.*;
+import static roller.coaster.tycoon.guest.Direction.*;
 
 public final class TileTestProvider {
 

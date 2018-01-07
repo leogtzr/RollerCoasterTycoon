@@ -2,12 +2,12 @@ package roller.coaster.tycoon.tile
 
 import roller.coaster.tycoon.detail.TileObject
 import roller.coaster.tycoon.guest.Guest
-import roller.coaster.tycoon.guest.MoveDirection
+import roller.coaster.tycoon.guest.Direction
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
-import static roller.coaster.tycoon.guest.MoveDirection.*
+import static Direction.*
 
 class TileSpec extends Specification {
 
@@ -25,7 +25,7 @@ class TileSpec extends Specification {
         tile.addPavementTileAsNeighbor(TileTestProvider.pavementTile(12, 4), SOUTH)
 
         when:
-        Set<MoveDirection> moveDirections = tile.getPossibleDirectionsFromTile()
+        Set<Direction> moveDirections = tile.getPossibleDirectionsFromTile()
 
         then:
         assertThat(moveDirections).contains(EAST, SOUTH)
@@ -107,7 +107,7 @@ class TileSpec extends Specification {
         assertThat(tile.getNeighbor(NORTH)).isNull()
     }
 
-    def "should add pavement tile as neighbor with valid direction"(MoveDirection direction) {
+    def "should add pavement tile as neighbor with valid direction"(Direction direction) {
         given:
         Tile tile = TileTestProvider.pavementTile(14, 0)
         Tile neighbor = TileTestProvider.pavementTile(12, 0)

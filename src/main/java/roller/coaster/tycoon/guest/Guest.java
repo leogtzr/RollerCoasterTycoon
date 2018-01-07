@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static roller.coaster.tycoon.guest.MoveDirection.*;
+import static roller.coaster.tycoon.guest.Direction.*;
 
 @Builder
 public class Guest {
@@ -39,7 +39,7 @@ public class Guest {
     public synchronized void setNewDestinationTile(Tile destinationTile) {
         this.destinationTile = destinationTile;
 
-        MoveDirection direction = moveDirectionLogic.getDirection();
+        Direction direction = moveDirectionLogic.getDirection();
         if (direction == WEST || direction == SOUTH) {
             this.destinationTile.placeExistingGuestOnTile(this);
         }
@@ -50,7 +50,7 @@ public class Guest {
 
         if (progress >= PROGRESS_REQUIRED_FOR_MOVE_TO_DESTINATION_FILE) {
             progress = 0;
-            MoveDirection direction = moveDirectionLogic.getDirection();
+            Direction direction = moveDirectionLogic.getDirection();
             if (direction == EAST || direction == NORTH) {
                 destinationTile.placeExistingGuestOnTile(this);
             }

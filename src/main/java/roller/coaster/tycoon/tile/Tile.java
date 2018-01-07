@@ -3,7 +3,7 @@ package roller.coaster.tycoon.tile;
 import roller.coaster.tycoon.detail.PathObject;
 import roller.coaster.tycoon.detail.TileObject;
 import roller.coaster.tycoon.guest.Guest;
-import roller.coaster.tycoon.guest.MoveDirection;
+import roller.coaster.tycoon.guest.Direction;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -11,12 +11,12 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-import static roller.coaster.tycoon.guest.MoveDirection.*;
+import static roller.coaster.tycoon.guest.Direction.*;
 
 public class Tile {
 
     private LinkedList<Guest> guestsOnTile;
-    private Map<MoveDirection, Tile> neighborsMap;
+    private Map<Direction, Tile> neighborsMap;
     private int x, y;
     private int x0;
     private int y0;
@@ -51,7 +51,7 @@ public class Tile {
         guestsOnTile = new LinkedList<>();
     }
 
-    public void addPavementTileAsNeighbor(Tile tile, MoveDirection direction) {
+    public void addPavementTileAsNeighbor(Tile tile, Direction direction) {
         if (pavement && tile.isPavement()) {
             neighborsMap.put(direction, tile);
 
@@ -61,7 +61,7 @@ public class Tile {
         }
     }
 
-    public Tile getNeighbor(MoveDirection direction) {
+    public Tile getNeighbor(Direction direction) {
         return neighborsMap.get(direction);
     }
 
@@ -185,7 +185,7 @@ public class Tile {
         northHeight = northHeight + i;
     }
 
-    public Set<MoveDirection> getPossibleDirectionsFromTile() {
+    public Set<Direction> getPossibleDirectionsFromTile() {
         return neighborsMap.keySet();
     }
 
@@ -248,7 +248,7 @@ public class Tile {
     }
 
     private void removeMe(Tile tile) {
-        for (MoveDirection neighborsKey : neighborsMap.keySet()) {
+        for (Direction neighborsKey : neighborsMap.keySet()) {
             if (tile.equals(neighborsMap.get(neighborsKey))) {
                 neighborsMap.remove(neighborsKey);
                 break;

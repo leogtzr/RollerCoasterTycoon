@@ -9,26 +9,26 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import static roller.coaster.tycoon.guest.MoveDirection.*;
+import static roller.coaster.tycoon.guest.Direction.*;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class GuestGraphics {
 
     private static final int MAXIMUM_PROGRESS_FOR_INDEX = 6;
 
-    private final Map<MoveDirection, BufferedImage[]> directionImages;
+    private final Map<Direction, BufferedImage[]> directionImages;
 
     public static GuestGraphicsBuilder builder() {
         return new GuestGraphicsBuilder();
     }
 
-    public void draw(Graphics g, MoveDirection direction, double drawX, double drawY, int progress) {
+    public void draw(Graphics g, Direction direction, double drawX, double drawY, int progress) {
         int isoX = (int) drawX - 6;
         int isoY = (int) drawY - 19;
         g.drawImage(image(direction, progress), isoX, isoY, null);
     }
 
-    private Image image(MoveDirection direction, int progress) {
+    private Image image(Direction direction, int progress) {
         int index = imageIndexFromProgress(progress);
         BufferedImage[] directionImages = this.directionImages.get(direction);
         return directionImages[index];
@@ -40,7 +40,7 @@ public class GuestGraphics {
 
     static class GuestGraphicsBuilder {
 
-        private final Map<MoveDirection, BufferedImage[]> directionImages = new HashMap<>();
+        private final Map<Direction, BufferedImage[]> directionImages = new HashMap<>();
 
         public GuestGraphics build() {
             return new GuestGraphics(directionImages);
@@ -66,7 +66,7 @@ public class GuestGraphics {
             return this;
         }
 
-        private void addImages(MoveDirection direction, BufferedImage[] images) {
+        private void addImages(Direction direction, BufferedImage[] images) {
             Preconditions.checkNotNull(images, "Images array can not be null!");
             this.directionImages.put(direction, images);
         }

@@ -2,12 +2,11 @@ package roller.coaster.tycoon.guest
 
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.assertThat
-import static roller.coaster.tycoon.guest.MoveDirection.*
+import static Direction.*
 
-class MoveDirectionSpec extends Specification {
+class DirectionSpec extends Specification {
 
-    def "should return opposite move direction"(MoveDirection direction, MoveDirection oppositeMoveDirection) {
+    def "should return opposite move direction"(Direction direction, Direction oppositeMoveDirection) {
         expect:
         direction.oppositeDirection() == oppositeMoveDirection
 

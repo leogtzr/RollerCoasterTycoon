@@ -1,6 +1,6 @@
 package roller.coaster.tycoon.guest;
 
-public enum MoveDirection {
+public enum Direction {
 
     NORTH,
     EAST,
@@ -8,8 +8,8 @@ public enum MoveDirection {
     WEST,
     UNDEFINED;
 
-    public MoveDirection oppositeDirection() {
-        MoveDirection opposite = UNDEFINED;
+    public Direction oppositeDirection() {
+        Direction opposite = UNDEFINED;
         switch (this) {
             case NORTH:
                 opposite = SOUTH;
