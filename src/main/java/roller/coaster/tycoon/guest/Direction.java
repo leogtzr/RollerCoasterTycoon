@@ -2,32 +2,32 @@ package roller.coaster.tycoon.guest;
 
 public enum Direction {
 
-    NORTH,
-    EAST,
-    SOUTH,
-    WEST,
-    UNDEFINED;
-
-    public Direction oppositeDirection() {
-        Direction opposite = UNDEFINED;
-        switch (this) {
-            case NORTH:
-                opposite = SOUTH;
-                break;
-            case EAST:
-                opposite = WEST;
-                break;
-            case SOUTH:
-                opposite = NORTH;
-                break;
-            case WEST:
-                opposite = EAST;
-                break;
-            case UNDEFINED:
-                break;
+    NORTH {
+        @Override public Direction oppositeDirection() {
+            return SOUTH;
         }
+    },
+    EAST {
+        @Override public Direction oppositeDirection() {
+            return WEST;
+        }
+    },
+    SOUTH {
+        @Override public Direction oppositeDirection() {
+            return NORTH;
+        }
+    },
+    WEST {
+        @Override public Direction oppositeDirection() {
+            return EAST;
+        }
+    },
+    UNDEFINED {
+        @Override public Direction oppositeDirection() {
+            return UNDEFINED;
+        }
+    };
 
-        return opposite;
-    }
+    public abstract Direction oppositeDirection();
 
 }
