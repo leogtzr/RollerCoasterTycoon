@@ -281,9 +281,7 @@ public class Tile {
     }
 
     public void movePeople() {
-        for (int i = 0; i < guestsOnTile.size(); i++) {
-            guestsOnTile.get(i).move();
-        }
+        guestsOnTile.forEach(Guest::move);
     }
 
     public boolean doesHaveNeighbors() {

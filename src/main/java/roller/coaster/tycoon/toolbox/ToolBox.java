@@ -100,13 +100,6 @@ public class ToolBox {
     }
 
     public boolean dragAnyWindows(int x, int y) {
-        boolean b = false;
-
-        if (scenaryWindow.isVisible()) {
-            if (scenaryWindow.dragClickAt(x, y)) {
-                b = true;
-            }
-        }
-        return b;
+        return scenaryWindow.isVisible() && scenaryWindow.dragClickAt(x, y);
     }
 }

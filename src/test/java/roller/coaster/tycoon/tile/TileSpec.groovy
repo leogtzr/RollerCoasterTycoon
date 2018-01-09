@@ -7,7 +7,7 @@ import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
-import static Direction.*
+import static roller.coaster.tycoon.guest.Direction.*;
 
 class TileSpec extends Specification {
 

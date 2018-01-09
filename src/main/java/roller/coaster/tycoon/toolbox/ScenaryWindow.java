@@ -152,11 +152,7 @@ public class ScenaryWindow {
     }
 
     public boolean dragClickAt(int x, int y) {
-        boolean b = false;
-        if (shape.contains(x, y)) {
-            b = true;
-        }
-        return b;
+        return shape.contains(x, y);
     }
 
     public boolean clickAt(int x, int y) {
