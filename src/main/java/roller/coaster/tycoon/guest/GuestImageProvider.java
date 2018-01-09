@@ -172,69 +172,53 @@ public class GuestImageProvider implements GuestGraphicProvider {
 
     private BufferedImage[] getNorthImage(int variation) {
         switch (variation) {
-            case (1): {
+            case 1:
                 return NORTHIMG1;
-            }
-            case (2): {
+            case 2:
                 return NORTHIMG2;
-            }
-            case (3): {
+            case 3:
                 return NORTHIMG3;
-            }
-            default: {
+            default:
                 return NORTHIMG4;
-            }
         }
     }
 
     private BufferedImage[] getSouthImage(int variation) {
         switch (variation) {
-            case (1): {
+            case 1:
                 return SOUTHIMG1;
-            }
-            case (2): {
+            case 2:
                 return SOUTHIMG2;
-            }
-            case (3): {
+            case 3:
                 return SOUTHIMG3;
-            }
-            default: {
+            default:
                 return SOUTHIMG4;
-            }
         }
     }
 
     private BufferedImage[] getEastImage(int variation) {
         switch (variation) {
-            case (1): {
+            case 1:
                 return EASTIMG1;
-            }
-            case (2): {
+            case 2:
                 return EASTIMG2;
-            }
-            case (3): {
+            case 3:
                 return EASTIMG3;
-            }
-            default: {
+            default:
                 return EASTIMG4;
-            }
         }
     }
 
     private BufferedImage[] getWestImage(int variation) {
         switch (variation) {
-            case (1): {
+            case 1:
                 return WESTIMG1;
-            }
-            case (2): {
+            case 2:
                 return WESTIMG2;
-            }
-            case (3): {
+            case 3:
                 return WESTIMG3;
-            }
-            default: {
+            default:
                 return WESTIMG4;
-            }
         }
     }
 }

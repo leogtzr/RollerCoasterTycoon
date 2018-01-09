@@ -5,7 +5,6 @@ import roller.coaster.tycoon.world.World;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class GuestMover implements Runnable {
 
     private final World world;
