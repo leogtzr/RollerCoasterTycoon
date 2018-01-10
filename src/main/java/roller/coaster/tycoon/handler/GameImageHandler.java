@@ -26,18 +26,14 @@ public class GameImageHandler {
 
     public static BufferedImage getGuestImg(int number, int x, int y) {
         switch (number) {
-            case (1): {
+            case 1:
                 return guestImg1.getSubimage(x * 12, y * 19, 12, 19);
-            }
-            case (2): {
+            case 2:
                 return guestImg2.getSubimage(x * 12, y * 19, 12, 19);
-            }
-            case (3): {
+            case 3:
                 return guestImg3.getSubimage(x * 12, y * 19, 12, 19);
-            }
-            default: {
+            default:
                 return guestImg4.getSubimage(x * 12, y * 19, 12, 19);
-            }
         }
     }
 

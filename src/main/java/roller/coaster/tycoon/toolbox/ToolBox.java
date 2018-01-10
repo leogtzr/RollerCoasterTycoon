@@ -1,6 +1,6 @@
 package roller.coaster.tycoon.toolbox;
 
-import roller.coaster.tycoon.handler.GameImageHandler;
+import static roller.coaster.tycoon.handler.GameImageHandler.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,8 +17,8 @@ public class ToolBox {
     public ToolBox() {
         primarySelected = -1;
         scenaryWindow = new ScenaryWindow();
-        buttonUp = GameImageHandler.getButtonImg(1, 0);
-        buttonDown = GameImageHandler.getButtonImg(0, 0);
+        buttonUp = getButtonImg(1, 0);
+        buttonDown = getButtonImg(0, 0);
         icons = new BufferedImage[SLOTS];
 
         polygons = new Polygon[SLOTS];
@@ -71,12 +71,12 @@ public class ToolBox {
     }
 
     private void loadIcons() {
-        icons[0] = GameImageHandler.getButtonImg(0, 1);
-        icons[1] = GameImageHandler.getButtonImg(1, 1);
-        icons[2] = GameImageHandler.getButtonImg(2, 1);
-        icons[3] = GameImageHandler.getButtonImg(3, 1);
-        icons[4] = GameImageHandler.getButtonImg(4, 1);
-        icons[5] = GameImageHandler.getButtonImg(2, 0);
+        icons[0] = getButtonImg(0, 1);
+        icons[1] = getButtonImg(1, 1);
+        icons[2] = getButtonImg(2, 1);
+        icons[3] = getButtonImg(3, 1);
+        icons[4] = getButtonImg(4, 1);
+        icons[5] = getButtonImg(2, 0);
     }
 
     public int getSlots() {
