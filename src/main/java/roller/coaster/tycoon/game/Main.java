@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.isometric;
+package roller.coaster.tycoon.game;
 
 import roller.coaster.tycoon.world.World;
 

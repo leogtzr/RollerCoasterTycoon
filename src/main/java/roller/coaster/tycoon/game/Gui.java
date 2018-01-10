@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.isometric;
+package roller.coaster.tycoon.game;
 
 import roller.coaster.tycoon.guest.GuestMover;
 import roller.coaster.tycoon.toolbox.LoadSaveWindow;
@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 
 class Gui extends JFrame implements Runnable {
 
