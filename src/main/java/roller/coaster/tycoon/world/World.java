@@ -237,49 +237,38 @@ public class World {
     }
 
     public void dragAt(int x, int y, int modifier) {
-        if (!toolbox.dragAnyWindows(x, y)) {
-            // <editor-fold defaultstate="collapsed" desc="Object placement - 3">
-            if (toolbox.getPrimarySelected() == 3) {
-                placeObjectAt(x, y, modifier, toolbox.getScenaryWindow().getSelectedButton(), toolbox.getScenaryWindow().
-                        getSelectedIndex());
-            }// </editor-fold>
-
-            // <editor-fold defaultstate="collapsed" desc="Movement - 2">
-            if (toolbox.getPrimarySelected() == 2) {
-                moveWorld((int) (x - movePoint.getX()), (int) (y - movePoint.getY()));
-                movePoint.setLocation(x, y);
-            }// </editor-fold>
-
-            // <editor-fold defaultstate="collapsed" desc="Pavement - 1">
-            if (toolbox.getPrimarySelected() == 1) {
-                makePavement(x, y, modifier);
-            }// </editor-fold>
-//
-//            // <editor-fold defaultstate="collapsed" desc="Raising/Lowing - 0">
-//            if (roller.coaster.tycoon.toolbox.getPrimarySelected() == 0)
-//            {
-//                raise(x, y, modifier);
-//            }// </editor-fold>
+        if (toolbox.dragAnyWindows(x, y)) {
+            return;
         }
 
+        if (toolbox.getPrimarySelected() == 3) {
+            placeObjectAt(x, y, modifier, toolbox.getScenaryWindow().getSelectedButton(), toolbox.getScenaryWindow().
+                    getSelectedIndex());
+        }
+
+        if (toolbox.getPrimarySelected() == 2) {
+            moveWorld((int) (x - movePoint.getX()), (int) (y - movePoint.getY()));
+            movePoint.setLocation(x, y);
+        }
+
+        if (toolbox.getPrimarySelected() == 1) {
+            makePavement(x, y, modifier);
+        }
     }
 
     public void pressAt(int x, int y, int modifier) {
         if (!toolbox.dragAnyWindows(x, y)) {
-            // <editor-fold defaultstate="collapsed" desc="Guests - 4">
             if (toolbox.getPrimarySelected() == 4) {
                 addGuestAt(x, y);
-            }// </editor-fold>
+            }
 
-            //<editor-fold defaultstate="collapsed" desc="Movement - 2">
             if (toolbox.getPrimarySelected() == 2) {
                 movePoint.setLocation(x, y);
-            }// </editor-fold>
+            }
 
-            // <editor-fold defaultstate="collapsed" desc="Pavement - 1">
             if (toolbox.getPrimarySelected() == 1) {
                 makePavement(x, y, modifier);
-            }// </editor-fold>
+            }
         }
     }
 
@@ -299,7 +288,6 @@ public class World {
             if (toolbox.getPrimarySelected() == 3) {
                 toolbox.getScenaryWindow().setVisible(true);
             }
-
         } else {
             if (toolbox.getPrimarySelected() == 5) {
                 switch (loadSaveWindow.clickAt(x, y)) {
@@ -327,38 +315,23 @@ public class World {
                     }
                 }
             }
-            if (toolbox.getPrimarySelected() == 4) {
-                //check if hit guest windiw
-            }
             if (toolbox.getPrimarySelected() == 3) {
                 hitWindow = toolbox.getScenaryWindow().clickAt(x, y);
             }
-            if (toolbox.getPrimarySelected() == 2) {
-                //Check if hit movement window
-            }
-            if (toolbox.getPrimarySelected() == 1) {
-                //Check if hit pavement window
-            }
-            if (toolbox.getPrimarySelected() == 0) {
-                //Check if hit landscape window
-            }
 
             if (!hitWindow) {
-                // <editor-fold defaultstate="collapsed" desc="Object placement - 3">
                 if (toolbox.getPrimarySelected() == 3) {
                     placeObjectAt(x, y, modifier, toolbox.getScenaryWindow().getSelectedButton(), toolbox.getScenaryWindow().
                             getSelectedIndex());
-                }// </editor-fold>
+                }
 
-                // <editor-fold defaultstate="collapsed" desc="Pavement - 1">
                 if (toolbox.getPrimarySelected() == 1) {
                     makePavement(x, y, modifier);
-                }// </editor-fold>
+                }
 
-                // <editor-fold defaultstate="collapsed" desc="Raising/Lowing - 0">
                 if (toolbox.getPrimarySelected() == 0) {
                     raise(x, y, modifier);
-                }// </editor-fold>
+                }
             }
         }
     }
