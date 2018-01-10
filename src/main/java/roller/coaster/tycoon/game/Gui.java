@@ -6,9 +6,7 @@ import roller.coaster.tycoon.world.World;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 class Gui extends JFrame implements Runnable {
 
@@ -57,36 +55,36 @@ class Gui extends JFrame implements Runnable {
         bufferGraphics.clearRect(0, 0, bufferWidth, bufferHeight);
     }
 
-    private void jPanel1MouseDragged(MouseEvent evt) {
-        world.setHighlightedTile(evt.getX(), evt.getY());
-        world.dragAt(evt.getX(), evt.getY(), evt.getModifiers());
+    private void jPanel1MouseDragged(MouseEvent e) {
+        world.setHighlightedTile(e.getX(), e.getY());
+        world.dragAt(e.getX(), e.getY(), e.getModifiers());
     }
 
-    private void resetButtonActionPerformed(ActionEvent evt) {
+    private void resetButtonActionPerformed(ActionEvent e) {
         world.reset();
     }
 
-    private void jPanel1MouseClicked(MouseEvent evt) {
+    private void jPanel1MouseClicked(MouseEvent e) {
         try {
-            world.pressAndClickAt(evt.getX(), evt.getY(), evt.getModifiers());
+            world.pressAndClickAt(e.getX(), e.getY(), e.getModifiers());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }
 
-    private void jPanel1MousePressed(MouseEvent evt) {
-        world.pressAt(evt.getX(), evt.getY(), evt.getModifiers());
+    private void jPanel1MousePressed(MouseEvent e) {
+        world.pressAt(e.getX(), e.getY(), e.getModifiers());
     }
 
-    private void jPanel1MouseMoved(MouseEvent evt) {
-        world.setHighlightedTile(evt.getX(), evt.getY());
+    private void jPanel1MouseMoved(MouseEvent e) {
+        world.setHighlightedTile(e.getX(), e.getY());
     }
 
-    private void formKeyTyped(KeyEvent evt) {
+    private void formKeyTyped(KeyEvent e) {
         if (world.getLoadSaveWindow().isEnabled()) {
-            LoadSaveWindow.getWRITER().addToString(evt.getKeyChar());
+            LoadSaveWindow.getWRITER().addToString(e.getKeyChar());
         } else {
-            switch (evt.getKeyChar()) {
+            switch (e.getKeyChar()) {
                 case ('1'): {
                     world.clickOnToolBox(15, 10);
                     break;
@@ -177,39 +175,35 @@ class Gui extends JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Not RollerCoaster");
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(KeyEvent evt) {
-                formKeyTyped(evt);
+        addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                formKeyTyped(e);
             }
         });
 
         panel.setDoubleBuffered(false);
-        panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+        panel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                jPanel1MouseClicked(e);
             }
 
-            public void mousePressed(MouseEvent evt) {
-                jPanel1MousePressed(evt);
+            public void mousePressed(MouseEvent e) {
+                jPanel1MousePressed(e);
             }
         });
-        panel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(MouseEvent evt) {
-                jPanel1MouseDragged(evt);
+        panel.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                jPanel1MouseDragged(e);
             }
 
-            public void mouseMoved(MouseEvent evt) {
-                jPanel1MouseMoved(evt);
+            public void mouseMoved(MouseEvent e) {
+                jPanel1MouseMoved(e);
             }
         });
 
         resetButton.setText("Reset");
         resetButton.setFocusable(false);
-        resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                resetButtonActionPerformed(evt);
-            }
-        });
+        resetButton.addActionListener(e -> resetButtonActionPerformed(e));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(panel);
         panel.setLayout(jPanel1Layout);

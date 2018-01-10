@@ -6,6 +6,7 @@ import roller.coaster.tycoon.tile.Tile;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
 import static roller.coaster.tycoon.guest.Direction.UNDEFINED;
 
 @Getter
@@ -36,7 +37,7 @@ class GuestMoveDirectionLogic {
         return possibleDirections
                 .stream()
                 .filter(d -> d != oppositeDirection)
-                .collect(Collectors.toSet());
+                .collect(toSet());
     }
 
     private boolean hasEncounterDeadEnd(Set<Direction> directionsWithoutOpposite) {
