@@ -7,7 +7,6 @@ import roller.coaster.tycoon.handler.GameImageHandler;
 import roller.coaster.tycoon.tile.Tile;
 import roller.coaster.tycoon.toolbox.LoadSaveWindow;
 import roller.coaster.tycoon.toolbox.ToolBox;
-import roller.coaster.tycoon.worldGen.WorldGen;
 
 import java.awt.*;
 import java.io.IOException;
@@ -24,7 +23,7 @@ public class World {
     private Point movePoint;
     private ToolBox toolbox;
     private Tile[][] tiles;
-    private Highlight highlight;
+    private TileHoverHighlight highlight;
     private int x0, y0;
     private LoadSaveWindow loadSaveWindow;
     private GuestFactory guestFactory;
@@ -202,7 +201,7 @@ public class World {
     }
 
     public void loadWorld(String worldName) throws IOException {
-        WorldGen worldGen = new WorldGen();
+        WorldGenerator worldGen = new WorldGenerator();
         worldGen.loadImage(worldName);
         worldGen.loadWorld(tiles);
     }
@@ -212,7 +211,7 @@ public class World {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 if (tiles[i][j].getPolygon().contains(x, y)) {
-                    highlight = new Highlight(tiles[i][j].getPolygon());
+                    highlight = new TileHoverHighlight(tiles[i][j].getPolygon());
                     return;
                 }
             }
@@ -233,7 +232,7 @@ public class World {
         if (string.isEmpty()) {
             string = "map";
         }
-        WorldGen worldGen = new WorldGen(tiles);
+        WorldGenerator worldGen = new WorldGenerator(tiles);
         worldGen.saveWorldNew(string);
     }
 

@@ -1,4 +1,4 @@
-package roller.coaster.tycoon.worldGen;
+package roller.coaster.tycoon.world;
 
 import roller.coaster.tycoon.tile.Tile;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author René
  */
-public class WorldGen {
+public class WorldGenerator {
 
     /**
      * Image used when loading a map.
@@ -27,7 +27,7 @@ public class WorldGen {
     /**
      * The constructor used when loading a map.
      */
-    public WorldGen() {
+    public WorldGenerator() {
     }
 
     /**
@@ -35,7 +35,7 @@ public class WorldGen {
      *
      * @param tiles The tiles that must be saved.
      */
-    public WorldGen(Tile[][] tiles) {
+    public WorldGenerator(Tile[][] tiles) {
         this.tiles = tiles;
     }
 
