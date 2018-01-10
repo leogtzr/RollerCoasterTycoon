@@ -23,7 +23,7 @@ public class PathObject extends TileObject {
     @Override
     public void draw(Graphics g, int x, int y) {
         switch (index) {
-            case (0): {
+            case 0:
                 switch (roadNumber) {
                     case 0:
                         //NSEW
@@ -90,8 +90,8 @@ public class PathObject extends TileObject {
                         break;
                 }
                 break;
-            }
-            case (1): {
+
+            case 1:
                 switch (roadNumber) {
                     case 0:
                         //NSEW
@@ -158,8 +158,8 @@ public class PathObject extends TileObject {
                         break;
                 }
                 break;
-            }
-            case (2): {
+
+            case 2:
                 switch (roadNumber) {
                     case 0:
                         //NSEW
@@ -226,8 +226,8 @@ public class PathObject extends TileObject {
                         break;
                 }
                 break;
-            }
-            case (3): {
+
+            case 3:
                 switch (roadNumber) {
                     case 0:
                         //NSEW
@@ -294,7 +294,6 @@ public class PathObject extends TileObject {
                         break;
                 }
                 break;
-            }
         }
     }
 }
