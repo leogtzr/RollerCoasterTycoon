@@ -12,7 +12,7 @@ import java.util.Map;
 import static roller.coaster.tycoon.guest.Direction.*;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-public class GuestGraphics {
+class GuestGraphics {
 
     private static final int MAXIMUM_PROGRESS_FOR_INDEX = 6;
 

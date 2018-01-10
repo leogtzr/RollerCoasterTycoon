@@ -9,7 +9,7 @@ import roller.coaster.tycoon.handler.GameImageHandler;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class GuestImageProvider implements GuestGraphicProvider {
+public class GuestImageProvider implements GuestGraphicsProvider {
 
     private static final Random RAN = new Random();
     private static final BufferedImage[] SOUTHIMG1 =

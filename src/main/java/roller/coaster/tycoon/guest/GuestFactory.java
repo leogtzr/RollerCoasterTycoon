@@ -12,7 +12,7 @@ public class GuestFactory {
     private static final AtomicInteger GUEST_ID_GENERATOR = new AtomicInteger(0);
     private static final int START_PROGRESS = 0;
 
-    private final GuestGraphicProvider graphicProvider;
+    private final GuestGraphicsProvider graphicProvider;
 
     public Guest create(Tile startTile) {
         Preconditions.checkNotNull(startTile, "Starting tile for Guest must not be null!");

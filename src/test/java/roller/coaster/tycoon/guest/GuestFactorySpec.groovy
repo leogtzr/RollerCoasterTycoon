@@ -12,7 +12,7 @@ class GuestFactorySpec extends Specification {
 
     def "should create valid guest not null id"() {
         given:
-        GuestGraphicProvider graphicProvider = mock(GuestGraphicProvider.class)
+        GuestGraphicsProvider graphicProvider = mock(GuestGraphicsProvider.class)
         GuestFactory factory = new GuestFactory(graphicProvider)
         Tile tile = TileTestProvider.pavementTileWithNeighbour(12, -2)
 
@@ -25,7 +25,7 @@ class GuestFactorySpec extends Specification {
 
     def "should newly created guest progress equal to zero"() {
         given:
-        GuestGraphicProvider graphicProvider = mock(GuestGraphicProvider.class)
+        GuestGraphicsProvider graphicProvider = mock(GuestGraphicsProvider.class)
         GuestFactory factory = new GuestFactory(graphicProvider)
         Tile tile = TileTestProvider.pavementTileWithNeighbour(12, -2)
 
@@ -38,7 +38,7 @@ class GuestFactorySpec extends Specification {
 
     def "should guest have generated graphics"() {
         given:
-        GuestGraphicProvider graphicProvider = mock(GuestGraphicProvider.class)
+        GuestGraphicsProvider graphicProvider = mock(GuestGraphicsProvider.class)
         GuestGraphics graphics = GuestTestProvider.graphics()
         when(graphicProvider.generateGraphics()).thenReturn(graphics)
 
@@ -54,7 +54,7 @@ class GuestFactorySpec extends Specification {
 
     def "should throw NPE when start tile passed to factory is null"() {
         given:
-        GuestGraphicProvider graphicProvider = mock(GuestGraphicProvider.class)
+        GuestGraphicsProvider graphicProvider = mock(GuestGraphicsProvider.class)
         GuestFactory factory = new GuestFactory(graphicProvider)
         Tile tile = TileTestProvider.pavementTileWithNeighbour(12, -2)
 
