@@ -21,13 +21,9 @@ class Gui extends JFrame implements Runnable {
     private JPanel panel;
     private JButton resetButton;
 
-    Gui() {
+    Gui(World world) {
         initComponents();
-        try {
-            world = new World();
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
+        this.world = world;
         startGuiThread();
     }
 
@@ -244,5 +240,6 @@ class Gui extends JFrame implements Runnable {
                         .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
+        setVisible(true);
     }
 }
