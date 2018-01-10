@@ -88,23 +88,23 @@ class Gui extends JFrame implements Runnable {
         } else {
             switch (evt.getKeyChar()) {
                 case ('1'): {
-                    world.clickToolBox(15, 10);
+                    world.clickOnToolBox(15, 10);
                     break;
                 }
                 case ('2'): {
-                    world.clickToolBox(45, 10);
+                    world.clickOnToolBox(45, 10);
                     break;
                 }
                 case ('3'): {
-                    world.clickToolBox(75, 10);
+                    world.clickOnToolBox(75, 10);
                     break;
                 }
                 case ('4'): {
-                    world.clickToolBox(105, 10);
+                    world.clickOnToolBox(105, 10);
                     break;
                 }
                 case ('5'): {
-                    world.clickToolBox(135, 10);
+                    world.clickOnToolBox(135, 10);
                     break;
                 }
             }

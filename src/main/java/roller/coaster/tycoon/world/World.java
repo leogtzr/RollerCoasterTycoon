@@ -65,6 +65,13 @@ public class World {
     }
 
     public void draw(Graphics g) {
+        drawTiles(g);
+        drawHighlight(g);
+        toolbox.draw(g);
+        loadSaveWindow.draw(g);
+    }
+
+    private void drawTiles(Graphics g) {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = tiles[i].length - 1; j >= 0; j--) {
                 if (tiles[j][i] != null) {
@@ -72,12 +79,12 @@ public class World {
                 }
             }
         }
+    }
+
+    private void drawHighlight(Graphics g) {
         if (highlight != null) {
             highlight.draw(g);
         }
-
-        toolbox.draw(g);
-        loadSaveWindow.draw(g);
     }
 
     public void makePavement(int x, int y, int mouse) {
@@ -113,47 +120,42 @@ public class World {
         }
     }
 
-    public void raise(int x, int y, int mouse) {
-        int ammount = 0;
-        if (mouse == 16) {
-            ammount = -16;
-        } else {
-            ammount = 16;
-        }
+    public void raiseTile(int x, int y, int mouse) {
+        int amount = mouse == 16 ? -16 : 16;
 
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 if (tiles[i][j].getPolygon().contains(x, y)) {
-                    tiles[i][j].click(ammount, ammount, ammount, ammount);
+                    tiles[i][j].click(amount, amount, amount, amount);
 
 
                     if (i + 1 < 30 && j + 1 < 30) {
-                        tiles[i + 1][j + 1].click(0, 0, 0, ammount);
+                        tiles[i + 1][j + 1].click(0, 0, 0, amount);
                     }
 
                     if (i - 1 >= 0 && j + 1 < 30) {
-                        tiles[i - 1][j + 1].click(ammount, 0, 0, 0);
+                        tiles[i - 1][j + 1].click(amount, 0, 0, 0);
                     }
 
                     if (j + 1 < 30) {
-                        tiles[i][j + 1].click(ammount, 0, 0, ammount);
+                        tiles[i][j + 1].click(amount, 0, 0, amount);
                     }
 
                     if (i + 1 < 30 && j - 1 >= 0) {
-                        tiles[i + 1][j - 1].click(0, ammount, 0, 0);
+                        tiles[i + 1][j - 1].click(0, amount, 0, 0);
                     }
 
                     if (j - 1 >= 0) {
-                        tiles[i][j - 1].click(0, ammount, ammount, 0);
+                        tiles[i][j - 1].click(0, amount, amount, 0);
                     }
                     if (i - 1 >= 0 && j - 1 >= 0) {
-                        tiles[i - 1][j - 1].click(0, 0, ammount, 0);
+                        tiles[i - 1][j - 1].click(0, 0, amount, 0);
                     }
                     if (i + 1 < 30) {
-                        tiles[i + 1][j].click(0, ammount, 0, ammount);
+                        tiles[i + 1][j].click(0, amount, 0, amount);
                     }
                     if (i - 1 >= 0) {
-                        tiles[i - 1][j].click(ammount, 0, ammount, 0);
+                        tiles[i - 1][j].click(amount, 0, amount, 0);
                     }
                     return;
                 }
@@ -176,14 +178,13 @@ public class World {
         }
     }
 
-    public void moveWorld(int x0, int y0) {
-        this.x0 = this.x0 + x0;
-        this.y0 = this.y0 + y0;
+    public void moveWorld(int xOffset, int yOffset) {
+        this.x0 = this.x0 + xOffset;
+        this.y0 = this.y0 + yOffset;
     }
 
-    public void clickToolBox(int x, int y) {
-        toolbox.diableAllwindows();
-
+    public void clickOnToolBox(int x, int y) {
+        toolbox.diableAllWindows();
         toolbox.click(x, y);
 
         if (toolbox.getPrimarySelected() == 3) {
@@ -228,12 +229,12 @@ public class World {
     }
 
 
-    public void saveWorld(String string) {
-        if (string.isEmpty()) {
-            string = "map";
+    public void saveWorld(String saveName) {
+        if (saveName.isEmpty()) {
+            saveName = "map";
         }
         WorldGenerator worldGen = new WorldGenerator(tiles);
-        worldGen.saveWorldNew(string);
+        worldGen.saveWorldNew(saveName);
     }
 
     public void dragAt(int x, int y, int modifier) {
@@ -276,14 +277,14 @@ public class World {
         boolean hitWindow = false;
 
         if (x <= toolbox.getSlots() * 30 && y <= 30) {
-            toolbox.diableAllwindows();
+            toolbox.diableAllWindows();
             if (x >= (toolbox.getSlots() - 1) * 30) {
                 loadSaveWindow.setEnabled(true);
             } else {
                 loadSaveWindow.setEnabled(false);
             }
 
-            clickToolBox(x, y);
+            clickOnToolBox(x, y);
 
             if (toolbox.getPrimarySelected() == 3) {
                 toolbox.getScenaryWindow().setVisible(true);
@@ -330,7 +331,7 @@ public class World {
                 }
 
                 if (toolbox.getPrimarySelected() == 0) {
-                    raise(x, y, modifier);
+                    raiseTile(x, y, modifier);
                 }
             }
         }

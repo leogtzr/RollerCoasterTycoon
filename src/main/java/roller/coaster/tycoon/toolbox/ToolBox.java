@@ -95,7 +95,7 @@ public class ToolBox {
         return scenaryWindow;
     }
 
-    public void diableAllwindows() {
+    public void diableAllWindows() {
         scenaryWindow.setVisible(false);
     }
 
