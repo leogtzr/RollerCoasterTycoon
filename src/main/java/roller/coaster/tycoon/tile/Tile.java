@@ -2,8 +2,8 @@ package roller.coaster.tycoon.tile;
 
 import roller.coaster.tycoon.detail.PathObject;
 import roller.coaster.tycoon.detail.TileObject;
-import roller.coaster.tycoon.guest.Guest;
 import roller.coaster.tycoon.guest.Direction;
+import roller.coaster.tycoon.guest.Guest;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -281,7 +281,9 @@ public class Tile {
     }
 
     public void movePeople() {
-        guestsOnTile.forEach(Guest::move);
+        for (int i = 0; i < guestsOnTile.size(); i++) {
+            guestsOnTile.get(i).move();
+        }
     }
 
     public boolean doesHaveNeighbors() {
