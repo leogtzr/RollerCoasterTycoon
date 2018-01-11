@@ -32,22 +32,11 @@ public class Tile {
         westHeight = 0;
 
         neighborsMap = new HashMap<>(4);
+        TileIsometry isometry = new TileIsometry(xPos, yPos);
 
-        x = (int) (xPos * 64);
-        y = (int) (yPos * 32);
-
-
-        int[] xPoints =
-                {
-                        x - 32, x - 1, x, x + 31, x + 31, x, x - 1, x - 32
-                };
-        int[] yPoints =
-                {
-                        y - 1, y - 16, y - 16, y - 1, y, y + 15, y + 15, y
-                };
-
-        tileShape = new Polygon(xPoints, yPoints, 8);
-
+        x = isometry.getX();
+        y = isometry.getY();
+        tileShape = isometry.getTileShape();
         guestsOnTile = new LinkedList<>();
     }
 
