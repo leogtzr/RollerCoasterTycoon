@@ -59,21 +59,18 @@ public class Tile {
         this.y0 = y0;
         remakeTile(x0, y0);
 
-        //if (!(getYOnMap() >= 600 || getYOnMap() <= -15 || getXOnMap() <= -30 || getXOnMap() >= 800))
-        {
-            if (pavement) {
-                drawPavement(g);
-                for (int i = 0; i < guestsOnTile.size(); i++) {
-                    if (guestsOnTile.get(i) != null) {
-                        guestsOnTile.get(i).draw(g);
-                    }
+        if (pavement) {
+            drawPavement(g);
+            for (int i = 0; i < guestsOnTile.size(); i++) {
+                if (guestsOnTile.get(i) != null) {
+                    guestsOnTile.get(i).draw(g);
                 }
-            } else {
-                drawTile(g);
             }
-            if (tileObject != null) {
-                tileObject.draw(g, x + x0, y + y0 + getDetailYOffset());
-            }
+        } else {
+            drawTile(g);
+        }
+        if (tileObject != null) {
+            tileObject.draw(g, x + x0, y + y0 + getDetailYOffset());
         }
     }
 

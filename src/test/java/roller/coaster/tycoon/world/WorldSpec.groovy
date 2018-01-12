@@ -17,7 +17,7 @@ class WorldSpec extends Specification {
         world.addGuestAt(810, -80)
 
         then:
-        assertThat(tile.getGuestsOnTile()).isNotEmpty()
+        tile.getGuestsOnTile().isEmpty() != true
     }
 
     def "should not place guest at tile when tile has not pavement"() {
@@ -31,7 +31,7 @@ class WorldSpec extends Specification {
         world.addGuestAt(810, -80)
 
         then:
-        assertThat(tile.getGuestsOnTile()).isEmpty()
+        tile.getGuestsOnTile().isEmpty() == true
     }
 
     def "should not place guest at tile when tile has no neighbours"() {
@@ -44,7 +44,7 @@ class WorldSpec extends Specification {
         world.addGuestAt(810, -80)
 
         then:
-        assertThat(tile.getGuestsOnTile()).isEmpty()
+        tile.getGuestsOnTile().isEmpty() == true
     }
 
     def "should place object when tile is selected for object placement and tile is in clicked range"() {
@@ -57,7 +57,38 @@ class WorldSpec extends Specification {
         world.placeObjectAt(810, -80, 16, 2, 1)
 
         then:
-        assertThat(tile.tileObject).isNotNull()
+        tile.tileObject != null
     }
+
+    def "should world be moved vertically"() {
+        given:
+        World world = new World()
+        int offset = 100
+        int expectedY = world.y0
+        int expectedX = world.x0 + offset
+
+        when:
+        world.moveWorld(offset, 0)
+
+        then:
+        world.x0 == expectedX &&
+                world.y0 == expectedY
+    }
+
+    def "should world be moved horizontally"() {
+        given:
+        World world = new World()
+        int offset = 100
+        int expectedY = world.y0 + offset
+        int expectedX = world.x0
+
+        when:
+        world.moveWorld(0, offset)
+
+        then:
+        world.x0 == expectedX &&
+                world.y0 == expectedY
+    }
+
 
 }

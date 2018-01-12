@@ -179,8 +179,8 @@ public class World {
     }
 
     public void moveWorld(int xOffset, int yOffset) {
-        this.x0 = this.x0 + xOffset;
-        this.y0 = this.y0 + yOffset;
+        this.x0 += xOffset;
+        this.y0 += yOffset;
     }
 
     public void clickOnToolBox(int x, int y) {
