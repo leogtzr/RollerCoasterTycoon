@@ -5,7 +5,7 @@ import spock.lang.Specification
 import java.awt.*
 import java.awt.image.BufferedImage
 
-import static Direction.*
+import static roller.coaster.tycoon.guest.Direction.*
 
 class GuestGraphicsSpec extends Specification {
 

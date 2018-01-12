@@ -3,8 +3,6 @@ package roller.coaster.tycoon.world
 import roller.coaster.tycoon.tile.Tile
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.assertThat
-
 class WorldSpec extends Specification {
 
     def "should place guest at chosen pavement tile"() {

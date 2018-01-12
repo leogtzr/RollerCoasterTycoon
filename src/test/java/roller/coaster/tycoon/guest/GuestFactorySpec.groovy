@@ -4,7 +4,6 @@ import roller.coaster.tycoon.tile.Tile
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.assertThat
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 
@@ -20,7 +19,7 @@ class GuestFactorySpec extends Specification {
         Guest guest = factory.create(tile)
 
         then:
-        assertThat(guest.guestId).isNotNull()
+        guest.guestId != null
     }
 
     def "should newly created guest progress equal to zero"() {
@@ -33,7 +32,7 @@ class GuestFactorySpec extends Specification {
         Guest guest = factory.create(tile)
 
         then:
-        assertThat(guest.progress).isEqualTo(0)
+        guest.progress == 0
     }
 
     def "should guest have generated graphics"() {
@@ -49,7 +48,7 @@ class GuestFactorySpec extends Specification {
         Guest guest = factory.create(tile)
 
         then:
-        assertThat(guest.graphics).isEqualTo(graphics)
+        guest.graphics == graphics
     }
 
     def "should throw NPE when start tile passed to factory is null"() {

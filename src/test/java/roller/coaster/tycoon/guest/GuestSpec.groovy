@@ -4,7 +4,6 @@ import roller.coaster.tycoon.tile.Tile
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
-import static org.assertj.core.api.Assertions.assertThat
 import static Direction.NORTH
 import static Direction.SOUTH
 
@@ -30,7 +29,7 @@ class GuestSpec extends Specification {
         guest.setUpDestination()
 
         then:
-        assertThat(guest.destinationTile).isEqualTo(northTile)
+        guest.destinationTile == northTile
     }
 
     def "should increase progress on move when progress is not complete to move to destination tile"() {
@@ -42,7 +41,7 @@ class GuestSpec extends Specification {
         guest.move()
 
         then:
-        assertThat(guest.progress).isEqualTo(1)
+        guest.progress == 1
     }
 
     def "should reset progress when progress is complete"() {
@@ -60,7 +59,7 @@ class GuestSpec extends Specification {
         guest.move()
 
         then:
-        assertThat(guest.progress).isEqualTo(0)
+        guest.progress == 0
     }
 
     def "should set destinationTile as currentTile when progress is complete"() {
@@ -78,7 +77,7 @@ class GuestSpec extends Specification {
         guest.move()
 
         then:
-        assertThat(guest.currentTile).isEqualTo(destinationTile)
+        guest.currentTile == destinationTile
     }
 
     def "should set direction to new destinationTile when progress is complete"() {
@@ -97,7 +96,7 @@ class GuestSpec extends Specification {
         guest.move()
 
         then:
-        assertThat(guest.moveDirectionLogic.direction).isEqualTo(SOUTH)
+        guest.moveDirectionLogic.direction == SOUTH
     }
 
     private Guest guest(Tile startTile) {

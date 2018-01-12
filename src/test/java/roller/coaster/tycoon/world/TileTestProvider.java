@@ -2,7 +2,7 @@ package roller.coaster.tycoon.world;
 
 import roller.coaster.tycoon.tile.Tile;
 
-import static roller.coaster.tycoon.guest.Direction.*;
+import static roller.coaster.tycoon.guest.Direction.NORTH;
 
 public final class TileTestProvider {
 

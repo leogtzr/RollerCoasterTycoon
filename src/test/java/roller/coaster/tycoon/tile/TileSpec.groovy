@@ -1,13 +1,13 @@
 package roller.coaster.tycoon.tile
 
 import roller.coaster.tycoon.detail.TileObject
-import roller.coaster.tycoon.guest.Guest
 import roller.coaster.tycoon.guest.Direction
+import roller.coaster.tycoon.guest.Guest
 import roller.coaster.tycoon.world.TileTestProvider
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
-import static roller.coaster.tycoon.guest.Direction.*;
+import static roller.coaster.tycoon.guest.Direction.*
 
 class TileSpec extends Specification {
 
@@ -92,7 +92,7 @@ class TileSpec extends Specification {
         tile.addPavementTileAsNeighbor(neighbor, NORTH)
 
         then:
-        assertThat(tile.getNeighbor(NORTH)).isNull()
+        tile.getNeighbor(NORTH) == null
     }
 
     def "should not add tile as neighbor when source tile is not pavement tile"() {
@@ -104,7 +104,7 @@ class TileSpec extends Specification {
         tile.addPavementTileAsNeighbor(neighbor, NORTH)
 
         then:
-        assertThat(tile.getNeighbor(NORTH)).isNull()
+        tile.getNeighbor(NORTH) == null
     }
 
     def "should add pavement tile as neighbor with valid direction"(Direction direction) {
@@ -145,7 +145,7 @@ class TileSpec extends Specification {
         tile.makePavement(16)
 
         then:
-        assertThat(tile.pavement).isTrue()
+        tile.pavement == true
     }
 
     def "should not set pavement if not correct mouse number"() {
@@ -156,7 +156,7 @@ class TileSpec extends Specification {
         tile.makePavement(17)
 
         then:
-        assertThat(tile.pavement).isFalse()
+        tile.pavement == false
     }
 
     def "should not set pavement if tile object is placed on tile"() {
@@ -169,7 +169,7 @@ class TileSpec extends Specification {
         tile.makePavement(16)
 
         then:
-        assertThat(tile.pavement).isFalse()
+        tile.pavement == false
     }
 
     def "should remove pavement when right mouse clicked"() {
@@ -180,7 +180,7 @@ class TileSpec extends Specification {
         tile.makePavement(4)
 
         then:
-        assertThat(tile.pavement).isFalse()
+        tile.pavement == false
     }
 
     def "should remove all guests when right mouse clicked"() {
@@ -194,7 +194,7 @@ class TileSpec extends Specification {
         tile.makePavement(4)
 
         then:
-        assertThat(tile.guestsOnTile).isEmpty()
+        tile.guestsOnTile.isEmpty()
     }
 
     def "should remove tile object when right mouse clicked"() {
@@ -206,7 +206,7 @@ class TileSpec extends Specification {
         tile.makePavement(4)
 
         then:
-        assertThat(tile.tileObject).isNull()
+        tile.tileObject == null
     }
 
     def "should remove all neighbors when right mouse clicked"() {
@@ -218,7 +218,7 @@ class TileSpec extends Specification {
         tile.makePavement(4)
 
         then:
-        assertThat(tile.neighborsMap).isEmpty()
+        tile.neighborsMap.isEmpty()
     }
 
     def "should return false if tile has not neighbors on doesHaveNeighbors method"() {
@@ -229,7 +229,7 @@ class TileSpec extends Specification {
         boolean doesHaveNeighbors = tile.doesHaveNeighbors()
 
         then:
-        assertThat(doesHaveNeighbors).isFalse()
+        doesHaveNeighbors == false
     }
 
     def "should return true if tile has not neighbors on doesHaveNeighbors method"() {
@@ -240,7 +240,7 @@ class TileSpec extends Specification {
         boolean doesHaveNeighbors = tile.doesHaveNeighbors()
 
         then:
-        assertThat(doesHaveNeighbors).isTrue()
+        doesHaveNeighbors == true
     }
 
     def "should not place guest on tile which is pavement tile on placeExistingGuestOnTile action"() {
@@ -253,7 +253,7 @@ class TileSpec extends Specification {
         )
 
         then:
-        assertThat(tile.guestsOnTile).isEmpty()
+        tile.guestsOnTile.isEmpty()
     }
 
     def "should place guest on tile which is pavement tile on placeExistingGuestOnTile action"() {
@@ -266,7 +266,7 @@ class TileSpec extends Specification {
         )
 
         then:
-        assertThat(tile.guestsOnTile).isNotEmpty()
+        tile.guestsOnTile.isEmpty() == false
     }
 
     def "should remove guest from neighbors tiles during placeExistingGuestOnTile action"() {
@@ -282,6 +282,6 @@ class TileSpec extends Specification {
         tile.placeExistingGuestOnTile(guest)
 
         then:
-        assertThat(neighbor.guestsOnTile).isEmpty()
+        neighbor.guestsOnTile.isEmpty()
     }
 }

@@ -2,7 +2,7 @@ package roller.coaster.tycoon.guest
 
 import spock.lang.Specification
 
-import static Direction.*
+import static roller.coaster.tycoon.guest.Direction.*
 
 class DirectionSpec extends Specification {
 
