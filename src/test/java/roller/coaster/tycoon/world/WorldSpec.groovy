@@ -88,5 +88,27 @@ class WorldSpec extends Specification {
                 world.y0 == expectedY
     }
 
+    def "should not highlight tile when coordinates do not meet any tile polygon"() {
+        given:
+        World world = new World()
 
+        when:
+        world.setHighlightedTile(9999, 9999)
+
+        then:
+        world.highlight == null
+    }
+
+    def "should set highlighted tile with tile polygon when coordinates meets tile polygon"() {
+        given:
+        World world = new World()
+        Tile tile = new Tile(12.5, -2.5)
+        world.tilesList.add(0, tile)
+
+        when:
+        world.setHighlightedTile(810, -80)
+
+        then:
+        world.highlight.tileShape == tile.tileShape
+    }
 }

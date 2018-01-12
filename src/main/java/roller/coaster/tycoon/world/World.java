@@ -209,13 +209,13 @@ public class World {
 
     public void setHighlightedTile(int x, int y) {
         highlight = null;
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                if (tiles[i][j].getPolygon().contains(x, y)) {
-                    highlight = new TileHoverHighlight(tiles[i][j].getPolygon());
-                    return;
-                }
-            }
+
+        Optional<Tile> highlightedTile = tilesList.stream()
+                .filter(t -> t.contains(x, y))
+                .findFirst();
+
+        if (highlightedTile.isPresent()) {
+            highlight = new TileHoverHighlight(highlightedTile.get().getPolygon());
         }
     }
 
