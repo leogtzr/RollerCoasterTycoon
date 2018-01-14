@@ -23,9 +23,7 @@ public class Writer {
             if (string.length() < 10) {
                 string = string + toAdd;
             }
-
         }
-
     }
 
     public String getString() {
