@@ -6,8 +6,8 @@ import com.craftinginjava.rollercoastertycoon.guest.Guest
 import com.craftinginjava.rollercoastertycoon.world.TileTestProvider
 import spock.lang.Specification
 
+import static com.craftinginjava.rollercoastertycoon.guest.Direction.*
 import static org.assertj.core.api.Assertions.assertThat
-import static Direction.*
 
 class TileSpec extends Specification {
 

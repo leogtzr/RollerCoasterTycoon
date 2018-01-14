@@ -1,12 +1,12 @@
 package com.craftinginjava.rollercoastertycoon.world;
 
-import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
-import com.craftinginjava.rollercoastertycoon.toolbox.LoadSaveWindow;
-import com.craftinginjava.rollercoastertycoon.toolbox.ToolBox;
 import com.craftinginjava.rollercoastertycoon.guest.Guest;
 import com.craftinginjava.rollercoastertycoon.guest.GuestFactory;
 import com.craftinginjava.rollercoastertycoon.guest.GuestImageProvider;
+import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
 import com.craftinginjava.rollercoastertycoon.tile.Tile;
+import com.craftinginjava.rollercoastertycoon.toolbox.LoadSaveWindow;
+import com.craftinginjava.rollercoastertycoon.toolbox.ToolBox;
 
 import java.awt.*;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class World {
     private ToolBox toolbox;
     private Tile[][] tiles;
     private TileHoverHighlight highlight;
-    private int x0, y0;
+    private Camera camera;
     private LoadSaveWindow loadSaveWindow;
     private GuestFactory guestFactory;
 
@@ -32,8 +32,7 @@ public class World {
         GameImageHandler imageHandler = new GameImageHandler();
         imageHandler.loadImages();
 
-        x0 = -550;
-        y0 = 300;
+        camera = new Camera(-550, 300);
 
         initializeTiles();
 
@@ -75,7 +74,7 @@ public class World {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = tiles[i].length - 1; j >= 0; j--) {
                 if (tiles[j][i] != null) {
-                    tiles[j][i].draw(g, x0, y0);
+                    tiles[j][i].draw(g, camera.getX(), camera.getY());
                 }
             }
         }
@@ -179,8 +178,7 @@ public class World {
     }
 
     public void moveWorld(int xOffset, int yOffset) {
-        this.x0 += xOffset;
-        this.y0 += yOffset;
+        camera.move(xOffset, yOffset);
     }
 
     public void clickOnToolBox(int x, int y) {

@@ -62,30 +62,30 @@ class WorldSpec extends Specification {
         given:
         World world = new World()
         int offset = 100
-        int expectedY = world.y0
-        int expectedX = world.x0 + offset
+        int expectedY = world.camera.y
+        int expectedX = world.camera.x + offset
 
         when:
         world.moveWorld(offset, 0)
 
         then:
-        world.x0 == expectedX &&
-                world.y0 == expectedY
+        world.camera.x == expectedX &&
+                world.camera.y == expectedY
     }
 
     def "should world be moved horizontally"() {
         given:
         World world = new World()
         int offset = 100
-        int expectedY = world.y0 + offset
-        int expectedX = world.x0
+        int expectedY = world.camera.y + offset
+        int expectedX = world.camera.x
 
         when:
         world.moveWorld(0, offset)
 
         then:
-        world.x0 == expectedX &&
-                world.y0 == expectedY
+        world.camera.x == expectedX &&
+                world.camera.y == expectedY
     }
 
     def "should not highlight tile when coordinates do not meet any tile polygon"() {
