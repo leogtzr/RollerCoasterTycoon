@@ -4,14 +4,10 @@
  */
 package com.craftinginjava.rollercoastertycoon.guest;
 
-<<<<<<< HEAD:src/main/java/roller/coaster/tycoon/guest/GuestImageProvider.java
-import static roller.coaster.tycoon.handler.GameImageHandler.*;
-=======
-import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
->>>>>>> 914dd15ecce39390ca30c5fae156b6a89740e497:src/main/java/com/craftinginjava/rollercoastertycoon/guest/GuestImageProvider.java
-
 import java.awt.image.BufferedImage;
 import java.util.Random;
+
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getGuestImg;
 
 public class GuestImageProvider implements GuestGraphicsProvider {
 

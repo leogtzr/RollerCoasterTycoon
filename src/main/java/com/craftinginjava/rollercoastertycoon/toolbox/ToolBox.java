@@ -1,13 +1,11 @@
 package com.craftinginjava.rollercoastertycoon.toolbox;
 
-<<<<<<< HEAD:src/main/java/roller/coaster/tycoon/toolbox/ToolBox.java
-import static roller.coaster.tycoon.handler.GameImageHandler.*;
-=======
-import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
->>>>>>> 914dd15ecce39390ca30c5fae156b6a89740e497:src/main/java/com/craftinginjava/rollercoastertycoon/toolbox/ToolBox.java
+// import static
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getButtonImg;
 
 public class ToolBox {
 

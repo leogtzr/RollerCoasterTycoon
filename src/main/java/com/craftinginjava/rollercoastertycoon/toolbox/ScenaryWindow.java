@@ -1,12 +1,9 @@
 package com.craftinginjava.rollercoastertycoon.toolbox;
 
-<<<<<<< HEAD:src/main/java/roller/coaster/tycoon/toolbox/ScenaryWindow.java
-import roller.coaster.tycoon.detail.TileObjectImages;
-import static roller.coaster.tycoon.handler.GameImageHandler.*;
-=======
-import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
 import com.craftinginjava.rollercoastertycoon.detail.TileObjectImages;
->>>>>>> 914dd15ecce39390ca30c5fae156b6a89740e497:src/main/java/com/craftinginjava/rollercoastertycoon/toolbox/ScenaryWindow.java
+
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getButtonImg;
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getScenaryWindow;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

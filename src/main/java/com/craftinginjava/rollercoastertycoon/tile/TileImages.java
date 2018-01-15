@@ -1,12 +1,9 @@
 package com.craftinginjava.rollercoastertycoon.tile;
 
-<<<<<<< HEAD:src/main/java/roller/coaster/tycoon/tile/TileImages.java
-import static roller.coaster.tycoon.handler.GameImageHandler.*;
-=======
-import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
->>>>>>> 914dd15ecce39390ca30c5fae156b6a89740e497:src/main/java/com/craftinginjava/rollercoastertycoon/tile/TileImages.java
-
 import java.awt.*;
+
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getPavementTile;
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getTile;
 
 class TileImages {
 
