@@ -1,7 +1,9 @@
 package com.craftinginjava.rollercoastertycoon.toolbox;
 
-import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
 import com.craftinginjava.rollercoastertycoon.detail.TileObjectImages;
+
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getButtonImg;
+import static com.craftinginjava.rollercoastertycoon.handler.GameImageHandler.getScenaryWindow;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,14 +32,14 @@ public class ScenaryWindow {
         indexes = new Polygon[4];
         buttons = new Polygon[ICONS];
         createPolygon();
-        selectButtonUp = GameImageHandler.getButtonImg(4, 0);
-        selectButtonDown = GameImageHandler.getButtonImg(3, 0);
-        indexButtonDown = GameImageHandler.getScenaryWindow(false);
+        selectButtonUp = getButtonImg(4, 0);
+        selectButtonDown = getButtonImg(3, 0);
+        indexButtonDown = getScenaryWindow(false);
 
         selectedButton = 0;
         selectedIndex = 0;
         visible = false;
-        window = GameImageHandler.getScenaryWindow(true);
+        window = getScenaryWindow(true);
         icons = new BufferedImage[ICONS];
 
         loadImages();
@@ -174,48 +176,42 @@ public class ScenaryWindow {
             if (leftRight[0].contains(x, y)) {
                 group--;
                 switch (selectedButton) {
-                    case (0): {
+                    case 0:
                         if (group <= -1) {
                             group = 8;
                         }
                         break;
-                    }
-                    case (1): {
+                    case 1:
                         if (group <= -1) {
                             group = 0;
                         }
                         break;
-                    }
-                    case (2): {
+                    case 2:
                         if (group <= -1) {
                             group = 1;
                         }
                         break;
-                    }
                 }
 
             }
             if (leftRight[1].contains(x, y)) {
                 group++;
                 switch (selectedButton) {
-                    case (0): {
+                    case 0:
                         if (group >= 9) {
                             group = 0;
                         }
                         break;
-                    }
-                    case (1): {
+                    case 1:
                         if (group >= 1) {
                             group = 0;
                         }
                         break;
-                    }
-                    case (2): {
+                    case 2:
                         if (group >= 2) {
                             group = 0;
                         }
                         break;
-                    }
                 }
             }
         }
@@ -231,8 +227,8 @@ public class ScenaryWindow {
     }
 
     private void loadImages() {
-        icons[0] = GameImageHandler.getButtonImg(0, 2);
-        icons[1] = GameImageHandler.getButtonImg(1, 2);
-        icons[2] = GameImageHandler.getButtonImg(2, 2);
+        icons[0] = getButtonImg(0, 2);
+        icons[1] = getButtonImg(1, 2);
+        icons[2] = getButtonImg(2, 2);
     }
 }

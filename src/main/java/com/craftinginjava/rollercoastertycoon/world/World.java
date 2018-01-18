@@ -19,7 +19,7 @@ import static com.craftinginjava.rollercoastertycoon.guest.Direction.*;
 public class World {
 
     private final int SIZE = 30;
-    List<Tile> tilesList;
+    private List<Tile> tilesList;
     private Point movePoint;
     private ToolBox toolbox;
     private Tile[][] tiles;
@@ -218,12 +218,8 @@ public class World {
     }
 
     public void addGuestAt(int x, int y) {
-        tilesList.stream()
-                .filter(t -> t.canGuestBePlaced(x, y))
-                .forEach(t -> {
-                    Guest guest = guestFactory.create(t);
-                    t.addNewGuestToList(guest);
-                });
+        tilesList.stream().filter(t -> t.canGuestBePlaced(x, y)).
+                forEach(t -> t.addNewGuestToList(guestFactory.create(t)));
     }
 
 
@@ -290,13 +286,12 @@ public class World {
         } else {
             if (toolbox.getPrimarySelected() == 5) {
                 switch (loadSaveWindow.clickAt(x, y)) {
-                    case (0): {
+                    case 0:
                         loadSaveWindow.setEnabled(false);
                         saveWorld(LoadSaveWindow.getWRITER().getString());
                         toolbox.unSelectAll();
                         break;
-                    }
-                    case (1): {
+                    case 1:
                         try {
                             reset();
                             loadWorld(LoadSaveWindow.getWRITER().getString());
@@ -306,12 +301,10 @@ public class World {
                         toolbox.unSelectAll();
                         loadSaveWindow.setEnabled(false);
                         break;
-                    }
-                    case (2): {
+                    case 2:
                         toolbox.unSelectAll();
                         loadSaveWindow.setEnabled(false);
                         break;
-                    }
                 }
             }
             if (toolbox.getPrimarySelected() == 3) {
