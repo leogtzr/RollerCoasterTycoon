@@ -145,7 +145,7 @@ class TileSpec extends Specification {
         tile.makePavement(16)
 
         then:
-        tile.pavement == true
+        tile.pavement
     }
 
     def "should not set pavement if not correct mouse number"() {
@@ -156,7 +156,7 @@ class TileSpec extends Specification {
         tile.makePavement(17)
 
         then:
-        tile.pavement == false
+        !tile.pavement
     }
 
     def "should not set pavement if tile object is placed on tile"() {
@@ -169,7 +169,7 @@ class TileSpec extends Specification {
         tile.makePavement(16)
 
         then:
-        tile.pavement == false
+        !tile.pavement
     }
 
     def "should remove pavement when right mouse clicked"() {
@@ -180,7 +180,7 @@ class TileSpec extends Specification {
         tile.makePavement(4)
 
         then:
-        tile.pavement == false
+        !tile.pavement
     }
 
     def "should remove all guests when right mouse clicked"() {
@@ -229,7 +229,7 @@ class TileSpec extends Specification {
         boolean doesHaveNeighbors = tile.doesHaveNeighbors()
 
         then:
-        doesHaveNeighbors == false
+        !doesHaveNeighbors
     }
 
     def "should return true if tile has not neighbors on doesHaveNeighbors method"() {
@@ -240,7 +240,7 @@ class TileSpec extends Specification {
         boolean doesHaveNeighbors = tile.doesHaveNeighbors()
 
         then:
-        doesHaveNeighbors == true
+        doesHaveNeighbors
     }
 
     def "should not place guest on tile which is pavement tile on placeExistingGuestOnTile action"() {
@@ -266,7 +266,7 @@ class TileSpec extends Specification {
         )
 
         then:
-        tile.guestsOnTile.isEmpty() == false
+        !tile.guestsOnTile.isEmpty()
     }
 
     def "should remove guest from neighbors tiles during placeExistingGuestOnTile action"() {

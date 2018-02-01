@@ -1,6 +1,5 @@
 package com.craftinginjava.rollercoastertycoon.world;
 
-import com.craftinginjava.rollercoastertycoon.guest.Guest;
 import com.craftinginjava.rollercoastertycoon.guest.GuestFactory;
 import com.craftinginjava.rollercoastertycoon.guest.GuestImageProvider;
 import com.craftinginjava.rollercoastertycoon.handler.GameImageHandler;
@@ -44,7 +43,7 @@ public class World {
 
     private void initializeTiles() {
         tiles = new Tile[SIZE][SIZE];
-        tilesList = new ArrayList<Tile>(SIZE * SIZE);
+        tilesList = new ArrayList<>(SIZE * SIZE);
 
         double helperX = 0.0d;
         double helperY = 0.0d;

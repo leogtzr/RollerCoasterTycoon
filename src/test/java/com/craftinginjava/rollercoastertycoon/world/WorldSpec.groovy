@@ -15,7 +15,7 @@ class WorldSpec extends Specification {
         world.addGuestAt(810, -80)
 
         then:
-        tile.getGuestsOnTile().isEmpty() != true
+        !tile.getGuestsOnTile().isEmpty()
     }
 
     def "should not place guest at tile when tile has not pavement"() {
@@ -29,7 +29,7 @@ class WorldSpec extends Specification {
         world.addGuestAt(810, -80)
 
         then:
-        tile.getGuestsOnTile().isEmpty() == true
+        tile.getGuestsOnTile().isEmpty()
     }
 
     def "should not place guest at tile when tile has no neighbours"() {
@@ -42,7 +42,7 @@ class WorldSpec extends Specification {
         world.addGuestAt(810, -80)
 
         then:
-        tile.getGuestsOnTile().isEmpty() == true
+        tile.getGuestsOnTile().isEmpty()
     }
 
     def "should place object when tile is selected for object placement and tile is in clicked range"() {

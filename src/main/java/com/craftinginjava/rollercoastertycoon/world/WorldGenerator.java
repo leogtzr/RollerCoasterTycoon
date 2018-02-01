@@ -115,8 +115,7 @@ public class WorldGenerator {
      */
     private byte[] generatePixels(int x, int y) {
         byte[][] mapArray = new byte[31][31];
-
-        byte n = 0;
+        byte n;
 
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
@@ -139,15 +138,13 @@ public class WorldGenerator {
         }
 
 
-        ArrayList<Byte> byteList = new ArrayList<Byte>(x * y);
+        ArrayList<Byte> byteList = new ArrayList<>(x * y);
         byte[] temp = new byte[x * y];
 
         for (int i = 0; i < mapArray.length; i++) {
             for (int j = 0; j < mapArray[i].length; j++) {
                 byteList.add(mapArray[j][i]);
-                //System.out.print(mapArray[j][i] + " ");
             }
-            //System.out.println();
         }
 
         for (int i = 0; i < byteList.size(); i++) {
@@ -164,7 +161,6 @@ public class WorldGenerator {
      * @return A 16 slot indexed <code>ColorModel</code>.
      */
     private ColorModel generateColorModel() {
-        // Generate 16-color model
         byte[] r = new byte[16];
         byte[] g = new byte[16];
         byte[] b = new byte[16];
@@ -186,10 +182,10 @@ public class WorldGenerator {
      * @param world The tiles the roller.coaster.tycoon.world should be loaded into.
      */
     public void loadWorld(Tile[][] world) {
-        int n = 0;
-        int s = 0;
-        int e = 0;
-        int w = 0;
+        int n;
+        int s;
+        int e;
+        int w;
 
         for (int i = 0; i < world.length; i++) {
             for (int j = 0; j < world[i].length; j++) {
@@ -209,7 +205,6 @@ public class WorldGenerator {
 
                 saveImg.setRGB(i + 1, j, getRgbAtNorth(i, j));
 
-
                 if (i == 0) {
                     saveImg.setRGB(0, j, getRgbAtWest(i, j));
                 }
@@ -217,7 +212,6 @@ public class WorldGenerator {
                 if (j == tiles.length - 1) {
                     saveImg.setRGB(i + 1, j + 1, getRgbAtNorth(i, j));
                 }
-
 
                 if (i == 0 && j == tiles.length - 1) {
                     saveImg.setRGB(0, j + 1, getRgbAtNorth(i, j));
