@@ -11,7 +11,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.craftinginjava.rollercoastertycoon.guest.Direction.*;
 
@@ -190,12 +189,9 @@ public class World {
     }
 
     public void placeObjectAt(int x, int y, int mouse, int type, int index) {
-        Optional<Tile> tileForObjectPlacement = tilesList.stream()
+        tilesList.stream()
                 .filter(t -> t.contains(x, y))
-                .findFirst();
-        if (tileForObjectPlacement.isPresent()) {
-            tileForObjectPlacement.get().placeObject(mouse, type, index);
-        }
+                .findFirst().ifPresent(tile -> tile.placeObject(mouse, type, index));
     }
 
     public void loadWorld(String worldName) throws IOException {
@@ -207,13 +203,12 @@ public class World {
     public void setHighlightedTile(int x, int y) {
         highlight = null;
 
-        Optional<Tile> highlightedTile = tilesList.stream()
-                .filter(t -> t.contains(x, y))
-                .findFirst();
-
-        if (highlightedTile.isPresent()) {
-            highlight = new TileHoverHighlight(highlightedTile.get().getPolygon());
-        }
+        tilesList.
+                stream().
+                filter(t -> t.contains(x, y)).
+                findFirst().
+                ifPresent(
+                tile -> highlight = new TileHoverHighlight(tile.getPolygon()));
     }
 
     public void addGuestAt(int x, int y) {
@@ -295,7 +290,7 @@ public class World {
                             reset();
                             loadWorld(LoadSaveWindow.getWRITER().getString());
                         } catch (Exception ex) {
-                            throw new Exception("World not found.");
+                            throw new Exception("World not found.", ex);
                         }
                         toolbox.unSelectAll();
                         loadSaveWindow.setEnabled(false);

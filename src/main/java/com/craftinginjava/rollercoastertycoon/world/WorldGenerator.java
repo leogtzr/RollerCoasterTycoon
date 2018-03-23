@@ -66,10 +66,9 @@ public class WorldGenerator {
     public void saveWorld(String name) {
         ColorModel colorModel = generateColorModel();
 
-        int bitMasks[] = new int[]
-                {
-                        (byte) 0xf
-                };
+        int bitMasks[] = {
+                (byte) 0xf
+        };
 
         byte[] pixels = generatePixels(31, 31);
         DataBuffer dbuf = new DataBufferByte(pixels, 31 * 31, 0);
@@ -80,8 +79,8 @@ public class WorldGenerator {
 
         try {
             ImageIO.write(saveImg, "png", new File(name + ".png"));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (final IOException ex) {
+            throw new RuntimeException("Error generating image", ex);
         }
     }
 
@@ -101,7 +100,7 @@ public class WorldGenerator {
         try {
             ImageIO.write(saveImg, "png", new File(name + ".png"));
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            throw new RuntimeException("Error generating image", ex);
         }
     }
 

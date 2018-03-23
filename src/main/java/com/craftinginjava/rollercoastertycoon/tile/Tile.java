@@ -61,9 +61,9 @@ public class Tile {
 
         if (pavement) {
             drawPavement(g);
-            for (int i = 0; i < guestsOnTile.size(); i++) {
-                if (guestsOnTile.get(i) != null) {
-                    guestsOnTile.get(i).draw(g);
+            for (final Guest aGuestsOnTile : guestsOnTile) {
+                if (aGuestsOnTile != null) {
+                    aGuestsOnTile.draw(g);
                 }
             }
         } else {
@@ -158,8 +158,8 @@ public class Tile {
                 };
 
         for (int i = 0; i < yPoints.length; i++) {
-            yPoints[i] = yPoints[i] + y0;
-            xPoints[i] = xPoints[i] + x0;
+            yPoints[i] += + y0;
+            xPoints[i] += + x0;
         }
 
 //        tileShape.xpoints = xPoints;
@@ -505,16 +505,16 @@ public class Tile {
         int value = 0;
 
         if (neighborsMap.containsKey(NORTH)) {
-            value = value + 1;
+            value++;
         }
         if (neighborsMap.containsKey(SOUTH)) {
-            value = value + 2;
+            value += 2;
         }
         if (neighborsMap.containsKey(EAST)) {
-            value = value + 4;
+            value += 4;
         }
         if (neighborsMap.containsKey(WEST)) {
-            value = value + 8;
+            value += 8;
         }
         return value;
     }

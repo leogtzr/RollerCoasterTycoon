@@ -8,18 +8,21 @@ public class TileObject {
     private Image img;
 
     public TileObject(int type, int index) {
-        if (type == 0) {
-            img = TileObjectImages.getTreeImage(index);
-            xPos = -25;
-            yPos = -110;
-        }
-        if (type == 1) {
-            img = TileObjectImages.getPavementStuffImage(index);
-        }
-        if (type == 2) {
-            img = TileObjectImages.getOrnamentImage(index);
-            xPos = -25;
-            yPos = -102;
+
+        switch (type) {
+            case 0:
+                img = TileObjectImages.getTreeImage(index);
+                xPos = -25;
+                yPos = -110;
+                break;
+            case 1:
+                img = TileObjectImages.getPavementStuffImage(index);
+                break;
+            case 2:
+                img = TileObjectImages.getOrnamentImage(index);
+                xPos = -25;
+                yPos = -102;
+                break;
         }
     }
 

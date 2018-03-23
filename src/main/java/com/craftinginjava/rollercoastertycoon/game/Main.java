@@ -13,6 +13,7 @@ public class Main {
         Thread thread = new Thread(gui);
         thread.start();
     }
+    
     private static World createWorld() {
         try {
             return new World();

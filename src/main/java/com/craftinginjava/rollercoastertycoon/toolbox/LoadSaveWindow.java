@@ -57,12 +57,12 @@ public class LoadSaveWindow {
 
 
         for (int i = 0; i < yPoint.length; i++) {
-            xPoint[i] = xPoint[i] + 56;
+            xPoint[i] += + 56;
         }
         polygons[1] = new Polygon(xPoint, yPoint, 4);
 
         for (int i = 0; i < yPoint.length; i++) {
-            xPoint[i] = xPoint[i] + 54;
+            xPoint[i] += 54;
         }
         polygons[2] = new Polygon(xPoint, yPoint, 4);
     }
